@@ -5,6 +5,7 @@ import './index.css';
 import { LanguageProvider } from './context/LanguageContext';
 import { NetworkProvider } from './context/NetworkContext';
 import { AuthProvider } from './context/AuthContext';
+import { GpsProvider } from './context/GpsContext';
 
 // Register Service Worker for offline PWA capabilities
 if ('serviceWorker' in navigator && (import.meta.env.PROD || window.location.protocol === 'https:' || window.location.hostname === 'localhost')) {
@@ -25,7 +26,9 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     <LanguageProvider>
       <NetworkProvider>
         <AuthProvider>
-          <App />
+          <GpsProvider>
+            <App />
+          </GpsProvider>
         </AuthProvider>
       </NetworkProvider>
     </LanguageProvider>

@@ -1,7 +1,7 @@
 // IndexedDB Offline Storage Helper for GraminAarogya
 
 const DB_NAME = 'GraminAarogyaDB';
-const DB_VERSION = 1;
+const DB_VERSION = 2;
 
 export function openDB() {
   return new Promise((resolve, reject) => {
@@ -23,6 +23,9 @@ export function openDB() {
       }
       if (!db.objectStoreNames.contains('travel_tokens')) {
         db.createObjectStore('travel_tokens', { keyPath: 'tokenId' });
+      }
+      if (!db.objectStoreNames.contains('gps_logs')) {
+        db.createObjectStore('gps_logs', { keyPath: 'id' });
       }
     };
 

@@ -1,6 +1,7 @@
 import React from 'react';
 import { useLanguage } from '../context/LanguageContext';
 import { useAuth } from '../context/AuthContext';
+import { useGps } from '../context/GpsContext';
 import {
   HeartPulse,
   PhoneCall,
@@ -14,12 +15,25 @@ import {
   Bot,
   Video,
   Award,
-  Database
+  Database,
+  Navigation,
+  MapPin,
+  Radio
 } from 'lucide-react';
 
-export default function Header({ onOpenEmergency, onOpenSmsModal, onOpenInstall, onOpenAi, onOpenVideoCall, onOpenEvaluation, onOpenDbViewer }) {
+export default function Header({
+  onOpenEmergency,
+  onOpenSmsModal,
+  onOpenInstall,
+  onOpenAi,
+  onOpenVideoCall,
+  onOpenEvaluation,
+  onOpenDbViewer,
+  onOpenGps
+}) {
   const { lang, setLang, t } = useLanguage();
   const { user, setIsAuthModalOpen, logout, switchRole } = useAuth();
+  const { coordinates, gpsStatus, nearestHospital } = useGps();
 
   return (
     <header className="top-header">
@@ -46,6 +60,29 @@ export default function Header({ onOpenEmergency, onOpenSmsModal, onOpenInstall,
 
         {/* Action Controls */}
         <div className="header-actions">
+          {/* GPS Live Telemetry & Hospital Proximity Tracker */}
+          <button
+            onClick={onOpenGps}
+            className="btn"
+            style={{
+              fontSize: '0.82rem',
+              padding: '0.45rem 0.85rem',
+              background: '#f0fdf4',
+              border: '1.5px solid #86efac',
+              color: '#166534',
+              boxShadow: '0 2px 6px rgba(22, 101, 52, 0.08)',
+              fontWeight: '700',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '0.4rem'
+            }}
+            title="Live GPS Telemetry, Nearest Hospital & DB Logging"
+          >
+            <Navigation size={15} style={{ color: '#16a34a' }} />
+            <span>GPS: {coordinates.latitude.toFixed(3)}°, {coordinates.longitude.toFixed(3)}°</span>
+            <span style={{ width: '7px', height: '7px', borderRadius: '50%', background: '#22c55e', display: 'inline-block' }} />
+          </button>
+
           {/* SQL Live Database Inspector Trigger */}
           <button
             onClick={onOpenDbViewer}

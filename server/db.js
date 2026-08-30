@@ -16,6 +16,7 @@ const usersPath = path.join(__dirname, 'data', 'users.json');
 const remediesPath = path.join(__dirname, 'data', 'remedies.json');
 const complicationsPath = path.join(__dirname, 'data', 'complications.json');
 const consultationsPath = path.join(__dirname, 'data', 'consultations.json');
+const gpsLogsPath = path.join(__dirname, 'data', 'gps_logs.json');
 const schemaPath = path.join(__dirname, 'schema.sql');
 
 // Fallback JSON data
@@ -23,12 +24,14 @@ let localUsers = [];
 let localRemedies = [];
 let localComplications = [];
 let localConsultations = [];
+let localGpsLogs = [];
 
 try {
   if (fs.existsSync(usersPath)) localUsers = JSON.parse(fs.readFileSync(usersPath, 'utf8'));
   if (fs.existsSync(remediesPath)) localRemedies = JSON.parse(fs.readFileSync(remediesPath, 'utf8'));
   if (fs.existsSync(complicationsPath)) localComplications = JSON.parse(fs.readFileSync(complicationsPath, 'utf8'));
   if (fs.existsSync(consultationsPath)) localConsultations = JSON.parse(fs.readFileSync(consultationsPath, 'utf8'));
+  if (fs.existsSync(gpsLogsPath)) localGpsLogs = JSON.parse(fs.readFileSync(gpsLogsPath, 'utf8'));
 } catch (e) {
   console.warn('[DB File Load Warning]:', e.message);
 }
@@ -91,6 +94,28 @@ CREATE TABLE IF NOT EXISTS consultation_symptoms (
     consultation_id VARCHAR(100) NOT NULL,
     symptom_code VARCHAR(50) NOT NULL,
     duration_days INT DEFAULT 1
+);
+
+CREATE TABLE IF NOT EXISTS gps_logs (
+    id VARCHAR(100) PRIMARY KEY,
+    user_id VARCHAR(100),
+    user_name VARCHAR(150),
+    role VARCHAR(30) DEFAULT 'citizen',
+    latitude NUMERIC(10, 7) NOT NULL,
+    longitude NUMERIC(10, 7) NOT NULL,
+    accuracy_meters NUMERIC(8, 2),
+    altitude_meters NUMERIC(8, 2),
+    speed_mps NUMERIC(8, 2),
+    heading NUMERIC(6, 2),
+    district VARCHAR(100),
+    taluka VARCHAR(100),
+    village VARCHAR(100),
+    nearest_hospital_id VARCHAR(50),
+    nearest_hospital_name VARCHAR(150),
+    distance_to_hospital_km NUMERIC(6, 2),
+    source VARCHAR(50) DEFAULT 'BROWSER_GPS',
+    event_type VARCHAR(50) DEFAULT 'LOCATION_PING',
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 `;
 
@@ -321,12 +346,103 @@ export async function dbGetConsultations() {
   return localConsultations;
 }
 
-// 5. Database Status
+// 5. Save Live GPS Log to PostgreSQL
+export async function dbSaveGpsLog(gpsData) {
+  const logId = gpsData.id || ('gps-' + Date.now() + '-' + Math.random().toString(36).substring(2, 7));
+  const userId = gpsData.user_id || 'usr_guest';
+  const userName = gpsData.user_name || 'Rural Citizen / ASHA';
+  const role = gpsData.role || 'citizen';
+  const lat = parseFloat(gpsData.latitude) || 19.9381;
+  const lng = parseFloat(gpsData.longitude) || 73.5312;
+  const accuracy = parseFloat(gpsData.accuracy_meters) || 15.0;
+  const altitude = gpsData.altitude_meters != null ? parseFloat(gpsData.altitude_meters) : null;
+  const speed = gpsData.speed_mps != null ? parseFloat(gpsData.speed_mps) : null;
+  const heading = gpsData.heading != null ? parseFloat(gpsData.heading) : null;
+  const district = gpsData.district || 'Nashik Rural';
+  const taluka = gpsData.taluka || 'Trimbakeshwar';
+  const village = gpsData.village || 'Trimbak Pada';
+  const nearestHospId = gpsData.nearest_hospital_id || 'hosp-01';
+  const nearestHospName = gpsData.nearest_hospital_name || 'Trimbakeshwar Primary Health Centre (PHC)';
+  const distKm = parseFloat(gpsData.distance_to_hospital_km) || 4.5;
+  const source = gpsData.source || 'BROWSER_GPS';
+  const eventType = gpsData.event_type || 'LOCATION_PING';
+  const createdAt = gpsData.created_at || new Date().toISOString();
+
+  if (sqlAdapter) {
+    try {
+      await sqlAdapter.query(
+        `INSERT INTO gps_logs (
+          id, user_id, user_name, role, latitude, longitude, accuracy_meters,
+          altitude_meters, speed_mps, heading, district, taluka, village,
+          nearest_hospital_id, nearest_hospital_name, distance_to_hospital_km,
+          source, event_type, created_at
+        ) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19)`,
+        [
+          logId, userId, userName, role, lat, lng, accuracy,
+          altitude, speed, heading, district, taluka, village,
+          nearestHospId, nearestHospName, distKm,
+          source, eventType, createdAt
+        ]
+      );
+      console.log(`📍 [PSQL GPS] Saved GPS Log (${lat.toFixed(4)}, ${lng.toFixed(4)}) - Event: ${eventType}`);
+    } catch (e) {
+      console.error('[PSQL GPS Log Error]:', e.message);
+    }
+  }
+
+  const record = {
+    id: logId,
+    user_id: userId,
+    user_name: userName,
+    role,
+    latitude: lat,
+    longitude: lng,
+    accuracy_meters: accuracy,
+    altitude_meters: altitude,
+    speed_mps: speed,
+    heading,
+    district,
+    taluka,
+    village,
+    nearest_hospital_id: nearestHospId,
+    nearest_hospital_name: nearestHospName,
+    distance_to_hospital_km: distKm,
+    source,
+    event_type: eventType,
+    created_at: createdAt
+  };
+
+  localGpsLogs.unshift(record);
+  if (localGpsLogs.length > 500) localGpsLogs.pop(); // Keep recent 500 records
+  try {
+    fs.writeFileSync(gpsLogsPath, JSON.stringify(localGpsLogs, null, 2), 'utf8');
+  } catch (e) {}
+
+  return record;
+}
+
+// 6. Get Recent GPS Logs from PostgreSQL
+export async function dbGetGpsLogs(limit = 100) {
+  if (sqlAdapter) {
+    try {
+      const res = await sqlAdapter.query(`
+        SELECT * FROM gps_logs
+        ORDER BY created_at DESC
+        LIMIT $1
+      `, [limit]);
+      return res.rows;
+    } catch (e) {}
+  }
+  return localGpsLogs.slice(0, limit);
+}
+
+// 7. Database Status
 export function getDbStatus() {
   return {
     engine: activeEngineType,
     isPostgresConnected: true,
-    sqlTables: ['users', 'symptoms_master', 'remedies_master', 'patient_consultations', 'consultation_symptoms'],
+    sqlTables: ['users', 'symptoms_master', 'remedies_master', 'patient_consultations', 'consultation_symptoms', 'gps_logs'],
     schemaFile: 'server/schema.sql'
   };
 }
+

@@ -99,11 +99,36 @@ CREATE TABLE IF NOT EXISTS consultation_symptoms (
     severity_reported VARCHAR(20) DEFAULT 'MILD'
 );
 
--- 8. INDEXES FOR HIGH-SPEED QUERY PERFORMANCE
+-- 8. GPS & LOCATION LOGS TABLE (Live Telemetry, Proximity Triage & Emergency SOS)
+CREATE TABLE IF NOT EXISTS gps_logs (
+    id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+    user_id VARCHAR(100),
+    user_name VARCHAR(150),
+    role VARCHAR(30) DEFAULT 'citizen',
+    latitude NUMERIC(10, 7) NOT NULL,
+    longitude NUMERIC(10, 7) NOT NULL,
+    accuracy_meters NUMERIC(8, 2),
+    altitude_meters NUMERIC(8, 2),
+    speed_mps NUMERIC(8, 2),
+    heading NUMERIC(6, 2),
+    district VARCHAR(100),
+    taluka VARCHAR(100),
+    village VARCHAR(100),
+    nearest_hospital_id VARCHAR(50),
+    nearest_hospital_name VARCHAR(150),
+    distance_to_hospital_km NUMERIC(6, 2),
+    source VARCHAR(50) DEFAULT 'BROWSER_GPS',
+    event_type VARCHAR(50) DEFAULT 'LOCATION_PING', -- 'LOCATION_PING', 'EMERGENCY_SOS', 'CONSULTATION_TAG', 'HOSPITAL_SEARCH'
+    created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
+);
+
+-- 9. INDEXES FOR HIGH-SPEED QUERY PERFORMANCE
 CREATE INDEX IF NOT EXISTS idx_consultation_user ON patient_consultations(user_id);
 CREATE INDEX IF NOT EXISTS idx_consultation_tier ON patient_consultations(triage_tier);
 CREATE INDEX IF NOT EXISTS idx_consultation_created ON patient_consultations(created_at DESC);
 CREATE INDEX IF NOT EXISTS idx_consultation_symptoms ON consultation_symptoms(symptom_code);
+CREATE INDEX IF NOT EXISTS idx_gps_logs_created ON gps_logs(created_at DESC);
+CREATE INDEX IF NOT EXISTS idx_gps_logs_user ON gps_logs(user_id);
 
 -- ============================================================================
 -- SAMPLE INSERT QUERY (When a Patient Reports Symptoms in GraminAarogya):

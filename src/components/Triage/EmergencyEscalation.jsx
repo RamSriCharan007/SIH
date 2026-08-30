@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useLanguage } from '../../context/LanguageContext';
 import { useNetwork } from '../../context/NetworkContext';
+import { useGps } from '../../context/GpsContext';
 import VoiceAssistant from '../VoiceAssistant';
 import {
   AlertTriangle,
@@ -10,18 +11,21 @@ import {
   Hospital,
   ArrowRight,
   MessageSquare,
-  Activity
+  Activity,
+  Navigation
 } from 'lucide-react';
 import { saveToStore, getAllFromStore } from '../../utils/db';
 
 export default function EmergencyEscalation({ onSelectHospitalFilter, onOpenSmsFallback }) {
   const { lang, t } = useLanguage();
   const { isOffline } = useNetwork();
+  const { coordinates, nearestHospital, logGpsToBackend } = useGps();
   const [complications, setComplications] = useState([]);
   const [activeSOSModal, setActiveSOSModal] = useState(null);
 
   useEffect(() => {
     loadComplications();
+    logGpsToBackend('EMERGENCY_ESCALATION_VIEW');
   }, []);
 
   const loadComplications = async () => {
@@ -77,6 +81,30 @@ export default function EmergencyEscalation({ onSelectHospitalFilter, onOpenSmsF
               textToSpeak="६० टक्के गंभीर आजार आणि आपत्कालीन मार्गदर्शक. सर्पदंश, हृदयविकार, गरोदरपणातील अतिरक्तस्त्राव किंवा डोक्याला जबर मार लागल्यास गोल्डन अवर मध्ये तात्काळ १०८ रुग्णवाहिका बोलवा."
               label="आपत्कालीन सूचना ऐका"
             />
+          </div>
+        </div>
+
+        {/* Live GPS Telemetry Tagging */}
+        <div style={{
+          marginTop: '1rem',
+          paddingTop: '0.85rem',
+          borderTop: '1px solid rgba(255, 255, 255, 0.2)',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          flexWrap: 'wrap',
+          gap: '0.5rem',
+          fontSize: '0.78rem'
+        }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', color: '#fef08a', fontWeight: '700' }}>
+            <Navigation size={14} />
+            <span>📍 Live GPS Location Tagged for 108 Dispatch:</span>
+            <span style={{ color: 'white', fontFamily: 'monospace' }}>
+              {coordinates.latitude.toFixed(4)}°N, {coordinates.longitude.toFixed(4)}°E
+            </span>
+          </div>
+          <div style={{ color: '#fecaca', fontSize: '0.74rem' }}>
+            Nearest Emergency Facility: <strong>{nearestHospital?.name || 'Trimbakeshwar PHC'}</strong> (~{nearestHospital?.live_travel_time_mins || 12} mins)
           </div>
         </div>
       </div>

@@ -1,5 +1,6 @@
 import React from 'react';
 import { useLanguage } from '../../context/LanguageContext';
+import { useGps } from '../../context/GpsContext';
 import {
   Hospital,
   MapPin,
@@ -13,7 +14,9 @@ import {
   Ticket,
   Activity,
   Syringe,
-  Video
+  Video,
+  Navigation,
+  ExternalLink
 } from 'lucide-react';
 
 export default function HospitalCard({
@@ -24,6 +27,7 @@ export default function HospitalCard({
   selectedBlood
 }) {
   const { lang, t } = useLanguage();
+  const { calculateDistanceTo, coordinates } = useGps();
 
   const {
     name,
@@ -36,8 +40,18 @@ export default function HospitalCard({
     travel_time_mins,
     contact,
     live_status,
-    schemes
+    schemes,
+    coordinates: hospCoords
   } = hospital;
+
+  // Calculate live dynamic GPS distance if coordinates exist
+  const liveDistKm = (hospCoords?.lat && hospCoords?.lng) 
+    ? calculateDistanceTo(hospCoords.lat, hospCoords.lng) 
+    : distance_km;
+  const liveMins = liveDistKm ? Math.max(5, Math.round(liveDistKm * 2.2)) : travel_time_mins;
+  const mapsUrl = (hospCoords?.lat && hospCoords?.lng)
+    ? `https://www.google.com/maps/dir/?api=1&destination=${hospCoords.lat},${hospCoords.lng}`
+    : `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(name + ' ' + district)}`;
 
   const isGovt = type === 'Government';
   const doc = live_status.doctor_on_duty;
@@ -57,9 +71,29 @@ export default function HospitalCard({
             <span className={`badge ${isGovt ? 'badge-green' : 'badge-amber'}`}>
               {isGovt ? t('filter_govt') : `Private • ${tier}`}
             </span>
-            <span className="badge badge-blue">
-              <MapPin size={11} /> {district} • {distance_km} km ({travel_time_mins} min)
+            <span className="badge badge-blue" style={{ background: '#ecfdf5', color: '#065f46', borderColor: '#a7f3d0' }}>
+              <Navigation size={11} style={{ color: '#059669' }} /> 📍 GPS: {liveDistKm} km ({liveMins} min)
             </span>
+            <a
+              href={mapsUrl}
+              target="_blank"
+              rel="noreferrer"
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '2px',
+                fontSize: '0.68rem',
+                color: '#0284c7',
+                textDecoration: 'none',
+                padding: '0.15rem 0.4rem',
+                background: '#f0f9ff',
+                borderRadius: '6px',
+                border: '1px solid #bae6fd'
+              }}
+              title="Open turn-by-turn route in Google Maps"
+            >
+              <ExternalLink size={10} /> Maps
+            </a>
           </div>
 
           <span style={{

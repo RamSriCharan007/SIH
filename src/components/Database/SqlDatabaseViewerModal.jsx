@@ -12,13 +12,17 @@ import {
   Clock,
   Sparkles,
   ExternalLink,
-  Code
+  Code,
+  Navigation,
+  MapPin,
+  Radio
 } from 'lucide-react';
 
 export default function SqlDatabaseViewerModal({ onClose, highlightConsultationId }) {
-  const [activeTable, setActiveTable] = useState('patient_consultations'); // 'patient_consultations' | 'users' | 'symptoms_master' | 'remedies_master'
+  const [activeTable, setActiveTable] = useState('patient_consultations'); // 'patient_consultations' | 'users' | 'gps_logs'
   const [consultations, setConsultations] = useState([]);
   const [users, setUsers] = useState([]);
+  const [gpsLogs, setGpsLogs] = useState([]);
   const [dbStatus, setDbStatus] = useState(null);
   const [loading, setLoading] = useState(true);
   const [searchFilter, setSearchFilter] = useState('');
@@ -26,19 +30,22 @@ export default function SqlDatabaseViewerModal({ onClose, highlightConsultationI
   const fetchDatabaseData = async () => {
     setLoading(true);
     try {
-      const [statusRes, consultRes, usersRes] = await Promise.all([
+      const [statusRes, consultRes, usersRes, gpsRes] = await Promise.all([
         fetch('/api/db/status'),
         fetch('/api/consultations'),
-        fetch('/api/users')
+        fetch('/api/users'),
+        fetch('/api/gps/logs?limit=100')
       ]);
 
       const statusData = await statusRes.json();
       const consultData = await consultRes.json();
       const usersData = await usersRes.json();
+      const gpsData = await gpsRes.json();
 
       setDbStatus(statusData);
       setConsultations(consultData.consultations || []);
       setUsers(usersData.users || []);
+      setGpsLogs(gpsData.logs || []);
     } catch (err) {
       console.error('Failed to load database records:', err);
     } finally {
@@ -206,6 +213,26 @@ export default function SqlDatabaseViewerModal({ onClose, highlightConsultationI
               <User size={15} />
               <span>users ({users.length})</span>
             </button>
+
+            <button
+              onClick={() => setActiveTable('gps_logs')}
+              style={{
+                padding: '0.45rem 0.85rem',
+                borderRadius: '8px',
+                border: `1.5px solid ${activeTable === 'gps_logs' ? '#0d9488' : '#e2e8f0'}`,
+                background: activeTable === 'gps_logs' ? '#f0fdf4' : 'white',
+                color: activeTable === 'gps_logs' ? '#0d9488' : '#475569',
+                fontWeight: '700',
+                fontSize: '0.82rem',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '6px',
+                cursor: 'pointer'
+              }}
+            >
+              <Navigation size={15} />
+              <span>gps_logs ({gpsLogs.length})</span>
+            </button>
           </div>
 
           {/* Search bar */}
@@ -324,6 +351,61 @@ export default function SqlDatabaseViewerModal({ onClose, highlightConsultationI
                     </td>
                   </tr>
                 ))}
+              </tbody>
+            </table>
+          )}
+
+          {activeTable === 'gps_logs' && (
+            <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '0.82rem', textAlign: 'left' }}>
+              <thead>
+                <tr style={{ background: '#f1f5f9', color: '#475569', borderBottom: '1.5px solid #cbd5e1' }}>
+                  <th style={{ padding: '0.65rem 0.75rem', fontWeight: '800' }}>Log ID / Time</th>
+                  <th style={{ padding: '0.65rem 0.75rem', fontWeight: '800' }}>User</th>
+                  <th style={{ padding: '0.65rem 0.75rem', fontWeight: '800' }}>Event</th>
+                  <th style={{ padding: '0.65rem 0.75rem', fontWeight: '800' }}>GPS Coordinates</th>
+                  <th style={{ padding: '0.65rem 0.75rem', fontWeight: '800' }}>Nearest Hospital</th>
+                  <th style={{ padding: '0.65rem 0.75rem', fontWeight: '800' }}>Distance</th>
+                </tr>
+              </thead>
+              <tbody>
+                {gpsLogs.length === 0 ? (
+                  <tr>
+                    <td colSpan={6} style={{ padding: '1.5rem', textAlign: 'center', color: '#94a3b8' }}>
+                      No GPS telemetry logs in database yet.
+                    </td>
+                  </tr>
+                ) : (
+                  gpsLogs.map((g, idx) => (
+                    <tr key={idx} style={{ borderBottom: '1px solid #f1f5f9', background: idx % 2 === 0 ? 'white' : '#fafafa' }}>
+                      <td style={{ padding: '0.65rem 0.75rem', color: '#64748b' }}>
+                        <div style={{ fontFamily: 'monospace', fontWeight: '700', color: '#0284c7' }}>{g.id}</div>
+                        <div style={{ fontSize: '0.7rem' }}>{new Date(g.created_at || Date.now()).toLocaleTimeString()}</div>
+                      </td>
+                      <td style={{ padding: '0.65rem 0.75rem', fontWeight: '700' }}>
+                        {g.user_name || 'Citizen'}
+                        <span className="badge badge-slate" style={{ fontSize: '0.65rem', marginLeft: '4px' }}>{g.role || 'citizen'}</span>
+                      </td>
+                      <td style={{ padding: '0.65rem 0.75rem' }}>
+                        <span className="badge" style={{
+                          fontSize: '0.7rem',
+                          background: g.event_type?.includes('EMERGENCY') ? '#fee2e2' : '#e0f2fe',
+                          color: g.event_type?.includes('EMERGENCY') ? '#991b1b' : '#0369a1'
+                        }}>
+                          {g.event_type || 'LOCATION_PING'}
+                        </span>
+                      </td>
+                      <td style={{ padding: '0.65rem 0.75rem', fontFamily: 'monospace', color: '#047857', fontWeight: '700' }}>
+                        {parseFloat(g.latitude).toFixed(4)}°N, {parseFloat(g.longitude).toFixed(4)}°E
+                      </td>
+                      <td style={{ padding: '0.65rem 0.75rem', color: '#334155' }}>
+                        {g.nearest_hospital_name || 'Trimbakeshwar PHC'}
+                      </td>
+                      <td style={{ padding: '0.65rem 0.75rem', fontWeight: '700', color: '#0d9488' }}>
+                        {g.distance_to_hospital_km ? `${parseFloat(g.distance_to_hospital_km).toFixed(1)} km` : '4.5 km'}
+                      </td>
+                    </tr>
+                  ))
+                )}
               </tbody>
             </table>
           )}

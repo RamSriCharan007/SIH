@@ -17,6 +17,7 @@ import EmergencyVideoCallModal from './components/Teleconsultation/EmergencyVide
 import DoctorDirectoryModal from './components/Teleconsultation/DoctorDirectoryModal';
 import JuryEvaluationModal from './components/Evaluation/JuryEvaluationModal';
 import SqlDatabaseViewerModal from './components/Database/SqlDatabaseViewerModal';
+import GpsTrackingModal from './components/Gps/GpsTrackingModal';
 
 import { useLanguage } from './context/LanguageContext';
 import { useAuth } from './context/AuthContext';
@@ -61,6 +62,7 @@ export default function App() {
   const [isVideoCallOpen, setIsVideoCallOpen] = useState(false);
   const [isEvaluationModalOpen, setIsEvaluationModalOpen] = useState(false);
   const [isDbViewerOpen, setIsDbViewerOpen] = useState(false);
+  const [isGpsModalOpen, setIsGpsModalOpen] = useState(false);
   const [highlightConsultationId, setHighlightConsultationId] = useState(null);
   const [activeVideoCallDoc, setActiveVideoCallDoc] = useState(null);
   const [smsDefaultQuery, setSmsDefaultQuery] = useState('BEDS');
@@ -125,6 +127,7 @@ export default function App() {
         onOpenAi={() => setIsAiModalOpen(true)}
         onOpenVideoCall={() => setIsDoctorDirectoryOpen(true)}
         onOpenEvaluation={() => setIsEvaluationModalOpen(true)}
+        onOpenGps={() => setIsGpsModalOpen(true)}
         onOpenDbViewer={() => {
           setHighlightConsultationId(null);
           setIsDbViewerOpen(true);
@@ -471,6 +474,17 @@ export default function App() {
         <SqlDatabaseViewerModal
           onClose={() => setIsDbViewerOpen(false)}
           highlightConsultationId={highlightConsultationId}
+        />
+      )}
+
+      {/* GPS Live Telemetry & Proximity Tracker Modal */}
+      {isGpsModalOpen && (
+        <GpsTrackingModal
+          onClose={() => setIsGpsModalOpen(false)}
+          onOpenEmergencySOS={() => {
+            setIsGpsModalOpen(false);
+            setIsEmergencyModalOpen(true);
+          }}
         />
       )}
 

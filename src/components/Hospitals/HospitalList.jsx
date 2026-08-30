@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useLanguage } from '../../context/LanguageContext';
 import { useNetwork } from '../../context/NetworkContext';
+import { useGps } from '../../context/GpsContext';
 import HospitalCard from './HospitalCard';
 import CostBreakdownModal from './CostBreakdownModal';
 import TokenBookingModal from './TokenBookingModal';
@@ -13,15 +14,20 @@ import {
   Droplet,
   AlertTriangle,
   Search,
-  Sparkles
+  Sparkles,
+  Navigation,
+  MapPin,
+  Radio
 } from 'lucide-react';
 
 export default function HospitalList({ initialFilter, onVideoCall }) {
   const { lang, t } = useLanguage();
   const { isOffline } = useNetwork();
+  const { calculateDistanceTo, coordinates, gpsStatus, refreshGps } = useGps();
 
   const [hospitals, setHospitals] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [sortByGps, setSortByGps] = useState(true);
 
   // Filters
   const [typeFilter, setTypeFilter] = useState(initialFilter?.type || 'all'); // 'all', 'Government', 'Private'
@@ -103,16 +109,93 @@ export default function HospitalList({ initialFilter, onVideoCall }) {
     return true;
   });
 
+  // Sort hospitals by Live GPS distance (Nearest First)
+  const displayHospitals = [...filteredHospitals].sort((a, b) => {
+    if (!sortByGps) return 0;
+    const distA = (a.coordinates?.lat && a.coordinates?.lng) 
+      ? calculateDistanceTo(a.coordinates.lat, a.coordinates.lng) 
+      : a.distance_km;
+    const distB = (b.coordinates?.lat && b.coordinates?.lng) 
+      ? calculateDistanceTo(b.coordinates.lat, b.coordinates.lng) 
+      : b.distance_km;
+    return (distA || 999) - (distB || 999);
+  });
+
   return (
     <div style={{ marginTop: '1.25rem' }}>
-      {/* Heading */}
-      <div style={{ marginBottom: '1.2rem' }}>
-        <h2 style={{ fontSize: '1.35rem', fontWeight: '800', color: '#0f172a' }}>
-          {t('hosp_heading')}
-        </h2>
-        <p style={{ fontSize: '0.85rem', color: '#64748b', marginTop: '0.2rem' }}>
-          {t('hosp_subheading')}
-        </p>
+      {/* GPS Telemetry Proximity Indicator */}
+      <div style={{
+        background: 'linear-gradient(135deg, #0f172a 0%, #1e293b 100%)',
+        color: 'white',
+        borderRadius: '12px',
+        padding: '0.85rem 1.1rem',
+        marginBottom: '1rem',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        flexWrap: 'wrap',
+        gap: '0.75rem',
+        boxShadow: '0 4px 12px rgba(15, 23, 42, 0.15)'
+      }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem' }}>
+          <div style={{
+            width: '32px',
+            height: '32px',
+            borderRadius: '8px',
+            background: '#0d9488',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            color: 'white'
+          }}>
+            <Navigation size={18} />
+          </div>
+          <div>
+            <div style={{ fontSize: '0.82rem', fontWeight: '800', display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
+              <span>Live GPS Proximity Sorting</span>
+              <span className="badge" style={{ background: '#059669', color: 'white', fontSize: '0.65rem', padding: '0.1rem 0.4rem' }}>
+                Active ({coordinates.latitude.toFixed(3)}°N, {coordinates.longitude.toFixed(3)}°E)
+              </span>
+            </div>
+            <div style={{ fontSize: '0.72rem', color: '#94a3b8' }}>
+              Calculating real-time driving distances & travel times via Haversine geofence
+            </div>
+          </div>
+        </div>
+
+        <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
+          <button
+            onClick={() => setSortByGps(!sortByGps)}
+            className="btn"
+            style={{
+              fontSize: '0.75rem',
+              padding: '0.35rem 0.75rem',
+              background: sortByGps ? '#0d9488' : 'rgba(255,255,255,0.1)',
+              color: 'white',
+              border: '1px solid rgba(255,255,255,0.2)',
+              fontWeight: '700'
+            }}
+          >
+            <Navigation size={13} />
+            <span>{sortByGps ? '✓ Sorted: Nearest First' : 'Default Order'}</span>
+          </button>
+
+          <button
+            onClick={refreshGps}
+            className="btn"
+            style={{
+              fontSize: '0.75rem',
+              padding: '0.35rem 0.65rem',
+              background: 'rgba(255,255,255,0.1)',
+              color: '#cbd5e1',
+              border: '1px solid rgba(255,255,255,0.15)'
+            }}
+            title="Refresh GPS Coordinates"
+          >
+            <RefreshCw size={13} />
+            <span>Refresh</span>
+          </button>
+        </div>
       </div>
 
       {/* Filter Bar */}
@@ -249,7 +332,7 @@ export default function HospitalList({ initialFilter, onVideoCall }) {
 
       {/* Hospital Cards Grid */}
       <div className="card-grid">
-        {filteredHospitals.map((hospital) => (
+        {displayHospitals.map((hospital) => (
           <HospitalCard
             key={hospital.id}
             hospital={hospital}
@@ -261,7 +344,7 @@ export default function HospitalList({ initialFilter, onVideoCall }) {
         ))}
       </div>
 
-      {filteredHospitals.length === 0 && (
+      {displayHospitals.length === 0 && (
         <div style={{
           textAlign: 'center',
           padding: '3rem 1rem',

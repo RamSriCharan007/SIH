@@ -19,6 +19,8 @@ import {
   dbGetUsers,
   dbSaveConsultation,
   dbGetConsultations,
+  dbSaveGpsLog,
+  dbGetGpsLogs,
   getDbStatus
 } from './db.js';
 
@@ -211,6 +213,147 @@ app.get('/api/consultations', async (req, res) => {
     success: true,
     count: consultations.length,
     consultations
+  });
+});
+
+// --- GPS & LIVE LOCATION TELEMETRY ENDPOINTS ---
+
+// Haversine formula to compute great-circle distance in km between two GPS coordinates
+function calculateHaversineDistanceKm(lat1, lon1, lat2, lon2) {
+  const R = 6371; // Earth radius in km
+  const dLat = (lat2 - lat1) * (Math.PI / 180);
+  const dLon = (lon2 - lon1) * (Math.PI / 180);
+  const a =
+    Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+    Math.cos(lat1 * (Math.PI / 180)) * Math.cos(lat2 * (Math.PI / 180)) *
+    Math.sin(dLon / 2) * Math.sin(dLon / 2);
+  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+  return parseFloat((R * c).toFixed(2));
+}
+
+// 1. Log Live GPS Position (Telemetry ping, Emergency SOS, or Triage event)
+app.post('/api/gps/log', async (req, res) => {
+  try {
+    const {
+      latitude,
+      longitude,
+      accuracy_meters,
+      altitude_meters,
+      speed_mps,
+      heading,
+      user_id,
+      user_name,
+      role,
+      district,
+      taluka,
+      village,
+      event_type,
+      source
+    } = req.body;
+
+    const lat = parseFloat(latitude);
+    const lng = parseFloat(longitude);
+
+    if (isNaN(lat) || isNaN(lng)) {
+      return res.status(400).json({ error: 'Valid numerical latitude and longitude required' });
+    }
+
+    // Auto-calculate nearest hospital from master list
+    let nearestHospital = null;
+    let minDistance = Infinity;
+
+    hospitals.forEach(h => {
+      if (h.coordinates?.lat && h.coordinates?.lng) {
+        const d = calculateHaversineDistanceKm(lat, lng, h.coordinates.lat, h.coordinates.lng);
+        if (d < minDistance) {
+          minDistance = d;
+          nearestHospital = h;
+        }
+      }
+    });
+
+    const savedLog = await dbSaveGpsLog({
+      user_id: user_id || 'usr_guest',
+      user_name: user_name || 'Rural Citizen / ASHA',
+      role: role || 'citizen',
+      latitude: lat,
+      longitude: lng,
+      accuracy_meters: accuracy_meters || 15.0,
+      altitude_meters: altitude_meters || null,
+      speed_mps: speed_mps || null,
+      heading: heading || null,
+      district: district || nearestHospital?.district || 'Nashik Rural',
+      taluka: taluka || nearestHospital?.taluka || 'Trimbakeshwar',
+      village: village || 'Trimbak Rural Sector',
+      nearest_hospital_id: nearestHospital?.id || 'hosp-01',
+      nearest_hospital_name: nearestHospital?.name || 'Trimbakeshwar Primary Health Centre (PHC)',
+      distance_to_hospital_km: minDistance !== Infinity ? minDistance : 4.5,
+      source: source || 'BROWSER_GPS',
+      event_type: event_type || 'LOCATION_PING'
+    });
+
+    res.json({
+      success: true,
+      message: 'GPS live telemetry logged into PostgreSQL successfully',
+      log: savedLog,
+      nearest_hospital: nearestHospital ? {
+        id: nearestHospital.id,
+        name: nearestHospital.name,
+        distance_km: minDistance,
+        travel_time_mins: Math.max(5, Math.round(minDistance * 2.2)),
+        emergency_sos: nearestHospital.emergency_sos || '108'
+      } : null
+    });
+  } catch (err) {
+    console.error('[API GPS Log Error]:', err);
+    res.status(500).json({ error: 'Failed to save GPS telemetry log' });
+  }
+});
+
+// 2. Get Recent GPS Logs
+app.get('/api/gps/logs', async (req, res) => {
+  const limit = parseInt(req.query.limit) || 50;
+  const logs = await dbGetGpsLogs(limit);
+  res.json({
+    success: true,
+    count: logs.length,
+    logs
+  });
+});
+
+// 3. Find Nearest Hospitals by Live GPS Coordinates
+app.post('/api/gps/nearest-hospitals', (req, res) => {
+  const { latitude, longitude, max_distance_km } = req.body;
+  const lat = parseFloat(latitude);
+  const lng = parseFloat(longitude);
+
+  if (isNaN(lat) || isNaN(lng)) {
+    return res.status(400).json({ error: 'Valid numerical latitude and longitude required' });
+  }
+
+  const sortedHospitals = hospitals.map(h => {
+    let distance_km = h.distance_km;
+    let travel_time_mins = h.travel_time_mins;
+    if (h.coordinates?.lat && h.coordinates?.lng) {
+      distance_km = calculateHaversineDistanceKm(lat, lng, h.coordinates.lat, h.coordinates.lng);
+      travel_time_mins = Math.max(5, Math.round(distance_km * 2.2));
+    }
+    return {
+      ...h,
+      live_distance_km: distance_km,
+      live_travel_time_mins: travel_time_mins
+    };
+  }).sort((a, b) => a.live_distance_km - b.live_distance_km);
+
+  const filtered = max_distance_km 
+    ? sortedHospitals.filter(h => h.live_distance_km <= parseFloat(max_distance_km))
+    : sortedHospitals;
+
+  res.json({
+    success: true,
+    user_coordinates: { lat, lng },
+    count: filtered.length,
+    hospitals: filtered
   });
 });
 
