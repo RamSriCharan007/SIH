@@ -1,0 +1,344 @@
+[
+  {
+    "id": "hosp-01",
+    "name": "Trimbakeshwar Primary Health Centre (PHC)",
+    "name_mr": "त्र्यंबकेश्वर प्राथमिक आरोग्य केंद्र (PHC)",
+    "name_hi": "त्र्यंबकेश्वर प्राथमिक स्वास्थ्य केंद्र",
+    "type": "Government",
+    "tier": "Free / Govt",
+    "district": "Nashik",
+    "taluka": "Trimbakeshwar",
+    "distance_km": 4.5,
+    "travel_time_mins": 12,
+    "contact": "+91 2594 233100",
+    "emergency_sos": "108",
+    "is_24x7": true,
+    "schemes": ["MJPJAY", "Ayushman Bharat PM-JAY", "100% Free Govt Care"],
+    "cost_range": {
+      "opd": 0,
+      "general_bed_day": 0,
+      "icu_bed_day": 0,
+      "delivery_normal": 0,
+      "delivery_csection": 0,
+      "tier_label": "100% मोफत (Govt Free)"
+    },
+    "live_status": {
+      "doctor_on_duty": {
+        "name": "Dr. Vikas Shinde",
+        "name_mr": "डॉ. विकास शिंदे",
+        "speciality": "General Physician / MO",
+        "status": "Available",
+        "next_shift": "08:00 AM - 04:00 PM"
+      },
+      "beds": {
+        "general_total": 30,
+        "general_available": 12,
+        "icu_total": 4,
+        "icu_available": 1,
+        "oxygen_beds_available": 8
+      },
+      "blood_stock": {
+        "A_pos": 4,
+        "B_pos": 6,
+        "O_pos": 8,
+        "AB_pos": 2,
+        "O_neg": 1,
+        "last_updated": "10 mins ago"
+      },
+      "medicines_stock": {
+        "anti_venom_vials": 18,
+        "rabies_vaccine": 25,
+        "ors_packets": 350,
+        "insulin_vials": 12,
+        "iv_fluids": 120
+      }
+    },
+    "facilities": ["24x7 Delivery", "Snakebite Anti-Venom Unit", "Free Pharmacy", "Ambulance Base", "Child Immunization"],
+    "coordinates": { "lat": 19.9381, "lng": 73.5312 }
+  },
+  {
+    "id": "hosp-02",
+    "name": "Junnar Rural Hospital & Trauma Centre",
+    "name_mr": "जुन्नर ग्रामीण रुग्णालय व ट्रॉमा सेंटर",
+    "name_hi": "जुन्नर ग्रामीण अस्पताल एवं ट्रॉमा सेंटर",
+    "type": "Government",
+    "tier": "Free / Govt",
+    "district": "Pune Rural",
+    "taluka": "Junnar",
+    "distance_km": 8.2,
+    "travel_time_mins": 20,
+    "contact": "+91 2132 222045",
+    "emergency_sos": "108",
+    "is_24x7": true,
+    "schemes": ["MJPJAY", "Ayushman Bharat", "Janani Shishu Suraksha"],
+    "cost_range": {
+      "opd": 0,
+      "general_bed_day": 0,
+      "icu_bed_day": 0,
+      "delivery_normal": 0,
+      "delivery_csection": 0,
+      "tier_label": "100% मोफत (Govt Free)"
+    },
+    "live_status": {
+      "doctor_on_duty": {
+        "name": "Dr. Snehal Deshmukh",
+        "name_mr": "डॉ. स्नेहल देशमुख",
+        "speciality": "Obstetrician & Gynecologist",
+        "status": "Available",
+        "next_shift": "24x7 On Call"
+      },
+      "beds": {
+        "general_total": 50,
+        "general_available": 18,
+        "icu_total": 8,
+        "icu_available": 3,
+        "oxygen_beds_available": 14
+      },
+      "blood_stock": {
+        "A_pos": 10,
+        "B_pos": 14,
+        "O_pos": 22,
+        "AB_pos": 5,
+        "O_neg": 3,
+        "last_updated": "5 mins ago"
+      },
+      "medicines_stock": {
+        "anti_venom_vials": 35,
+        "rabies_vaccine": 40,
+        "ors_packets": 600,
+        "insulin_vials": 30,
+        "iv_fluids": 250
+      }
+    },
+    "facilities": ["24x7 Emergency OT", "ICU", "Blood Storage Centre", "NICU Baby Care", "Digital X-Ray"],
+    "coordinates": { "lat": 19.2064, "lng": 73.8765 }
+  },
+  {
+    "id": "hosp-03",
+    "name": "Sanjeevani Charitable Trust Hospital",
+    "name_mr": "संजीवनी चॅरिटेबल ट्रस्ट रुग्णालय",
+    "name_hi": "संजीवनी चैरिटेबल ट्रस्ट अस्पताल",
+    "type": "Private",
+    "tier": "Budget (कमी खर्च)",
+    "district": "Satara",
+    "taluka": "Karad Rural",
+    "distance_km": 11.0,
+    "travel_time_mins": 25,
+    "contact": "+91 2164 241289",
+    "emergency_sos": "+91 98220 11223",
+    "is_24x7": true,
+    "schemes": ["MJPJAY Empanelled", "Trust Subsidized Care", "Kisan Health Card"],
+    "cost_range": {
+      "opd": 150,
+      "general_bed_day": 400,
+      "icu_bed_day": 2500,
+      "delivery_normal": 6000,
+      "delivery_csection": 16000,
+      "tier_label": "कमी खर्च / Subsidized (₹150 - ₹2,500)"
+    },
+    "live_status": {
+      "doctor_on_duty": {
+        "name": "Dr. Anand Gaikwad",
+        "name_mr": "डॉ. आनंद गायकवाड",
+        "speciality": "General Surgeon",
+        "status": "In Emergency OT (Free at 11:30 PM)",
+        "next_shift": "Evening Shift"
+      },
+      "beds": {
+        "general_total": 40,
+        "general_available": 9,
+        "icu_total": 6,
+        "icu_available": 2,
+        "oxygen_beds_available": 5
+      },
+      "blood_stock": {
+        "A_pos": 6,
+        "B_pos": 8,
+        "O_pos": 11,
+        "AB_pos": 3,
+        "O_neg": 2,
+        "last_updated": "15 mins ago"
+      },
+      "medicines_stock": {
+        "anti_venom_vials": 12,
+        "rabies_vaccine": 18,
+        "ors_packets": 200,
+        "insulin_vials": 20,
+        "iv_fluids": 90
+      }
+    },
+    "facilities": ["Low Cost Pharmacy", "Maternity Wing", "Sonography", "Dialysis Unit", "Ambulance"],
+    "coordinates": { "lat": 17.2885, "lng": 74.1843 }
+  },
+  {
+    "id": "hosp-04",
+    "name": "Sahyadri Rural Care Multispeciality",
+    "name_mr": "सह्याद्री ग्रामीण मल्टिस्पेशालिटी हॉस्पिटल",
+    "name_hi": "सह्याद्री ग्रामीण मल्टीस्पेशलिटी अस्पताल",
+    "type": "Private",
+    "tier": "Moderate (मध्यम खर्च)",
+    "district": "Nashik",
+    "taluka": "Dindori",
+    "distance_km": 14.5,
+    "travel_time_mins": 30,
+    "contact": "+91 253 2598811",
+    "emergency_sos": "+91 94239 88990",
+    "is_24x7": true,
+    "schemes": ["MJPJAY Selected Surgeries", "All Major Health Insurance", "Cashless TPA"],
+    "cost_range": {
+      "opd": 450,
+      "general_bed_day": 1200,
+      "icu_bed_day": 6500,
+      "delivery_normal": 18000,
+      "delivery_csection": 38000,
+      "tier_label": "मध्यम खर्च / Moderate (₹450 - ₹6,500)"
+    },
+    "live_status": {
+      "doctor_on_duty": {
+        "name": "Dr. Pradeep Kulkarni",
+        "name_mr": "डॉ. प्रदीप कुलकर्णी",
+        "speciality": "Cardiologist & Critical Care",
+        "status": "Available",
+        "next_shift": "24x7 ICU In-Charge"
+      },
+      "beds": {
+        "general_total": 80,
+        "general_available": 24,
+        "icu_total": 16,
+        "icu_available": 5,
+        "oxygen_beds_available": 18
+      },
+      "blood_stock": {
+        "A_pos": 15,
+        "B_pos": 20,
+        "O_pos": 28,
+        "AB_pos": 8,
+        "O_neg": 4,
+        "last_updated": "2 mins ago"
+      },
+      "medicines_stock": {
+        "anti_venom_vials": 25,
+        "rabies_vaccine": 30,
+        "ors_packets": 500,
+        "insulin_vials": 45,
+        "iv_fluids": 300
+      }
+    },
+    "facilities": ["Cath Lab & Cardiac Care", "Advanced ICU", "CT Scan 24x7", "Dialysis", "Neonatal ICU"],
+    "coordinates": { "lat": 20.0063, "lng": 73.8347 }
+  },
+  {
+    "id": "hosp-05",
+    "name": "Apex Critical Care & Trauma Institute",
+    "name_mr": "एपेक्स क्रिटिकल केअर आणि ट्रॉमा इन्स्टिट्यूट",
+    "name_hi": "एपेक्स क्रिटिकल केयर एवं ट्रॉमा इंस्टीट्यूट",
+    "type": "Private",
+    "tier": "Advanced (उच्च/सुपर स्पेशालिटी)",
+    "district": "Chhatrapati Sambhaji Nagar",
+    "taluka": "Rural Highway Junction",
+    "distance_km": 26.0,
+    "travel_time_mins": 45,
+    "contact": "+91 240 2489000",
+    "emergency_sos": "+91 98900 99999",
+    "is_24x7": true,
+    "schemes": ["Ayushman Bharat PMJAY", "MJPJAY Super-Speciality", "Corporate TPA"],
+    "cost_range": {
+      "opd": 800,
+      "general_bed_day": 2800,
+      "icu_bed_day": 14000,
+      "delivery_normal": 35000,
+      "delivery_csection": 75000,
+      "tier_label": "उच्च स्पेशालिटी / Advanced (₹800 - ₹14,000)"
+    },
+    "live_status": {
+      "doctor_on_duty": {
+        "name": "Dr. Rajeshwar Rao",
+        "name_mr": "डॉ. राजेश्वर राव",
+        "speciality": "Neurosurgeon & Trauma Head",
+        "status": "Available",
+        "next_shift": "24x7 Emergency Team"
+      },
+      "beds": {
+        "general_total": 120,
+        "general_available": 32,
+        "icu_total": 24,
+        "icu_available": 7,
+        "oxygen_beds_available": 30
+      },
+      "blood_stock": {
+        "A_pos": 25,
+        "B_pos": 30,
+        "O_pos": 45,
+        "AB_pos": 12,
+        "O_neg": 6,
+        "last_updated": "1 min ago"
+      },
+      "medicines_stock": {
+        "anti_venom_vials": 50,
+        "rabies_vaccine": 60,
+        "ors_packets": 1000,
+        "insulin_vials": 80,
+        "iv_fluids": 600
+      }
+    },
+    "facilities": ["Level-1 Trauma", "MRI & 128-Slice CT", "Emergency Neuro OT", "Ventilator Support", "Air/Advanced Ambulance"],
+    "coordinates": { "lat": 19.8762, "lng": 75.3433 }
+  },
+  {
+    "id": "hosp-06",
+    "name": "District Civil Hospital & Maternal Hub",
+    "name_mr": "जिल्हा सामान्य रुग्णालय व प्रसूती केंद्र",
+    "name_hi": "जिला नागरिक अस्पताल एवं मातृ केंद्र",
+    "type": "Government",
+    "tier": "Free / Govt",
+    "district": "Gadchiroli Tribal Hub",
+    "taluka": "Gadchiroli Rural",
+    "distance_km": 18.0,
+    "travel_time_mins": 35,
+    "contact": "+91 7132 222123",
+    "emergency_sos": "108",
+    "is_24x7": true,
+    "schemes": ["100% Free All Services", "MJPJAY", "Tribal Health Mission"],
+    "cost_range": {
+      "opd": 0,
+      "general_bed_day": 0,
+      "icu_bed_day": 0,
+      "delivery_normal": 0,
+      "delivery_csection": 0,
+      "tier_label": "100% मोफत आदिवासी व ग्रामीण योजना"
+    },
+    "live_status": {
+      "doctor_on_duty": {
+        "name": "Dr. Anita Madavi",
+        "name_mr": "डॉ. अनिता मडावी",
+        "speciality": "Pediatrician & Tribal Health Officer",
+        "status": "Available",
+        "next_shift": "24x7 Duty"
+      },
+      "beds": {
+        "general_total": 100,
+        "general_available": 41,
+        "icu_total": 12,
+        "icu_available": 4,
+        "oxygen_beds_available": 22
+      },
+      "blood_stock": {
+        "A_pos": 12,
+        "B_pos": 18,
+        "O_pos": 24,
+        "AB_pos": 4,
+        "O_neg": 2,
+        "last_updated": "8 mins ago"
+      },
+      "medicines_stock": {
+        "anti_venom_vials": 60,
+        "rabies_vaccine": 50,
+        "ors_packets": 800,
+        "insulin_vials": 35,
+        "iv_fluids": 400
+      }
+    },
+    "facilities": ["Free Blood Bank", "24x7 Snakebite Special Unit", "Nutritional Rehab Center (NRC)", "Free Ambulance Call 108"],
+    "coordinates": { "lat": 20.1809, "lng": 80.0039 }
+  }
+]

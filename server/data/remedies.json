@@ -1,0 +1,167 @@
+[
+  {
+    "id": "rem-01",
+    "category": "offline_remedy",
+    "severity_tier": "Mild (40% Offline)",
+    "title_en": "Mild Fever & Seasonal Viral",
+    "title_mr": "सौम्य ताप आणि अंगदुखी (Mild Fever)",
+    "title_hi": "हल्का बुखार और शरीर दर्द",
+    "symptoms": ["fever_mild", "body_pain", "mild_chills", "fatigue"],
+    "immediate_first_aid": {
+      "en": "Cold water sponge on forehead and neck. Rest in well-ventilated room.",
+      "mr": "कपाळावर आणि मानेवर थंड पाण्याच्या पट्ट्या ठेवा. हवेशीर खोलीत विश्रांती घ्या.",
+      "hi": "माथे और गर्दन पर ठंडे पानी की पट्टियां रखें। हवादार कमरे में आराम करें।"
+    },
+    "ayurvedic_home_remedies": [
+      {
+        "name_en": "Tulsi, Ginger & Black Pepper Kadha (Decoction)",
+        "name_mr": "तुळस, आले आणि मिरे काढा",
+        "instructions_mr": "१० तुळशीची पाने, १ छोटा तुकडा ठेचलेले आले, ३-४ काळे मिरे २ कप पाण्यात उकळून १ कप करा. कोमट असताना मधासोबत किंवा गूळ घालून प्या.",
+        "instructions_en": "Boil 10 tulsi leaves, crushed ginger, and 3-4 black peppercorns in 2 cups water until reduced to 1 cup. Drink warm with honey or jaggery.",
+        "dosage": "दिवसातून २ वेळा (2 times a day)"
+      },
+      {
+        "name_en": "Coriander & Cumin Water for Fever Heat",
+        "name_mr": "धने-जिरे पाणी (शरीरातील उष्णता कमी करण्यासाठी)",
+        "instructions_mr": "१ चमचा धणे आणि १ चमचा जिरे १ लिटर पाण्यात उकळून गाळून घ्या. दिवसभर थोडे थोडे प्या.",
+        "instructions_en": "Boil 1 tsp coriander seeds and 1 tsp cumin seeds in 1 liter water. Sip throughout the day.",
+        "dosage": "दिवसभरात (Throughout day)"
+      }
+    ],
+    "otc_guidance": "Paracetamol 500mg (१ गोळी जेवणानंतर, गरजेनुसार ६ तासांच्या अंतराने). लहान मुलांसाठी वजनानुसार सिरप.",
+    "warning_signs_mr": "जर ताप १०२°F पेक्षा जास्त असेल, ३ दिवसांपेक्षा जास्त राहिला, किंवा फिट्स/कंप आल्यास ताबडतोब रुग्णालयात जा.",
+    "warning_signs_en": "If fever exceeds 102°F, persists for >3 days, or causes convulsions/shivering, visit hospital immediately."
+  },
+  {
+    "id": "rem-02",
+    "category": "offline_remedy",
+    "severity_tier": "Mild (40% Offline)",
+    "title_en": "Diarrhea & Dehydration (लूज मोशन व डिहायड्रेशन)",
+    "title_mr": "जुलाब आणि पाणी कमी होणे (ORS & डिहायड्रेशन)",
+    "title_hi": "दस्त और निर्जलीकरण (ORS)",
+    "symptoms": ["loose_motion", "vomiting_mild", "weakness", "dry_mouth"],
+    "immediate_first_aid": {
+      "en": "Prepare homemade ORS immediately: 1 liter boiled & cooled water + 6 level tsp Sugar + 1/2 tsp Salt.",
+      "mr": "तात्काळ घरगुती ओआरएस (ORS) बनवा: १ लिटर उकळून थंड केलेले पाणी + ६ छोटे चमचे साखर + अर्धा छोटा चमचा मीठ मिसळा.",
+      "hi": "तुरंत घर का बना ओआरएस बनाएं: १ लीटर उबला व ठंडा पानी + ६ चम्मच चीनी + आधा चम्मच नमक।"
+    },
+    "ayurvedic_home_remedies": [
+      {
+        "name_en": "Rice Water (Kanji) with Pinch of Salt",
+        "name_mr": "तांदळाची पेज (मीठ टाकून)",
+        "instructions_mr": "मऊ शिजवलेल्या तांदळाचे पाणी काढून त्यात थोडे मीठ व जिरेपूड टाकून प्यावे. आतड्यांना लगेच आराम मिळतो.",
+        "instructions_en": "Strain water from well-cooked soft rice, add pinch of rock salt and roasted cumin powder.",
+        "dosage": "प्रत्येक जुलाबानंतर १ पेला (1 glass after every loose stool)"
+      },
+      {
+        "name_en": "Pomegranate & Nutmeg (Jaiphal) remedy",
+        "name_mr": "डाळिंब रस किंवा जायफळ उगाळून",
+        "instructions_mr": "ताजे डाळिंबाचा रस किंवा चिमूटभर जायफळ मधात चाटवावे.",
+        "instructions_en": "Fresh pomegranate juice or pinch of grated nutmeg with honey.",
+        "dosage": "दिवसातून २ वेळा"
+      }
+    ],
+    "otc_guidance": "ORS Sachets (डब्ल्यूएचओ प्रमाणित) + Zinc 20mg (लहान मुलांसाठी १४ दिवस).",
+    "warning_signs_mr": "डोळे खोल जाणे, लघवी बंद होणे, किंवा विष्ठेतून रक्त पडल्यास तातडीने PHC ला जा.",
+    "warning_signs_en": "Sunken eyes, no urination for 6 hours, or blood in stool requires emergency PHC visit."
+  },
+  {
+    "id": "rem-03",
+    "category": "offline_remedy",
+    "severity_tier": "Mild (40% Offline)",
+    "title_en": "Sunstroke & Heat Exhaustion (उष्णतेचा त्रास / उन्हाचा झटका)",
+    "title_mr": "उन्हाचा झटका आणि उष्णतेचा त्रास (Loo / Sunstroke)",
+    "title_hi": "लू लगना और धूप का असर",
+    "symptoms": ["heat_stroke", "headache_heat", "dizziness_sun", "excess_thirst"],
+    "immediate_first_aid": {
+      "en": "Move patient to dense shade. Loosen tight clothes. Apply wet towel over body.",
+      "mr": "रुग्णाला लगेच सावलीत व थंड जागी आणा. कपडे सैल करा आणि अंगावर ओल्या कापडाच्या पट्ट्या ठेवा.",
+      "hi": "मरीज को तुरंत ठंडी छायादार जगह लाएं। कपड़े ढीले करें और गीले तौलिये से शरीर पोंछें।"
+    },
+    "ayurvedic_home_remedies": [
+      {
+        "name_en": "Raw Mango Panna (कैरीचे पन्हे)",
+        "name_mr": "कैरीचे पन्हे आणि कांदा रस",
+        "instructions_mr": "उकडलेली कच्ची कैरी, गूळ, जिरेपूड आणि काळे मीठ घालून पन्हे बनवा. तळपायाला कांद्याचा रस चोळावा.",
+        "instructions_en": "Boiled raw mango pulp mixed with jaggery, cumin powder and black salt. Rub onion juice on feet soles.",
+        "dosage": "दिवसातून २-३ ग्लास (2-3 glasses daily)"
+      },
+      {
+        "name_en": "Sattu / Buttermilk with Cumin",
+        "name_mr": "जिरे व मीठ टाकलेले ताक (छास)",
+        "instructions_mr": "ताज्या ताकात भाजलेले जिरे, थोडे सैंधव मीठ आणि कोथिंबीर घालून प्या.",
+        "instructions_en": "Fresh buttermilk with roasted cumin powder, rock salt, and coriander.",
+        "dosage": "दुपारी आणि संध्याकाळी"
+      }
+    ],
+    "otc_guidance": "ORS द्रावण आणि नारळ पाणी. भरपूर पाणी प्यावे.",
+    "warning_signs_mr": "जर व्यक्ती बेशुद्ध पडली, घाम येणे बंद झाले व शरीर खूप तप्त झाले, तर १०८ रुग्णवाहिका बोलवा.",
+    "warning_signs_en": "Loss of consciousness, cessation of sweating, or extreme body heat warrants 108 emergency call."
+  },
+  {
+    "id": "rem-04",
+    "category": "offline_remedy",
+    "severity_tier": "Mild (40% Offline)",
+    "title_en": "Minor Cuts, Scrapes & Burns (जखम व किरकोळ भाजणे)",
+    "title_mr": "किरकोळ जखम, ओरखडा आणि भाजणे",
+    "title_hi": "मामूली चोट, खरोंच और जलना",
+    "symptoms": ["cut_minor", "burn_minor", "wound_clean"],
+    "immediate_first_aid": {
+      "en": "For burns: Run clean room-temperature water for 15 minutes. For cuts: Press clean cloth to stop bleeding.",
+      "mr": "भाजल्यास: वाहत्या स्वच्छ पाण्याखाली १५ मिनिटे धरा. जखमेवर: स्वच्छ कापडाने दाब देऊन रक्तस्त्राव थांबवा.",
+      "hi": "जलने पर: नल के सादे पानी के नीचे १५ मिनट रखें। चोट पर: साफ कपड़े से दबाकर खून रोकें।"
+    },
+    "ayurvedic_home_remedies": [
+      {
+        "name_en": "Turmeric & Pure Honey Antiseptic Dressing",
+        "name_mr": "हळद आणि शुद्ध मध मलम",
+        "instructions_mr": "स्वच्छ केलेल्या छोट्या जखमेवर किंवा ओरखड्यावर हळद किंवा शुद्ध मध लावावे. हळद नैसर्गिक अँटीसेप्टिक आहे.",
+        "instructions_en": "Apply pure turmeric powder or raw honey on clean minor cuts.",
+        "dosage": "दिवसातून २ वेळा"
+      },
+      {
+        "name_en": "Fresh Aloe Vera Gel for Minor Burns",
+        "name_mr": "कोरफडीचा गर (Aloe Vera Gel)",
+        "instructions_mr": "भाजलेल्या जागी ताजा कोरफडीचा गर हळुवार लावावा. थंडावा मिळतो व फोड येत नाहीत.",
+        "instructions_en": "Apply fresh aloe vera leaf pulp gently on first-degree burns.",
+        "dosage": "गरजेनुसार"
+      }
+    ],
+    "otc_guidance": "Povidone Iodine (Betadine) मलम + स्वच्छ बँडेज. जर माती लागली असेल तर धनुर्वात (Tetanus) इंजेक्शन घ्या.",
+    "warning_signs_mr": "खोल जखम, रक्त थांबत नसल्यास, किंवा गंजलेली वस्तू लागल्यास २४ तासात Tetanus इंजेक्शन व टाके घालण्यासाठी PHC जा.",
+    "warning_signs_en": "Deep wound, unstoppable bleeding, or rusty object contact requires Tetanus shot & stitches at PHC."
+  },
+  {
+    "id": "rem-05",
+    "category": "offline_remedy",
+    "severity_tier": "Mild (40% Offline)",
+    "title_en": "Acidity, Gas & Stomach Cramps (गॅस, अपचन व पोटदुखी)",
+    "title_mr": "अॅसिडिटी, गॅस आणि पोटदुखी",
+    "title_hi": "एसिडिटी, गैस और पेट दर्द",
+    "symptoms": ["acidity", "gas_bloating", "indigestion", "mild_stomach_ache"],
+    "immediate_first_aid": {
+      "en": "Drink 1 glass of lukewarm water with 1/2 tsp crushed carom seeds (Ajwain) and black salt.",
+      "mr": "१ ग्लास कोमट पाण्यात अर्धा चमचा ओवा आणि थोडे काळे मीठ टाकून प्यावे.",
+      "hi": "१ गिलास गुनगुने पानी में आधा चम्मच अजवाइन और काला नमक मिलाकर पिएं।"
+    },
+    "ayurvedic_home_remedies": [
+      {
+        "name_en": "Ajwain & Hing Water (ओवा आणि हिंग पाणी)",
+        "name_mr": "ओवा, हिंग आणि सैंधव मीठ",
+        "instructions_mr": "१ चमचा ओवा थोडा भाजून त्यात चिमूटभर हिंग मिसळा. कोमट पाण्यासोबत चावून खा.",
+        "instructions_en": "Lightly roast 1 tsp ajwain with pinch of asafoetida (hing). Chew with warm water.",
+        "dosage": "जेवणानंतर (Post meals)"
+      },
+      {
+        "name_en": "Cold Milk / Fennel (Saunf) Tea",
+        "name_mr": "बडीशेप पाणी किंवा थंड दूध",
+        "instructions_mr": "छातीत जळजळ होत असल्यास अर्धा कप थंड दूध किंवा बडीशेप उकळलेले पाणी प्यावे.",
+        "instructions_en": "Sip half cup cold milk or boiled fennel water for burning sensation.",
+        "dosage": "गरजेनुसार"
+      }
+    ],
+    "otc_guidance": "Antacid gel (Digene/Gelusil) २ चमचे किंवा Pantoprazole 40mg सकाळी उपाशीपोटी.",
+    "warning_signs_mr": "जर पोट खूप कडक झाले असेल, असह्य दुखणे असेल किंवा उलट्यांमध्ये रक्त पडत असेल तर ताबडतोब रुग्णालयात जा.",
+    "warning_signs_en": "Rigid abdomen, severe unbearable pain, or blood in vomitus needs immediate hospital referral."
+  }
+]

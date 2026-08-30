@@ -1,0 +1,57 @@
+{
+  "id": "gramin-aarogya-sathi-pwa",
+  "name": "ग्रामीण आरोग्य साथी - GraminAarogya",
+  "short_name": "GraminAarogya",
+  "description": "Smart Rural Healthcare & Emergency Triage Assistant for Maharashtra",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "display_override": ["standalone", "minimal-ui", "window-controls-overlay"],
+  "orientation": "portrait-primary",
+  "background_color": "#0f172a",
+  "theme_color": "#0d9488",
+  "categories": ["medical", "health", "lifestyle", "productivity"],
+  "icons": [
+    {
+      "src": "/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Emergency 108 SOS",
+      "short_name": "108 SOS",
+      "description": "Call emergency ambulance 108",
+      "url": "/?tab=complications_60",
+      "icons": [{ "src": "/icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Doctor Video Call",
+      "short_name": "Video Call",
+      "description": "Consult doctor via video call",
+      "url": "/?action=video_call",
+      "icons": [{ "src": "/icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "40% Kadha Remedies",
+      "short_name": "Kadha Remedies",
+      "description": "Offline home remedies",
+      "url": "/?tab=remedies_40",
+      "icons": [{ "src": "/icon-192.png", "sizes": "192x192" }]
+    }
+  ]
+}

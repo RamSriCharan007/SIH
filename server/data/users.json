@@ -1,0 +1,50 @@
+[
+  {
+    "id": "usr_bio_9988",
+    "phone": "9822019485",
+    "fullName": "Sunita Bai Shinde (ASHA Volunteer)",
+    "role": "asha",
+    "district": "Nashik Rural - Trimbakeshwar Block",
+    "village": "Trimbak Pada No. 3",
+    "asha_badge_no": "MH-NSK-ASHA-409",
+    "biometric_enabled": true,
+    "biometric_type": "Fingerprint / FaceID (WebAuthn)",
+    "registered_at": "2024-01-15T09:30:00.000Z",
+    "last_login": "2026-08-29T21:29:30.829Z"
+  },
+  {
+    "id": "usr_cit_4012",
+    "phone": "9876543210",
+    "fullName": "Ramesh Shantaram Patil",
+    "role": "citizen",
+    "district": "Pune Rural - Junnar Taluka",
+    "village": "Karanjali Forest Pada",
+    "asha_badge_no": null,
+    "biometric_enabled": true,
+    "biometric_type": "Fingerprint Sensor",
+    "registered_at": "2024-02-10T14:20:00.000Z",
+    "last_login": "2026-08-30T01:20:00.000Z"
+  },
+  {
+    "id": "usr_9999",
+    "phone": "9822099999",
+    "fullName": "Dr. Rahul Deshmukh (Medical Officer)",
+    "role": "doctor",
+    "district": "Nashik District Hospital",
+    "village": "Trimbak Pada No. 3",
+    "asha_badge_no": null,
+    "biometric_enabled": true,
+    "last_login": "2026-08-29T21:25:26.421Z"
+  },
+  {
+    "id": "usr_9488",
+    "phone": "9822019488",
+    "fullName": "Jes",
+    "role": "citizen",
+    "district": "Nashik / Pune Rural",
+    "village": "Trimbak Pada No. 3",
+    "asha_badge_no": null,
+    "biometric_enabled": false,
+    "last_login": "2026-08-30T02:47:42.834Z"
+  }
+]

@@ -1,0 +1,118 @@
+[
+  {
+    "id": "comp-01",
+    "category": "emergency_escalation",
+    "severity_tier": "Critical Red (60% Major Complication)",
+    "title_en": "Snakebite & Venomous Sting",
+    "title_mr": "सर्पदंश / विषारी कीटक चावणे (Snakebite Emergency)",
+    "title_hi": "सांप का काटना और विषैला डंक",
+    "symptoms": ["snake_bite", "fang_marks", "severe_swelling", "blurred_vision", "drooping_eyelids"],
+    "triage_color": "RED",
+    "escalation_urgency": "IMMEDIATE (Golden Hour < 60 mins)",
+    "pre_hospital_protocol": {
+      "mr": [
+        "रुग्णाला पूर्णपणे शांत ठेवा, अजिबात हालचाल करू देऊ नका.",
+        "चावलेला भाग (हात/पाय) हृदयाच्या पातळीच्या खाली ठेवा आणि लाकडी पट्टीने बांधून स्थिर (Immobilize) करा.",
+        "धोकादायक पद्धती टाळा: जखमेवर चीरा मारू नका, तोंड लावून रक्त शोषू नका, आणि घट्ट दोरी (Tourniquet) बांधू नका!",
+        "सर्पदंशाच्या जागी घड्याळ, अंगठी किंवा घट्ट कपडे असल्यास लगेच काढून टाका."
+      ],
+      "en": [
+        "Keep patient calm and completely still. Movement spreads venom faster.",
+        "Immobilize bitten limb with a splint below heart level (like a fracture).",
+        "NEVER make incisions, NEVER attempt to suck venom, and DO NOT tie tight tourniquets!",
+        "Remove rings, bangles, watches, or tight clothes before swelling begins."
+      ]
+    },
+    "required_specialty": "Anti-Venom Vial Stock & Ventilator ICU",
+    "recommended_facility_types": ["PHC Trimbakeshwar", "Junnar Rural Hospital", "District Civil Hospital"],
+    "ambulance_code": "108",
+    "offline_sms_format": "EMERGENCY SNAKE BITE TALUKA:TRIMBAK PATIENT:RAMESH AGE:34"
+  },
+  {
+    "id": "comp-02",
+    "category": "emergency_escalation",
+    "severity_tier": "Critical Red (60% Major Complication)",
+    "title_en": "Chest Pain, Sweating & Cardiac Emergency (हृदयविकार झटका)",
+    "title_mr": "छातीत असह्य वेदना, घाम व हृदयविकाराचा झटका",
+    "title_hi": "सीने में तेज दर्द, पसीना और दिल का दौरा",
+    "symptoms": ["chest_pain_severe", "radiating_arm_pain", "cold_sweat", "shortness_of_breath"],
+    "triage_color": "RED",
+    "escalation_urgency": "IMMEDIATE (Cath Lab / ECG in < 30 mins)",
+    "pre_hospital_protocol": {
+      "mr": [
+        "रुग्णाला तातडीने अर्धवट बसलेल्या स्थितीत ठेवा (W-position / 45° angle) जेणेकरून श्वास घेणे सोपे होईल.",
+        "उपलब्ध असल्यास डॉक्टरांच्या सल्ल्याने Sorbitrate 5mg जिभेखाली किंवा Disprin/Aspirin 300mg चावून द्या.",
+        "कोणताही शारीरिक ताण किंवा चालणे पूर्णपणे टाळा.",
+        "तात्काळ १०८ रुग्णवाहिका बोलवा आणि ईसीजी (ECG) सुविधा असलेल्या केंद्राकडे प्रस्थान करा."
+      ],
+      "en": [
+        "Sit patient in a comfortable semi-reclining position (45-degree angle).",
+        "If available and medically advised, give chewable Aspirin (300mg) or Sorbitrate (5mg) sublingual.",
+        "Ensure complete physical rest without any walking.",
+        "Dispatch 108 ambulance with portable oxygen immediately."
+      ]
+    },
+    "required_specialty": "Cardiology / Cath Lab / ICU Ventilator",
+    "recommended_facility_types": ["Sahyadri Rural Care", "Apex Critical Care", "District Civil Hospital"],
+    "ambulance_code": "108",
+    "offline_sms_format": "EMERGENCY CARDIAC CHEST_PAIN TALUKA:JUNNAR AGE:58"
+  },
+  {
+    "id": "comp-03",
+    "category": "emergency_escalation",
+    "severity_tier": "High Risk Yellow (60% Major Complication)",
+    "title_en": "High-Risk Pregnancy, Labor Bleeding & Eclampsia",
+    "title_mr": "गरोदरपणातील अतिरक्तस्त्राव आणि फिट्स (High-Risk Maternal)",
+    "title_hi": "गर्भावस्था में अत्यधिक रक्तस्राव और झटके",
+    "symptoms": ["maternal_bleeding", "severe_headache_pregnancy", "swelling_feet_face", "decreased_fetal_movement"],
+    "triage_color": "ORANGE",
+    "escalation_urgency": "URGENT (< 45 mins to Delivery Wing)",
+    "pre_hospital_protocol": {
+      "mr": [
+        "गरोदर मातेला डाव्या कुशीवर (Left lateral position) झोपवा, यामुळे बाळाला पुरेसा रक्तपुरवठा होतो.",
+        "रक्तस्त्राव असल्यास स्वच्छ सॅनिटरी पॅड वापरा, अंतर्गत कोणतीही तपासणी करू नका.",
+        "जर फिट्स (Eclampsia) येत असतील, तर मान एका बाजूला वळवा आणि तोंडात काहीही घालू नका.",
+        "आरोग्य सेविकेने (ASHA) त्वरित १०२/१०८ जननी रुग्णवाहिका बुक करून रक्तगट जुळवणीसाठी नातेवाईकांना सोबत घ्यावे."
+      ],
+      "en": [
+        "Place pregnant mother in Left Lateral position to maximize placental blood flow.",
+        "In case of vaginal bleeding, use clean sterile pad; do not perform internal checks.",
+        "If experiencing eclampsia seizures, turn head to side and protect airway.",
+        "ASHA worker must alert 102/108 ambulance and ensure 2 matched blood donors travel along."
+      ]
+    },
+    "required_specialty": "Gynecology OT, Blood Bank & NICU",
+    "recommended_facility_types": ["Junnar Rural Hospital", "District Civil Hospital", "Sanjeevani Trust Hospital"],
+    "ambulance_code": "102 / 108",
+    "offline_sms_format": "EMERGENCY MATERNAL BLEEDING TALUKA:DINDORI ASHA_ID:MH-2041"
+  },
+  {
+    "id": "comp-04",
+    "category": "emergency_escalation",
+    "severity_tier": "Critical Red (60% Major Complication)",
+    "title_en": "Severe Head Trauma & Highway Accidents",
+    "title_mr": "डोक्याला जबर मार, अपघात आणि बेशुद्धी (Head Trauma)",
+    "title_hi": "सिर में गंभीर चोट, दुर्घटना और बेहोशी",
+    "symptoms": ["head_injury", "unconscious", "ear_nose_bleeding", "vomiting_projectile"],
+    "triage_color": "RED",
+    "escalation_urgency": "IMMEDIATE (CT Scan & Neuro Team Required)",
+    "pre_hospital_protocol": {
+      "mr": [
+        "रुग्णाची मान अजिबात हलवू नका (Cervical Spine Protection).",
+        "श्वसनमार्ग मोकळा ठेवा, उलटी होत असल्यास हळूच संपूर्ण शरीर एका बाजूला वळवा.",
+        "कान किंवा नाकातून रक्त/पाणी येत असल्यास ते अडवण्याचा प्रयत्न करू नका.",
+        "बेशुद्ध व्यक्तीच्या तोंडात पाणी किंवा कोणतेही औषध अजिबात घालू नका."
+      ],
+      "en": [
+        "Strictly immobilize the neck and cervical spine.",
+        "Keep airway clear; if vomiting, log-roll the entire body onto one side.",
+        "Do not plug or stop fluid draining from ears or nose.",
+        "Never administer water or oral medicines to an unconscious person."
+      ]
+    },
+    "required_specialty": "Level-1 Trauma, 24x7 CT Scan, Neurosurgeon",
+    "recommended_facility_types": ["Apex Critical Care & Trauma", "Junnar Trauma Centre"],
+    "ambulance_code": "108",
+    "offline_sms_format": "EMERGENCY TRAUMA HEAD_INJURY HIGHWAY_KM:42 LOC:DINDORI"
+  }
+]

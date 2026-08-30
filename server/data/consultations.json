@@ -1,0 +1,135 @@
+[
+  {
+    "id": "consult-1788039114448",
+    "patient_name": "Aarogya AI Patient",
+    "age": 30,
+    "gender": "Female",
+    "village": "Maharashtra Rural Zone",
+    "bp": null,
+    "hb_level": null,
+    "notes": null,
+    "triage_tier": "40_MILD_REMEDY",
+    "matched_remedy_id": "rem-01",
+    "matched_complication_id": null,
+    "symptoms": [
+      "fever_mild",
+      "body_pain"
+    ],
+    "channel": "AI_VOICE_ASSISTANT",
+    "created_at": "2026-08-29T21:31:54.476Z"
+  },
+  {
+    "id": "consult-1788039076934",
+    "patient_name": "Savita Dnyaneshwar Jadhav",
+    "age": 30,
+    "gender": "Female",
+    "village": "Maharashtra Rural Zone",
+    "bp": null,
+    "hb_level": null,
+    "notes": null,
+    "triage_tier": "40_MILD_REMEDY",
+    "matched_remedy_id": "rem-01",
+    "matched_complication_id": null,
+    "symptoms": [
+      "fever_mild",
+      "body_pain"
+    ],
+    "channel": "AI_VOICE_ASSISTANT",
+    "created_at": "2026-08-29T21:31:16.943Z"
+  },
+  {
+    "id": "consult-1788039039981",
+    "patient_name": "Savita Dnyaneshwar Jadhav",
+    "age": 30,
+    "gender": "Female",
+    "village": "Maharashtra Rural Zone",
+    "bp": null,
+    "hb_level": null,
+    "notes": null,
+    "triage_tier": "60_CRITICAL_EMERGENCY",
+    "matched_remedy_id": "rem-01",
+    "matched_complication_id": "comp-02",
+    "symptoms": [
+      "chest_pain_severe",
+      "cold_sweat"
+    ],
+    "channel": "AI_VOICE_ASSISTANT",
+    "created_at": "2026-08-29T21:30:39.999Z"
+  },
+  {
+    "id": "consult-1788038970919",
+    "patient_name": "Savita Dnyaneshwar Jadhav",
+    "age": 26,
+    "gender": "Female",
+    "village": "Trimbak Pada No. 3",
+    "bp": "140/95",
+    "hb_level": 8.4,
+    "notes": null,
+    "triage_tier": "40_MILD_REMEDY",
+    "matched_remedy_id": "rem-01",
+    "matched_complication_id": null,
+    "symptoms": [
+      "fever_mild",
+      "body_pain"
+    ],
+    "channel": "PWA_OFFLINE",
+    "created_at": "2026-08-29T21:29:30.929Z"
+  },
+  {
+    "id": "consult-1788038970878",
+    "patient_name": "Aarogya AI Citizen Patient",
+    "age": 30,
+    "gender": "Female",
+    "village": "Maharashtra Rural Zone",
+    "bp": null,
+    "hb_level": null,
+    "notes": null,
+    "triage_tier": "60_CRITICAL_EMERGENCY",
+    "matched_remedy_id": "rem-01",
+    "matched_complication_id": "comp-01",
+    "symptoms": [
+      "snake_bite",
+      "fang_marks"
+    ],
+    "channel": "AI_VOICE_ASSISTANT",
+    "created_at": "2026-08-29T21:29:30.887Z"
+  },
+  {
+    "id": "consult-1788038726424",
+    "patient_name": "Anandi Bai Shinde",
+    "age": 29,
+    "gender": "Female",
+    "village": "Trimbak Forest Pada No. 2",
+    "bp": "120/80",
+    "hb_level": 11.2,
+    "notes": null,
+    "triage_tier": "40_MILD_REMEDY",
+    "matched_remedy_id": "rem-01",
+    "matched_complication_id": null,
+    "symptoms": [
+      "fever_mild",
+      "body_pain"
+    ],
+    "channel": "PWA_OFFLINE",
+    "created_at": "2026-08-29T21:25:26.436Z"
+  },
+  {
+    "id": "consult-1788038679632",
+    "patient_name": "Savita Dnyaneshwar Jadhav",
+    "age": 26,
+    "gender": "Female",
+    "village": "Trimbak Pada No. 3",
+    "bp": "140/95",
+    "hb_level": 8.4,
+    "notes": null,
+    "triage_tier": "40_MILD_REMEDY",
+    "matched_remedy_id": "rem-01",
+    "matched_complication_id": null,
+    "symptoms": [
+      "fever_mild",
+      "body_pain"
+    ],
+    "channel": "PWA_OFFLINE",
+    "created_at": "2026-08-29T21:24:39.646Z"
+  }
+]

@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f766e" />
+      <stop offset="100%" stop-color="#064e3b" />
+    </linearGradient>
+    <linearGradient id="heartGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#10b981" />
+      <stop offset="50%" stop-color="#14b8a6" />
+      <stop offset="100%" stop-color="#06b6d4" />
+    </linearGradient>
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="8" stdDeviation="16" flood-color="#0d9488" flood-opacity="0.5"/>
+    </filter>
+  </defs>
+
+  <!-- Background with rounded squircles -->
+  <rect width="512" height="512" rx="128" fill="url(#bgGrad)"/>
+  
+  <!-- Outer glowing ring -->
+  <circle cx="256" cy="256" r="190" fill="none" stroke="#2dd4bf" stroke-width="8" stroke-dasharray="16 8" opacity="0.35"/>
+
+  <!-- Medical Cross / Shield Base -->
+  <g filter="url(#glow)" transform="translate(0, 10)">
+    <!-- Heart Icon -->
+    <path d="M256 420 C256 420 80 295 80 180 C80 115 130 75 190 75 C226 75 248 95 256 108 C264 95 286 75 322 75 C382 75 432 115 432 180 C432 295 256 420 256 420 Z" 
+          fill="none" 
+          stroke="url(#heartGrad)" 
+          stroke-width="26" 
+          stroke-linecap="round" 
+          stroke-linejoin="round"/>
+
+    <!-- Pulse ECG Line -->
+    <path d="M120 220 L195 220 L225 150 L256 290 L287 180 L315 240 L340 220 L392 220" 
+          fill="none" 
+          stroke="#ffffff" 
+          stroke-width="22" 
+          stroke-linecap="round" 
+          stroke-linejoin="round"/>
+          
+    <!-- Medical Plus Symbol inside -->
+    <circle cx="256" cy="135" r="32" fill="#10b981" />
+    <path d="M256 117 L256 153 M238 135 L274 135" stroke="#ffffff" stroke-width="8" stroke-linecap="round" />
+  </g>
+</svg>
