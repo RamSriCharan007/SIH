@@ -13,6 +13,9 @@
   },
   "dependencies": {
     "@rollup/wasm-node": "^4.63.1",
+    "@types/react": "^18.3.18",
+    "@types/react-dom": "^18.3.5",
+    "@vitejs/plugin-react": "^4.3.4",
     "clsx": "^2.1.1",
     "cors": "^2.8.5",
     "dotenv": "^17.4.2",
@@ -21,12 +24,7 @@
     "pg": "^8.23.0",
     "pg-mem": "^3.0.14",
     "react": "^18.3.1",
-    "react-dom": "^18.3.1"
-  },
-  "devDependencies": {
-    "@types/react": "^18.3.18",
-    "@types/react-dom": "^18.3.5",
-    "@vitejs/plugin-react": "^4.3.4",
+    "react-dom": "^18.3.1",
     "vite": "^6.1.0"
   },
   "overrides": {
