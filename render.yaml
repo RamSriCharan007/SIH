@@ -1,0 +1,27 @@
+# Render Blueprint Specification for Gramin Aarogya Sathi
+# Deploys Full-Stack Web Service + Managed PostgreSQL Database
+
+services:
+  - type: web
+    name: gramin-aarogya-sathi
+    runtime: node
+    plan: free
+    buildCommand: npm install && npm run build
+    startCommand: node server/server.js
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 5000
+      - key: DEV_ADMIN_PASS
+        value: Ram001301@
+      - key: DATABASE_URL
+        fromDatabase:
+          name: gramin-aarogya-db
+          property: connectionString
+
+databases:
+  - name: gramin-aarogya-db
+    plan: free
+    databaseName: graminaarogya
+    user: graminadmin

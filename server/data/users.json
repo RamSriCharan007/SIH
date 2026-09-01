@@ -2,7 +2,7 @@
   {
     "id": "usr_bio_9988",
     "phone": "9822019485",
-    "fullName": "Sunita Bai Shinde (ASHA Volunteer)",
+    "fullName": "Sunita Bai Shinde",
     "role": "asha",
     "district": "Nashik Rural - Trimbakeshwar Block",
     "village": "Trimbak Pada No. 3",
@@ -10,7 +10,10 @@
     "biometric_enabled": true,
     "biometric_type": "Fingerprint / FaceID (WebAuthn)",
     "registered_at": "2024-01-15T09:30:00.000Z",
-    "last_login": "2026-08-29T21:29:30.829Z"
+    "last_login": "2026-08-31T07:07:30.049Z",
+    "face_registered": false,
+    "face_descriptor": "descriptor_vec_68_points_test",
+    "last_face_registered": "2026-08-31T07:07:30.029Z"
   },
   {
     "id": "usr_cit_4012",
@@ -20,10 +23,11 @@
     "district": "Pune Rural - Junnar Taluka",
     "village": "Karanjali Forest Pada",
     "asha_badge_no": null,
-    "biometric_enabled": true,
+    "biometric_enabled": false,
     "biometric_type": "Fingerprint Sensor",
     "registered_at": "2024-02-10T14:20:00.000Z",
-    "last_login": "2026-08-30T01:20:00.000Z"
+    "last_login": "2026-08-31T07:07:29.968Z",
+    "face_registered": false
   },
   {
     "id": "usr_9999",
@@ -46,5 +50,16 @@
     "asha_badge_no": null,
     "biometric_enabled": false,
     "last_login": "2026-08-30T02:47:42.834Z"
+  },
+  {
+    "id": "usr_4506",
+    "phone": "9849654506",
+    "fullName": "Sunita Bai Shind",
+    "role": "asha",
+    "district": "Nashik / Pune Rural",
+    "village": "Trimbak Pada No. 3",
+    "asha_badge_no": "MH-NSK-ASHA-409",
+    "biometric_enabled": false,
+    "last_login": "2026-08-30T04:25:19.638Z"
   }
 ]

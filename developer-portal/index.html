@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GraminAarogya Developer & Admin Portal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./dev-portal.css">
+</head>
+<body>
+  <div class="dev-app-layout">
+    <!-- Sidebar Navigation -->
+    <aside class="dev-sidebar">
+      <div class="dev-brand">
+        <div class="dev-logo-icon">⚡</div>
+        <div>
+          <div class="dev-logo-title">Aarogya DevPortal</div>
+          <div class="dev-logo-badge">MINISTRY ADMIN CONSOLE</div>
+        </div>
+      </div>
+
+      <nav class="dev-nav">
+        <button class="dev-nav-item active" data-tab="overview">
+          <span class="nav-icon">📊</span> Overview & Telemetry
+        </button>
+        <button class="dev-nav-item" data-tab="hospitals">
+          <span class="nav-icon">🏥</span> Hospitals & PHCs
+        </button>
+        <button class="dev-nav-item" data-tab="blood-bank">
+          <span class="nav-icon">🩸</span> Blood Bank Stocks
+        </button>
+        <button class="dev-nav-item" data-tab="beds">
+          <span class="nav-icon">🛏️</span> Live Beds Manager
+        </button>
+        <button class="dev-nav-item" data-tab="medicines">
+          <span class="nav-icon">💊</span> Anti-Venom & Supplies
+        </button>
+        <button class="dev-nav-item" data-tab="users">
+          <span class="nav-icon">👥</span> User & ASHA Access
+        </button>
+        <button class="dev-nav-item" data-tab="remedies">
+          <span class="nav-icon">🌿</span> 40% Kadha Remedies
+        </button>
+        <button class="dev-nav-item" data-tab="complications">
+          <span class="nav-icon">🚨</span> 60% Emergency Red
+        </button>
+        <button class="dev-nav-item" data-tab="gps-stream">
+          <span class="nav-icon">📡</span> Live GPS & SOS Feed
+        </button>
+        <button class="dev-nav-item" data-tab="database">
+          <span class="nav-icon">💾</span> PostgreSQL Inspector
+        </button>
+      </nav>
+
+      <div class="dev-sidebar-footer">
+        <div class="system-status-indicator">
+          <span class="status-dot pulse"></span>
+          <span>API Server: <strong>Connected</strong></span>
+        </div>
+        <a href="/" class="btn-return-app">
+          <span>🌐 Open Citizen Portal</span> ↗
+        </a>
+      </div>
+    </aside>
+
+    <!-- Main Content Body -->
+    <main class="dev-main">
+      <!-- Top Navbar -->
+      <header class="dev-topbar">
+        <div class="topbar-left">
+          <h1 id="page-title">Platform Overview</h1>
+          <span class="badge badge-cyber" id="live-time-badge">Live System Telemetry</span>
+        </div>
+        <div class="topbar-right">
+          <button class="btn btn-secondary" id="btn-refresh-all" title="Refresh all server state">
+            🔄 Refresh Sync
+          </button>
+          <button class="btn btn-primary" id="btn-quick-add-hospital">
+            + Add New Hospital
+          </button>
+          <div style="display: flex; align-items: center; gap: 0.6rem; background: rgba(15, 23, 42, 0.8); padding: 0.35rem 0.75rem; border-radius: 10px; border: 1px solid rgba(56, 189, 248, 0.3);">
+            <div class="admin-avatar" style="background: linear-gradient(135deg, #0284c7 0%, #0d9488 100%);">
+              <span style="font-weight: 800; font-size: 0.78rem;">RC</span>
+              <div class="admin-status-dot"></div>
+            </div>
+            <div>
+              <div style="font-size: 0.8rem; font-weight: 800; color: #38bdf8;">Ram Sri Charan</div>
+              <div style="font-size: 0.65rem; color: #94a3b8;">Root Master Admin</div>
+            </div>
+          </div>
+          <button class="btn btn-danger" id="btn-dev-logout" style="padding: 0.45rem 0.75rem; font-size: 0.78rem;" title="Lock Developer Portal & Logout">
+            🔒 Lock Portal
+          </button>
+        </div>
+      </header>
+
+      <!-- Content Views -->
+      <div class="dev-content-container">
+
+        <!-- TAB 1: OVERVIEW -->
+        <section id="tab-overview" class="tab-pane active">
+          <!-- Stats Grid -->
+          <div class="kpi-grid">
+            <div class="kpi-card">
+              <div class="kpi-label">TOTAL HOSPITALS & PHCS</div>
+              <div class="kpi-val" id="kpi-hospitals">--</div>
+              <div class="kpi-sub">Trimbak, Junnar, Nashik, Pune</div>
+            </div>
+            <div class="kpi-card cyan">
+              <div class="kpi-label">LIVE GENERAL BEDS</div>
+              <div class="kpi-val" id="kpi-gen-beds">--</div>
+              <div class="kpi-sub">Available across district</div>
+            </div>
+            <div class="kpi-card emerald">
+              <div class="kpi-label">LIVE ICU / VENTILATOR BEDS</div>
+              <div class="kpi-val" id="kpi-icu-beds">--</div>
+              <div class="kpi-sub">Emergency critical capacity</div>
+            </div>
+            <div class="kpi-card rose">
+              <div class="kpi-label">BLOOD BANK UNITS</div>
+              <div class="kpi-val" id="kpi-blood-units">--</div>
+              <div class="kpi-sub">A+, B+, O+, AB+ in stock</div>
+            </div>
+            <div class="kpi-card amber">
+              <div class="kpi-label">ANTI-VENOM VIALS</div>
+              <div class="kpi-val" id="kpi-anti-venom">--</div>
+              <div class="kpi-sub">Snakebite emergency ready</div>
+            </div>
+            <div class="kpi-card purple">
+              <div class="kpi-label">REGISTERED USERS</div>
+              <div class="kpi-val" id="kpi-users">--</div>
+              <div class="kpi-sub"><span id="kpi-citizens">0</span> Citizens • <span id="kpi-ashas">0</span> ASHA</div>
+            </div>
+          </div>
+
+          <!-- Quick Action Panels -->
+          <div class="two-col-grid">
+            <div class="dev-panel">
+              <div class="panel-header">
+                <h3>🏥 Quick Hospital Resource Overview</h3>
+                <span class="badge badge-teal">Live Sync</span>
+              </div>
+              <div class="table-responsive">
+                <table class="dev-table" id="overview-hospitals-table">
+                  <thead>
+                    <tr>
+                      <th>Hospital Name</th>
+                      <th>Type</th>
+                      <th>ICU Beds</th>
+                      <th>Gen Beds</th>
+                      <th>Anti-Venom</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr><td colspan="6" class="text-center">Loading live hospital data...</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <div class="dev-panel">
+              <div class="panel-header">
+                <h3>📡 Recent Telemetry & Consultations</h3>
+                <span class="badge badge-blue">Real-Time Stream</span>
+              </div>
+              <div id="overview-telemetry-feed" class="telemetry-feed-list">
+                <div class="feed-item">Loading incoming live telemetry pings...</div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- TAB 2: HOSPITALS & PHCS MANAGER -->
+        <section id="tab-hospitals" class="tab-pane">
+          <!-- Authority Banner -->
+          <div style="background: linear-gradient(135deg, rgba(6, 182, 212, 0.12) 0%, rgba(20, 184, 166, 0.08) 100%); border: 1px solid rgba(6, 182, 212, 0.35); border-radius: 16px; padding: 1.25rem 1.5rem; margin-bottom: 1.5rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+            <div>
+              <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.25rem;">
+                <span class="badge badge-cyber" style="font-size: 0.72rem; padding: 0.2rem 0.5rem;">STATE HEALTH DIRECTORATE • DEVELOPER AUTHORITY</span>
+                <span class="badge badge-green" style="font-size: 0.72rem;">ZERO-TRUST ISOLATION</span>
+              </div>
+              <h2 style="font-size: 1.4rem; font-weight: 800; color: #f8fafc; margin: 0;">🏥 Hospital Access & Credentials Authority</h2>
+              <p style="color: #94a3b8; font-size: 0.85rem; margin: 0.25rem 0 0; max-width: 680px;">
+                Only Master Developer Ram Sri Charan provisions credentials and access for hospitals. Hospitals cannot self-register. Issue verified login passkeys, copy official handover letters, rotate access keys, and toggle instant access revocation.
+              </p>
+            </div>
+            <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+              <button class="btn btn-secondary" id="btn-refresh-credentials" onclick="fetchHospitalCredentials()">🔄 Refresh Registry</button>
+              <button class="btn btn-primary" id="btn-provision-hospital" onclick="openAddHospitalModal()">+ Provision New Hospital</button>
+            </div>
+          </div>
+
+          <!-- Credentials Authority Table Panel -->
+          <div class="dev-panel" style="margin-bottom: 2rem;">
+            <div class="panel-header">
+              <div>
+                <h3>🔑 Active Hospital Credentials & Security Registry</h3>
+                <p class="text-muted" style="font-size: 0.78rem; margin-top: 2px;">Verified Auth Codes, Passkeys, State Licenses, and Developer Access Status</p>
+              </div>
+              <span class="badge badge-teal" id="badge-credentials-count">Loading credentials...</span>
+            </div>
+            <div class="table-responsive">
+              <table class="dev-table" id="credentials-hospitals-table">
+                <thead>
+                  <tr>
+                    <th>Facility</th>
+                    <th>Hospital Auth Code</th>
+                    <th>Security Passkey</th>
+                    <th>Access Status</th>
+                    <th>Nodal Officer & License</th>
+                    <th>Security Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="tbody-credentials">
+                  <tr><td colspan="6" class="text-center">Loading verified hospital credentials...</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- General Facilities & Telemetry Table -->
+          <div class="panel-action-bar" style="margin-top: 1.5rem;">
+            <div>
+              <h2>🏥 Health Facility Telemetry & Bed Roster</h2>
+              <p class="text-muted">Live ward telemetry, ICU capacity, and blood bank units</p>
+            </div>
+            <button class="btn btn-primary" id="btn-add-hospital-tab">+ Add Facility</button>
+          </div>
+
+          <div class="dev-panel">
+            <div class="table-responsive">
+              <table class="dev-table" id="full-hospitals-table">
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Hospital Name (EN / MR)</th>
+                    <th>Type</th>
+                    <th>District / Taluka</th>
+                    <th>Beds (ICU / Gen)</th>
+                    <th>Blood Units</th>
+                    <th>Anti-Venom</th>
+                    <th>Contact / SOS</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="tbody-hospitals">
+                  <tr><td colspan="9" class="text-center">Loading hospitals...</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- TAB 3: BLOOD BANK LIVE STOCKS -->
+        <section id="tab-blood-bank" class="tab-pane">
+          <div class="panel-action-bar">
+            <div>
+              <h2>Blood Bank Real-Time Inventory</h2>
+              <p class="text-muted">Directly adjust and replenish units for A+, A-, B+, B-, O+, O-, AB+, AB- per facility</p>
+            </div>
+          </div>
+
+          <div class="blood-bank-grid" id="blood-bank-container">
+            <!-- Dynamically populated hospital blood cards -->
+          </div>
+        </section>
+
+        <!-- TAB 4: LIVE BEDS MANAGER -->
+        <section id="tab-beds" class="tab-pane">
+          <div class="panel-action-bar">
+            <div>
+              <h2>ICU & General Bed Real-Time Controller</h2>
+              <p class="text-muted">Update live bed availability with instant SSE push to rural citizen apps</p>
+            </div>
+          </div>
+
+          <div class="beds-manager-grid" id="beds-manager-container">
+            <!-- Dynamically populated bed controller cards -->
+          </div>
+        </section>
+
+        <!-- TAB 5: MEDICINE & ANTI-VENOM INVENTORY -->
+        <section id="tab-medicines" class="tab-pane">
+          <div class="panel-action-bar">
+            <div>
+              <h2>Emergency Medicines & Anti-Venom Supplies</h2>
+              <p class="text-muted">Track life-saving Anti-venom vials, ORS packets, Paracetamol strips and Oxygen cylinders</p>
+            </div>
+          </div>
+
+          <div class="medicines-grid" id="medicines-container">
+            <!-- Dynamically populated medicine cards -->
+          </div>
+        </section>
+
+        <!-- TAB 6: USERS & ASHA ACCESS CONTROL -->
+        <section id="tab-users" class="tab-pane">
+          <div class="panel-action-bar">
+            <div>
+              <h2>User Roles, ASHA Authorization & Biometrics</h2>
+              <p class="text-muted">Approve ASHA workers, assign Ministry Badges, promote/demote accounts and manage Biometrics</p>
+            </div>
+          </div>
+
+          <div class="dev-panel">
+            <div class="table-responsive">
+              <table class="dev-table" id="users-table">
+                <thead>
+                  <tr>
+                    <th>Phone</th>
+                    <th>Full Name</th>
+                    <th>Current Role</th>
+                    <th>ASHA Badge No.</th>
+                    <th>District / Village</th>
+                    <th>Fingerprint / Face ID</th>
+                    <th>Last Login</th>
+                    <th>Role Controls</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr><td colspan="8" class="text-center">Loading users...</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- TAB 7: 40% AYURVEDIC KADHA REMEDIES -->
+        <section id="tab-remedies" class="tab-pane">
+          <div class="panel-action-bar">
+            <div>
+              <h2>40% Verified Ayurvedic Kadha Master Repository</h2>
+              <p class="text-muted">Add & edit verified home remedies, decoction recipes and OTC dosage guidelines</p>
+            </div>
+            <button class="btn btn-primary" id="btn-add-remedy">+ Add New Kadha Remedy</button>
+          </div>
+
+          <div class="dev-panel">
+            <div class="table-responsive">
+              <table class="dev-table" id="remedies-table">
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Remedy Title (MR)</th>
+                    <th>Category</th>
+                    <th>Ayurvedic Ingredients</th>
+                    <th>Preparation & Dosage</th>
+                    <th>OTC Guidance</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr><td colspan="7" class="text-center">Loading remedies...</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- TAB 8: 60% EMERGENCY COMPLICATIONS RED -->
+        <section id="tab-complications" class="tab-pane">
+          <div class="panel-action-bar">
+            <div>
+              <h2>60% Emergency Red Alert Protocols</h2>
+              <p class="text-muted">Critical triage conditions, Golden Hour response minutes, and pre-hospital instructions</p>
+            </div>
+            <button class="btn btn-primary" id="btn-add-complication">+ Add Emergency Protocol</button>
+          </div>
+
+          <div class="dev-panel">
+            <div class="table-responsive">
+              <table class="dev-table" id="complications-table">
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Emergency Title (MR / EN)</th>
+                    <th>Severity</th>
+                    <th>Golden Hour Limit</th>
+                    <th>Trigger Symptoms</th>
+                    <th>Pre-Hospital Actions</th>
+                    <th>Required Facilities</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr><td colspan="8" class="text-center">Loading complications...</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- TAB 9: LIVE GPS & SOS STREAM -->
+        <section id="tab-gps-stream" class="tab-pane">
+          <div class="panel-action-bar">
+            <div>
+              <h2>Live GPS Telemetry & Emergency SOS Stream</h2>
+              <p class="text-muted">Live coordinates, nearest hospital routing, and emergency event triggers logged to PostgreSQL</p>
+            </div>
+            <button class="btn btn-secondary" id="btn-refresh-gps">🔄 Refresh GPS Feed</button>
+          </div>
+
+          <div class="dev-panel">
+            <div class="table-responsive">
+              <table class="dev-table" id="gps-table">
+                <thead>
+                  <tr>
+                    <th>Timestamp</th>
+                    <th>Event Type</th>
+                    <th>User & Role</th>
+                    <th>GPS Coordinates</th>
+                    <th>Nearest Hospital</th>
+                    <th>Distance</th>
+                    <th>Location / District</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr><td colspan="7" class="text-center">Loading live GPS telemetry...</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- TAB 10: POSTGRESQL INSPECTOR -->
+        <section id="tab-database" class="tab-pane">
+          <div class="panel-action-bar">
+            <div>
+              <h2>PostgreSQL Database Inspector & Status</h2>
+              <p class="text-muted">Inspect PostgreSQL live tables, active connections, schema definitions and backups</p>
+            </div>
+            <a href="/api/download/offline-database" class="btn btn-secondary" download>
+              ⬇️ Export Master Database JSON
+            </a>
+          </div>
+
+          <div class="two-col-grid">
+            <div class="dev-panel">
+              <h3>🗄️ Database Engine Info</h3>
+              <div id="db-engine-card" class="db-status-card">
+                <p>Loading DB status...</p>
+              </div>
+            </div>
+
+            <div class="dev-panel">
+              <h3>📋 Active Tables & Row Counts</h3>
+              <div id="db-tables-list" class="db-tables-list">
+                <p>Loading table metadata...</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+      </div>
+    </main>
+  </div>
+
+  <!-- MODALS -->
+
+  <!-- Add/Edit Hospital Modal -->
+  <div class="dev-modal-overlay" id="modal-hospital">
+    <div class="dev-modal" style="max-width: 680px;">
+      <div class="dev-modal-header">
+        <h2 id="modal-hosp-title">Provision Hospital Facility & Credentials</h2>
+        <button class="dev-modal-close" onclick="closeDevModal('modal-hospital')">✕</button>
+      </div>
+      <form id="form-hospital">
+        <input type="hidden" id="hosp-edit-id" value="">
+        <div class="form-grid">
+          <div class="form-group">
+            <label>Hospital Name (English) *</label>
+            <input type="text" class="dev-input" id="hosp-name" required placeholder="e.g. Igatpuri Sub-District Hospital">
+          </div>
+          <div class="form-group">
+            <label>Hospital Name (Marathi) *</label>
+            <input type="text" class="dev-input" id="hosp-name-mr" required placeholder="उदा. इगतपुरी उपजिल्हा रुग्णालय">
+          </div>
+          <div class="form-group">
+            <label>Facility Type *</label>
+            <select class="dev-input" id="hosp-type" required>
+              <option value="Primary Health Centre (PHC)">Primary Health Centre (PHC) - Govt</option>
+              <option value="Rural Trauma & Sub-District Hospital">Rural Trauma & Sub-District Hospital</option>
+              <option value="District General Hospital">District General Hospital</option>
+              <option value="Charitable Rural Trust Hospital">Charitable Rural Trust Hospital</option>
+              <option value="Private Super-Speciality Hospital">Private Super-Speciality Hospital</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>District & Taluka *</label>
+            <input type="text" class="dev-input" id="hosp-district" value="Nashik Rural - Igatpuri Block" required>
+          </div>
+        </div>
+
+        <div style="background: rgba(6, 182, 212, 0.08); border: 1px solid rgba(6, 182, 212, 0.25); border-radius: 12px; padding: 1rem; margin: 1rem 0;">
+          <h4 style="margin: 0 0 0.75rem; color: #38bdf8; font-size: 0.92rem; display: flex; align-items: center; gap: 0.4rem;">
+            <span>🔑</span> Developer-Provisioned Authentication Credentials
+          </h4>
+          <div class="form-grid">
+            <div class="form-group">
+              <div style="display: flex; justify-content: space-between; align-items: center;">
+                <label>Hospital Auth Code *</label>
+                <button type="button" class="btn-qty" style="padding: 0.15rem 0.4rem; font-size: 0.68rem;" onclick="autoGenerateAuthCode()">⚡ Auto</button>
+              </div>
+              <input type="text" class="dev-input" id="hosp-auth-code" required placeholder="e.g. hosp-07">
+            </div>
+            <div class="form-group">
+              <div style="display: flex; justify-content: space-between; align-items: center;">
+                <label>Verified Security Passkey *</label>
+                <button type="button" class="btn-qty" style="padding: 0.15rem 0.4rem; font-size: 0.68rem;" onclick="autoGeneratePasskey()">⚡ Auto Strong</button>
+              </div>
+              <input type="text" class="dev-input" id="hosp-access-key" required placeholder="e.g. Hosp@Nashik2026">
+            </div>
+            <div class="form-group">
+              <label>State Health License No *</label>
+              <input type="text" class="dev-input" id="hosp-license" value="MH-DHS-2026-HOSP-108" required>
+            </div>
+            <div class="form-group">
+              <label>Nodal Officer (CMO)</label>
+              <input type="text" class="dev-input" id="hosp-nodal-officer" placeholder="e.g. Dr. Rajesh Shinde (CMO)">
+            </div>
+            <div class="form-group">
+              <label>Nodal Officer Contact Phone</label>
+              <input type="text" class="dev-input" id="hosp-nodal-phone" placeholder="e.g. +91 98220 11901">
+            </div>
+            <div class="form-group">
+              <label>Developer Verification Status</label>
+              <select class="dev-input" id="hosp-verification-status">
+                <option value="VERIFIED_AUTHENTICATED">ACTIVE & VERIFIED</option>
+                <option value="SUSPENDED_REVOKED">SUSPENDED / ACCESS REVOKED</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-grid">
+          <div class="form-group">
+            <label>Latitude Coordinate *</label>
+            <input type="number" step="0.0001" class="dev-input" id="hosp-lat" value="19.6980" required>
+          </div>
+          <div class="form-group">
+            <label>Longitude Coordinate *</label>
+            <input type="number" step="0.0001" class="dev-input" id="hosp-lng" value="73.5590" required>
+          </div>
+          <div class="form-group">
+            <label>Facility Contact Phone</label>
+            <input type="text" class="dev-input" id="hosp-contact" value="02553-244200">
+          </div>
+          <div class="form-group">
+            <label>Emergency SOS Code</label>
+            <input type="text" class="dev-input" id="hosp-sos" value="108">
+          </div>
+        </div>
+
+        <h4 style="margin: 1rem 0 0.5rem; color: #10b981; font-size: 0.9rem;">Live Initial Stocks & Beds</h4>
+        <div class="form-grid" style="grid-template-columns: repeat(4, 1fr);">
+          <div class="form-group">
+            <label>ICU Beds</label>
+            <input type="number" class="dev-input" id="hosp-icu" value="3">
+          </div>
+          <div class="form-group">
+            <label>General Beds</label>
+            <input type="number" class="dev-input" id="hosp-gen" value="18">
+          </div>
+          <div class="form-group">
+            <label>Anti-Venom Vials</label>
+            <input type="number" class="dev-input" id="hosp-anti-venom" value="20">
+          </div>
+          <div class="form-group">
+            <label>O+ Blood Units</label>
+            <input type="number" class="dev-input" id="hosp-blood-o" value="15">
+          </div>
+        </div>
+
+        <div class="dev-modal-footer">
+          <button type="button" class="btn btn-secondary" onclick="closeDevModal('modal-hospital')">Cancel</button>
+          <button type="submit" class="btn btn-primary">Save & Issue Credentials</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Credential Handover Letter Modal -->
+  <div class="dev-modal-overlay" id="modal-credential-letter">
+    <div class="dev-modal" style="max-width: 580px;">
+      <div class="dev-modal-header">
+        <h2>📋 Hospital Credential Handover Letter</h2>
+        <button class="dev-modal-close" onclick="closeDevModal('modal-credential-letter')">✕</button>
+      </div>
+      <div style="padding: 1rem 0;">
+        <div id="credential-letter-preview" style="background: #090e1a; border: 1.5px solid #1e293b; border-radius: 12px; padding: 1.25rem; font-family: 'JetBrains Mono', monospace; font-size: 0.82rem; line-height: 1.6; color: #cbd5e1; white-space: pre-wrap;"></div>
+      </div>
+      <div class="dev-modal-footer">
+        <button type="button" class="btn btn-secondary" onclick="closeDevModal('modal-credential-letter')">Close</button>
+        <button type="button" class="btn btn-primary" id="btn-copy-handover-letter">📋 Copy Official Letter to Clipboard</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Edit User Role Modal -->
+  <div class="dev-modal-overlay" id="modal-user-role">
+    <div class="dev-modal" style="max-width: 480px;">
+      <div class="dev-modal-header">
+        <h2>Edit User Role & Permissions</h2>
+        <button class="dev-modal-close" onclick="closeDevModal('modal-user-role')">✕</button>
+      </div>
+      <form id="form-user-role">
+        <input type="hidden" id="user-role-phone" value="">
+        <div class="form-group" style="margin-bottom: 1rem;">
+          <label>User Phone Number</label>
+          <input type="text" class="dev-input" id="user-role-phone-display" disabled>
+        </div>
+        <div class="form-group" style="margin-bottom: 1rem;">
+          <label>Full Name</label>
+          <input type="text" class="dev-input" id="user-role-fullname">
+        </div>
+        <div class="form-group" style="margin-bottom: 1rem;">
+          <label>Select Role *</label>
+          <select class="dev-input" id="user-role-select" required>
+            <option value="citizen">🌾 Citizen (Rural Patient)</option>
+            <option value="asha">🩺 ASHA Health Worker (Accredited)</option>
+            <option value="doctor">👨‍⚕️ Medical Officer / Doctor</option>
+            <option value="admin">⚡ Developer / Admin</option>
+          </select>
+        </div>
+        <div class="form-group" style="margin-bottom: 1.5rem;" id="asha-badge-group">
+          <label>ASHA Ministry Badge No.</label>
+          <input type="text" class="dev-input" id="user-role-badge" placeholder="e.g. MH-NSK-ASHA-410">
+        </div>
+        <div class="dev-modal-footer">
+          <button type="button" class="btn btn-secondary" onclick="closeDevModal('modal-user-role')">Cancel</button>
+          <button type="submit" class="btn btn-primary">Apply Role Changes</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Master Developer Security Gate (Strict Authentication Barrier) -->
+  <div id="dev-security-gate" class="dev-security-gate active">
+    <div class="security-card">
+      <div class="security-header">
+        <div class="security-badge-icon">🔐</div>
+        <h2 style="font-size: 1.35rem; font-weight: 800; color: #38bdf8; margin: 0 0 0.4rem 0;">
+          DEVELOPER SECURITY GATE
+        </h2>
+        <div class="security-badge-tag">EXCLUSIVE ROOT ADMINISTRATOR ACCESS</div>
+        <p style="font-size: 0.8rem; color: #94a3b8; margin: 0.6rem 0 0 0; line-height: 1.4;">
+          This master console controls live hospital databases, blood banks, ICU telemetry, and role permissions. <br>
+          <strong style="color: #f87171;">Strictly prohibited for ASHA workers, doctors, or general citizens.</strong>
+        </p>
+      </div>
+
+      <form id="form-dev-login" style="margin-top: 1.5rem;">
+        <div id="dev-login-alert" class="security-alert" style="display: none;"></div>
+
+        <div class="form-group" style="margin-bottom: 1.1rem; text-align: left;">
+          <label style="color: #cbd5e1; font-weight: 700; font-size: 0.82rem; margin-bottom: 0.4rem; display: block;">
+            Master Developer Username
+          </label>
+          <input
+            type="text"
+            id="dev-username"
+            class="dev-input"
+            placeholder="Enter username (e.g. Ram Sri Charan)"
+            value="Ram Sri Charan"
+            required
+            autocomplete="username"
+            style="background: #090e1a; border-color: #334155; font-size: 0.95rem;"
+          >
+        </div>
+
+        <div class="form-group" style="margin-bottom: 1.5rem; text-align: left;">
+          <label style="color: #cbd5e1; font-weight: 700; font-size: 0.82rem; margin-bottom: 0.4rem; display: block;">
+            Master Security Password
+          </label>
+          <div style="position: relative;">
+            <input
+              type="password"
+              id="dev-password"
+              class="dev-input"
+              placeholder="Enter master password"
+              value="Ram001301@"
+              required
+              autocomplete="current-password"
+              style="background: #090e1a; border-color: #334155; font-size: 0.95rem; padding-right: 2.8rem;"
+            >
+            <button
+              type="button"
+              id="btn-toggle-pwd"
+              style="position: absolute; right: 8px; top: 50%; transform: translateY(-50%); background: transparent; border: none; color: #64748b; cursor: pointer; font-size: 1rem; padding: 4px;"
+              title="Show/Hide password"
+            >
+              👁️
+            </button>
+          </div>
+        </div>
+
+        <button
+          type="submit"
+          id="btn-submit-dev-login"
+          class="btn"
+          style="width: 100%; padding: 0.85rem; background: linear-gradient(135deg, #0284c7 0%, #0d9488 100%); color: white; font-weight: 800; font-size: 0.95rem; border: none; border-radius: 10px; cursor: pointer; box-shadow: 0 4px 15px rgba(6, 182, 212, 0.3); display: flex; align-items: center; justify-content: center; gap: 0.5rem;"
+        >
+          <span>🔓 Authenticate & Unlock Master Console</span>
+        </button>
+
+        <div style="margin-top: 1.25rem; font-size: 0.72rem; color: #64748b; display: flex; align-items: center; justify-content: center; gap: 6px;">
+          <span>🛡️ 256-bit Encrypted Root Developer Session</span>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div id="dev-toast" class="dev-toast"></div>
+
+  <script src="./dev-portal.js"></script>
+</body>
+</html>

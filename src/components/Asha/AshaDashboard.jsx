@@ -45,7 +45,12 @@ export default function AshaDashboard() {
     // 2. Load synced records from server if online
     try {
       if (!isOffline) {
-        const res = await fetch('/api/sync/asha-records');
+        const res = await fetch('/api/sync/asha-records', {
+          headers: {
+            'x-user-role': user?.role || 'asha',
+            'x-user-phone': user?.phone || '9822019485'
+          }
+        });
         const data = await res.json();
         if (data.success && data.records) {
           setRecords(data.records);

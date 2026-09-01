@@ -129,15 +129,16 @@ export default function JuryEvaluationModal({
       details: [
         '40% Mild Triage: Verified Ayurvedic Kadha recipes with step-by-step preparation, dosage, and cautionary flags.',
         '60% Critical Emergency: Red-alert protocol with Golden Hour countdown timer and nearest anti-venom/ICU hospital mapping.',
+        'Hospital & MO Clinical Console: Isolated portal for verified PHCs/RHs to manage requested patients, allocate beds, and issue official digital receipts.',
         'Doctor-Patient Video Teleconsultation: Live WebRTC consultation room with telemetry HUD (Heart Rate, SpO2, BP).',
         'Digital Prescription Generator: Generates official MMC compliant prescriptions with doctor signature and 1-click download.',
         'Emergency Token Booking: Real-time reservation with automated on-duty doctor alert notification.'
       ],
       demoAction: () => {
         onClose();
-        if (onOpenVideoCall) onOpenVideoCall();
+        if (onSelectTab) onSelectTab('hospital_portal');
       },
-      demoLabel: '📹 Launch Doctor Video Call Demo'
+      demoLabel: '🏥 Open Hospital & MO Portal Demo'
     },
     {
       id: 'q13',

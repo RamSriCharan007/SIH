@@ -1,0 +1,254 @@
+[
+  {
+    "id": "req-1788237472551",
+    "tokenId": "TOKEN-328",
+    "hospitalId": "hosp-01",
+    "hospitalName": "Trimbakeshwar Primary Health Centre (PHC)",
+    "patientName": "Test Emergency Patient",
+    "phone": "9822099999",
+    "age": 28,
+    "gender": "Female",
+    "village": "Trimbakeshwar",
+    "emergencyType": "Acute Viper Snakebite",
+    "triageTier": "60_CRITICAL_EMERGENCY",
+    "symptoms": [
+      "Acute Viper Snakebite"
+    ],
+    "vitals": {
+      "bp": "120/80 mmHg",
+      "pulse": "78 bpm",
+      "spo2": "98%",
+      "temp": "98.6 F",
+      "hb": "12.0 gm/dL"
+    },
+    "status": "DISCHARGED",
+    "allocatedBed": "General Ward Bed #05",
+    "assignedDoctor": "Dr. Anand Kulkarni",
+    "estimatedArrivalMins": 0,
+    "source": "HOSPITAL_DIRECT_WALKIN",
+    "created_at": "2026-09-01T04:37:52.551Z",
+    "admitted_at": "2026-09-01T04:37:52.557Z",
+    "updated_at": "2026-09-01T04:37:52.562Z",
+    "discharged_at": "2026-09-01T04:37:52.562Z"
+  },
+  {
+    "id": "req-1788236624984",
+    "tokenId": "TOKEN-928",
+    "hospitalId": "hosp-01",
+    "hospitalName": "Trimbakeshwar Primary Health Centre (PHC)",
+    "patientName": "Test Emergency Patient",
+    "phone": "9822099999",
+    "age": 28,
+    "gender": "Female",
+    "village": "Trimbakeshwar",
+    "emergencyType": "Acute Viper Snakebite",
+    "triageTier": "60_CRITICAL_EMERGENCY",
+    "symptoms": [
+      "Acute Viper Snakebite"
+    ],
+    "vitals": {
+      "bp": "120/80 mmHg",
+      "pulse": "78 bpm",
+      "spo2": "98%",
+      "temp": "98.6 F",
+      "hb": "12.0 gm/dL"
+    },
+    "status": "DISCHARGED",
+    "allocatedBed": "General Ward Bed #05",
+    "assignedDoctor": "Dr. Anand Kulkarni",
+    "estimatedArrivalMins": 0,
+    "source": "HOSPITAL_DIRECT_WALKIN",
+    "created_at": "2026-09-01T04:23:44.984Z",
+    "admitted_at": "2026-09-01T04:23:44.991Z",
+    "updated_at": "2026-09-01T04:23:44.997Z",
+    "discharged_at": "2026-09-01T04:23:44.997Z"
+  },
+  {
+    "id": "req-1788236583955",
+    "tokenId": "TOKEN-610",
+    "hospitalId": "hosp-01",
+    "hospitalName": "Trimbakeshwar Primary Health Centre (PHC)",
+    "patientName": "Test Emergency Patient",
+    "phone": "9822099999",
+    "age": 28,
+    "gender": "Female",
+    "village": "Trimbakeshwar",
+    "emergencyType": "Acute Viper Snakebite",
+    "triageTier": "60_CRITICAL_EMERGENCY",
+    "symptoms": [
+      "Acute Viper Snakebite"
+    ],
+    "vitals": {
+      "bp": "120/80 mmHg",
+      "pulse": "78 bpm",
+      "spo2": "98%",
+      "temp": "98.6 F",
+      "hb": "12.0 gm/dL"
+    },
+    "status": "DISCHARGED",
+    "allocatedBed": "General Ward Bed #05",
+    "assignedDoctor": "Dr. Anand Kulkarni",
+    "estimatedArrivalMins": 0,
+    "source": "HOSPITAL_DIRECT_WALKIN",
+    "created_at": "2026-09-01T04:23:03.955Z",
+    "admitted_at": "2026-09-01T04:23:03.960Z",
+    "updated_at": "2026-09-01T04:23:03.965Z",
+    "discharged_at": "2026-09-01T04:23:03.965Z"
+  },
+  {
+    "id": "req-1788236561443",
+    "tokenId": "TOKEN-249",
+    "hospitalId": "hosp-01",
+    "hospitalName": "Trimbakeshwar Primary Health Centre (PHC)",
+    "patientName": "Test Emergency Patient",
+    "phone": "9822099999",
+    "age": 28,
+    "gender": "Female",
+    "village": "Trimbakeshwar",
+    "emergencyType": "Acute Viper Snakebite",
+    "triageTier": "60_CRITICAL_EMERGENCY",
+    "symptoms": [
+      "Acute Viper Snakebite"
+    ],
+    "vitals": {
+      "bp": "120/80 mmHg",
+      "pulse": "78 bpm",
+      "spo2": "98%",
+      "temp": "98.6 F",
+      "hb": "12.0 gm/dL"
+    },
+    "status": "DISCHARGED",
+    "allocatedBed": "General Ward Bed #05",
+    "assignedDoctor": "Dr. Anand Kulkarni",
+    "estimatedArrivalMins": 0,
+    "source": "HOSPITAL_DIRECT_WALKIN",
+    "created_at": "2026-09-01T04:22:41.443Z",
+    "admitted_at": "2026-09-01T04:22:41.505Z",
+    "updated_at": "2026-09-01T04:22:41.511Z",
+    "discharged_at": "2026-09-01T04:22:41.511Z"
+  },
+  {
+    "id": "req-101",
+    "tokenId": "TOKEN-482",
+    "hospitalId": "hosp-01",
+    "hospitalName": "Trimbakeshwar Primary Health Centre (PHC)",
+    "patientName": "Savita Dnyaneshwar Jadhav",
+    "phone": "9822019485",
+    "age": 26,
+    "gender": "Female",
+    "village": "Trimbak Pada No. 3",
+    "emergencyType": "High-Risk Pregnancy / Maternal Check",
+    "triageTier": "60_CRITICAL_EMERGENCY",
+    "symptoms": [
+      "maternal_bleeding",
+      "high_blood_pressure",
+      "dizziness"
+    ],
+    "vitals": {
+      "bp": "140/95 mmHg",
+      "pulse": "88 bpm",
+      "spo2": "97%",
+      "temp": "98.8 F",
+      "hb": "8.4 gm/dL"
+    },
+    "status": "ADMITTED",
+    "allocatedBed": "Maternity Ward - Bed #04",
+    "assignedDoctor": "Dr. Anand Kulkarni",
+    "estimatedArrivalMins": 15,
+    "source": "TRAVEL_TOKEN_BOOKING",
+    "created_at": "2026-08-31T06:32:19.872Z"
+  },
+  {
+    "id": "req-102",
+    "tokenId": "TOKEN-719",
+    "hospitalId": "hosp-01",
+    "hospitalName": "Trimbakeshwar Primary Health Centre (PHC)",
+    "patientName": "Tanaji Kisan Bhoye",
+    "phone": "9876543210",
+    "age": 34,
+    "gender": "Male",
+    "village": "Karanjali Forest Pada",
+    "emergencyType": "Snakebite Emergency (Suspected Viper Bite)",
+    "triageTier": "60_CRITICAL_EMERGENCY",
+    "symptoms": [
+      "snake_bite",
+      "fang_marks",
+      "severe_swelling"
+    ],
+    "vitals": {
+      "bp": "110/70 mmHg",
+      "pulse": "102 bpm",
+      "spo2": "95%",
+      "temp": "99.1 F",
+      "hb": "12.0 gm/dL"
+    },
+    "status": "PENDING_TRIAGE",
+    "allocatedBed": "Unassigned",
+    "assignedDoctor": "Dr. Anand Kulkarni",
+    "estimatedArrivalMins": 8,
+    "source": "EMERGENCY_SOS_108",
+    "created_at": "2026-08-31T08:32:19.874Z"
+  },
+  {
+    "id": "req-103",
+    "tokenId": "TOKEN-921",
+    "hospitalId": "hosp-02",
+    "hospitalName": "Junnar Rural Hospital & Trauma Centre",
+    "patientName": "Ramesh Shantaram Patil",
+    "phone": "9876543210",
+    "age": 42,
+    "gender": "Male",
+    "village": "Junnar Pada East",
+    "emergencyType": "Acute Chest Tightness & Breathlessness",
+    "triageTier": "60_CRITICAL_EMERGENCY",
+    "symptoms": [
+      "chest_pain_severe",
+      "cold_sweat",
+      "breathlessness"
+    ],
+    "vitals": {
+      "bp": "150/100 mmHg",
+      "pulse": "96 bpm",
+      "spo2": "94%",
+      "temp": "98.4 F",
+      "hb": "13.5 gm/dL"
+    },
+    "status": "PENDING_TRIAGE",
+    "allocatedBed": "Unassigned",
+    "assignedDoctor": "Dr. Rohini Gaikwad",
+    "estimatedArrivalMins": 20,
+    "source": "TRAVEL_TOKEN_BOOKING",
+    "created_at": "2026-08-31T07:32:19.874Z"
+  },
+  {
+    "id": "req-104",
+    "tokenId": "TOKEN-334",
+    "hospitalId": "hosp-01",
+    "hospitalName": "Trimbakeshwar Primary Health Centre (PHC)",
+    "patientName": "Suman Bai Shinde",
+    "phone": "9822019488",
+    "age": 50,
+    "gender": "Female",
+    "village": "Trimbakeshwar City Ward 2",
+    "emergencyType": "Acute Viral Fever & Joint Pain",
+    "triageTier": "40_MILD_REMEDY",
+    "symptoms": [
+      "fever_mild",
+      "body_pain",
+      "cough"
+    ],
+    "vitals": {
+      "bp": "124/82 mmHg",
+      "pulse": "78 bpm",
+      "spo2": "98%",
+      "temp": "101.2 F",
+      "hb": "11.0 gm/dL"
+    },
+    "status": "CONSULTATION_COMPLETED",
+    "allocatedBed": "Daycare OPD",
+    "assignedDoctor": "Dr. Meera Deshmukh",
+    "estimatedArrivalMins": 5,
+    "source": "TELECONSULT_REQUEST",
+    "created_at": "2026-08-31T03:32:19.874Z"
+  }
+]

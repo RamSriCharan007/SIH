@@ -10,6 +10,8 @@ import OfflineRemedies from './components/Triage/OfflineRemedies';
 import EmergencyEscalation from './components/Triage/EmergencyEscalation';
 import HospitalList from './components/Hospitals/HospitalList';
 import AshaDashboard from './components/Asha/AshaDashboard';
+import AshaAccessDeniedModal from './components/Asha/AshaAccessDeniedModal';
+import FaceRecognitionModal from './components/Biometrics/FaceRecognitionModal';
 import SmsGatewayModal from './components/Fallback/SmsGatewayModal';
 import VoiceAssistant from './components/VoiceAssistant';
 
@@ -40,12 +42,22 @@ import {
   Bot,
   Mic,
   Award,
-  Database
+  Database,
+  Lock
 } from 'lucide-react';
 
 export default function App() {
   const { lang, t } = useLanguage();
-  const { user } = useAuth();
+  const {
+    user,
+    canAccessAsha,
+    isFaceModalOpen,
+    setIsFaceModalOpen,
+    faceModalMode,
+    isAshaDeniedModalOpen,
+    setIsAshaDeniedModalOpen,
+    setIsAuthModalOpen
+  } = useAuth();
   const { isOffline } = useNetwork();
 
   // Active Tab: 'triage' | 'hospitals' | 'remedies_40' | 'complications_60' | 'asha_suite' | 'sms_fallback'
@@ -67,6 +79,18 @@ export default function App() {
   const [activeVideoCallDoc, setActiveVideoCallDoc] = useState(null);
   const [smsDefaultQuery, setSmsDefaultQuery] = useState('BEDS');
   const [deferredPrompt, setDeferredPrompt] = useState(null);
+
+  const handleAshaTabClick = () => {
+    if (!user) {
+      setIsAuthModalOpen(true);
+      return;
+    }
+    if (!canAccessAsha()) {
+      setIsAshaDeniedModalOpen(true);
+      return;
+    }
+    setActiveTab('asha_suite');
+  };
 
   useEffect(() => {
     const handleBeforeInstall = (e) => {
@@ -262,10 +286,30 @@ export default function App() {
           </button>
 
           <button
-            onClick={() => setActiveTab('asha_suite')}
+            onClick={handleAshaTabClick}
             className={`nav-tab-btn ${activeTab === 'asha_suite' ? 'active' : ''}`}
+            style={{
+              position: 'relative',
+              borderColor: activeTab === 'asha_suite' ? '#ec4899' : undefined
+            }}
           >
-            <ShieldCheck size={17} /> {t('tab_asha_suite')}
+            <ShieldCheck size={17} style={{ color: '#ec4899' }} />
+            <span>{t('tab_asha_suite')}</span>
+            {!canAccessAsha() && (
+              <span style={{
+                fontSize: '0.62rem',
+                background: '#fee2e2',
+                color: '#b91c1c',
+                padding: '0.1rem 0.35rem',
+                borderRadius: '4px',
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '2px',
+                fontWeight: '800'
+              }}>
+                <Lock size={9} /> {user ? 'CITIZEN' : 'AUTH'}
+              </span>
+            )}
           </button>
 
           <button
@@ -548,6 +592,28 @@ export default function App() {
 
       {/* Auth & Biometric Login Modal */}
       <AuthModal onAutofillOtpRef={autofillRef} />
+
+      {/* ASHA Access Denied Barrier Modal (Strict Role Enforcement) */}
+      <AshaAccessDeniedModal
+        isOpen={isAshaDeniedModalOpen}
+        onClose={() => setIsAshaDeniedModalOpen(false)}
+        onSwitchToAshaLogin={() => {
+          setIsAshaDeniedModalOpen(false);
+          setIsAuthModalOpen(true);
+        }}
+      />
+
+      {/* AI Face Recognition Camera Modal */}
+      <FaceRecognitionModal
+        isOpen={isFaceModalOpen}
+        onClose={() => setIsFaceModalOpen(false)}
+        mode={faceModalMode}
+        onAuthenticated={(u) => {
+          if (u?.role === 'asha') {
+            setActiveTab('asha_suite');
+          }
+        }}
+      />
     </div>
   );
 }

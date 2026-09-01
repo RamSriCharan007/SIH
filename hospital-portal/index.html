@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hospital & MO Clinical Command Portal | Directorate of Health Services</title>
+  <link rel="stylesheet" href="hospital-portal.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🏥</text></svg>">
+</head>
+<body>
+
+  <!-- ======================================================= -->
+  <!-- 1. DEDICATED LOGIN GATEWAY VIEW -->
+  <!-- ======================================================= -->
+  <div id="view-login" class="login-screen-wrapper">
+    <div class="login-card">
+      <div style="display: flex; align-items: center; gap: 0.85rem; margin-bottom: 1.25rem;">
+        <div style="width: 50px; height: 50px; border-radius: 14px; background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%); display: flex; align-items: center; justify-content: center; font-size: 1.6rem; box-shadow: 0 8px 20px rgba(2, 132, 199, 0.35);">
+          🏥
+        </div>
+        <div>
+          <h2 style="font-size: 1.35rem; font-weight: 800; color: #ffffff; margin: 0;">रुग्णालय अधिकृत प्रवेश</h2>
+          <div style="font-size: 0.72rem; color: #38bdf8; font-weight: 700; letter-spacing: 0.04em;">
+            DIRECTORATE OF HEALTH SERVICES • MAHARASHTRA
+          </div>
+        </div>
+      </div>
+
+      <!-- Developer Verification Badge -->
+      <div style="background: rgba(2, 132, 199, 0.12); border: 1.5px solid rgba(56, 189, 248, 0.3); border-radius: 12px; padding: 0.8rem 1rem; font-size: 0.78rem; color: #bae6fd; margin-bottom: 1.25rem; line-height: 1.45;">
+        🔒 <strong>Developer Provisioned Access Only:</strong> Under Maharashtra Health Security Guidelines, hospitals cannot publicly self-register. Credentials and security passkeys are exclusively issued by <strong>Master Developer Ram Sri Charan</strong>.
+      </div>
+
+      <!-- Quick Demo Credentials Selector -->
+      <div style="margin-bottom: 1.25rem;">
+        <div style="font-size: 0.74rem; font-weight: 700; color: var(--text-muted); margin-bottom: 0.45rem;">
+          त्वरित चाचणी क्रेडेंशियल्स निवडा (Developer Verified Quick Credentials):
+        </div>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.45rem;">
+          <button type="button" class="btn btn-secondary" onclick="quickFill('hosp-01', 'Trimbak@PHC2026')" style="font-size: 0.74rem; text-align: left; padding: 0.45rem 0.6rem;">
+            🏥 Trimbak PHC (Govt)
+          </button>
+          <button type="button" class="btn btn-secondary" onclick="quickFill('hosp-02', 'Junnar@Gov2026')" style="font-size: 0.74rem; text-align: left; padding: 0.45rem 0.6rem;">
+            🏥 Junnar Rural Trauma
+          </button>
+          <button type="button" class="btn btn-secondary" onclick="quickFill('hosp-03', 'Sanjeevani@Care2026')" style="font-size: 0.74rem; text-align: left; padding: 0.45rem 0.6rem;">
+            🏥 Sanjeevani Trust
+          </button>
+          <button type="button" class="btn btn-secondary" onclick="quickFill('hosp-04', 'Sahyadri@Nashik2026')" style="font-size: 0.74rem; text-align: left; padding: 0.45rem 0.6rem;">
+            🏥 Sahyadri Super-Spec
+          </button>
+        </div>
+      </div>
+
+      <!-- Login Form -->
+      <form id="form-hospital-login" onsubmit="handleLoginSubmit(event)">
+        <div id="login-error" style="display: none; background: rgba(239, 68, 68, 0.18); border: 1.5px solid rgba(239, 68, 68, 0.4); color: #fca5a5; padding: 0.75rem 1rem; border-radius: 10px; font-size: 0.82rem; font-weight: 700; margin-bottom: 1rem;"></div>
+
+        <div style="margin-bottom: 1rem;">
+          <label style="display: block; font-size: 0.8rem; font-weight: 700; margin-bottom: 0.35rem; color: var(--text-muted);">
+            रुग्णालय अधिकृत कोड (Hospital Auth Code) *
+          </label>
+          <input type="text" id="input-auth-code" class="input-field" placeholder="e.g. hosp-01" required value="hosp-01">
+        </div>
+
+        <div style="margin-bottom: 1.4rem;">
+          <label style="display: block; font-size: 0.8rem; font-weight: 700; margin-bottom: 0.35rem; color: var(--text-muted);">
+            प्रमाणित सुरक्षा पासकी (Verified Security Passkey) *
+          </label>
+          <div style="position: relative;">
+            <input type="password" id="input-access-key" class="input-field" placeholder="Enter security passkey" required value="Trimbak@PHC2026" style="padding-right: 2.5rem;">
+            <button type="button" onclick="togglePasswordVisibility()" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); background: none; border: none; color: #94a3b8; cursor: pointer; font-size: 1rem;">
+              👁️
+            </button>
+          </div>
+          <div style="font-size: 0.72rem; color: var(--text-muted); margin-top: 0.35rem;">
+            🛡️ 256-Bit TLS Guarded • Rate-Limiting Anti-Brute-Force Guard Active
+          </div>
+        </div>
+
+        <button type="submit" id="btn-login-submit" class="btn btn-primary" style="width: 100%; padding: 0.85rem; font-size: 0.95rem; justify-content: center; font-weight: 800;">
+          <span>अधिकृत लॉगिन करा (Verify & Login)</span>
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ======================================================= -->
+  <!-- 2. STANDALONE HOSPITAL PORTAL DASHBOARD VIEW -->
+  <!-- ======================================================= -->
+  <div id="view-portal" class="portal-container" style="display: none;">
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar">
+      <div class="brand-badge">
+        <div class="brand-icon">🏥</div>
+        <div class="brand-text">
+          <h1>रुग्णालय पोर्टल</h1>
+          <span>CLINICAL COMMAND</span>
+        </div>
+      </div>
+
+      <nav class="nav-links">
+        <a href="#dashboard" class="nav-item active" onclick="switchPage('dashboard')">
+          <span class="icon">📊</span>
+          <span>Overview</span>
+        </a>
+        <a href="#triage" class="nav-item" onclick="switchPage('triage')">
+          <span class="icon">👥</span>
+          <span>Triage Queue</span>
+          <span id="badge-patient-count" class="count-badge">0</span>
+        </a>
+        <a href="#resources" class="nav-item" onclick="switchPage('resources')">
+          <span class="icon">🛏️</span>
+          <span>Beds & Resources</span>
+        </a>
+        <a href="#doctors" class="nav-item" onclick="switchPage('doctors')">
+          <span class="icon">👨‍⚕️</span>
+          <span>Doctor Roster</span>
+        </a>
+        <a href="#receipts" class="nav-item" onclick="switchPage('receipts')">
+          <span class="icon">🧾</span>
+          <span>Digital Receipts</span>
+          <span id="badge-receipts-count" class="count-badge">0</span>
+        </a>
+        <a href="#security" class="nav-item" onclick="switchPage('security')">
+          <span class="icon">🔒</span>
+          <span>Security Audit</span>
+        </a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="user-snippet">
+          <div class="user-avatar" id="avatar-char">H</div>
+          <div class="user-info">
+            <div class="user-name" id="side-hosp-name">Primary Health Centre</div>
+            <div class="user-role" id="side-auth-code">hosp-01</div>
+          </div>
+        </div>
+        <button onclick="handleLogout()" class="btn btn-danger" style="width: 100%; justify-content: center; font-size: 0.78rem;">
+          <span>🔒 Lock & Logout</span>
+        </button>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="main-content">
+      <!-- Top Command Bar -->
+      <header class="top-bar">
+        <div class="top-bar-title">
+          <div style="display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap;">
+            <h2 id="top-hosp-name">Hospital Name</h2>
+            <span id="top-hosp-badge" class="badge badge-blue">Verified DHS</span>
+          </div>
+          <p id="top-hosp-meta">Code: hosp-01 • License: MH-DHS-2024 • District: Nashik</p>
+        </div>
+
+        <div class="top-bar-actions">
+          <button onclick="openWalkinModal()" class="btn btn-success">
+            <span>➕ Walk-in Patient</span>
+          </button>
+          <button onclick="fetchHospitalData()" class="btn btn-secondary">
+            <span>🔄 Sync Live</span>
+          </button>
+        </div>
+      </header>
+
+      <!-- PAGE: DASHBOARD / OVERVIEW -->
+      <section id="page-dashboard">
+        <div class="kpi-grid">
+          <div class="kpi-card blue">
+            <div class="kpi-header">
+              <span class="kpi-label">REQUESTED PATIENTS</span>
+              <span>👥</span>
+            </div>
+            <div class="kpi-value" id="kpi-patients-count">0</div>
+            <div class="kpi-desc">Privacy-isolated for this hospital</div>
+          </div>
+
+          <div class="kpi-card green">
+            <div class="kpi-header">
+              <span class="kpi-label">LIVE GENERAL BEDS</span>
+              <span>🛏️</span>
+            </div>
+            <div class="kpi-value" id="kpi-general-beds">0 / 0</div>
+            <div class="kpi-desc">Available ward capacity</div>
+          </div>
+
+          <div class="kpi-card red">
+            <div class="kpi-header">
+              <span class="kpi-label">LIVE ICU BEDS</span>
+              <span>🚨</span>
+            </div>
+            <div class="kpi-value" id="kpi-icu-beds">0 / 0</div>
+            <div class="kpi-desc">Critical ventilator capacity</div>
+          </div>
+
+          <div class="kpi-card purple">
+            <div class="kpi-header">
+              <span class="kpi-label">VIDEO-READY DOCTORS</span>
+              <span>📹</span>
+            </div>
+            <div class="kpi-value" id="kpi-active-docs">0</div>
+            <div class="kpi-desc">Online for citizen teleconsult</div>
+          </div>
+
+          <div class="kpi-card amber">
+            <div class="kpi-header">
+              <span class="kpi-label">ANTI-VENOM STOCK</span>
+              <span>🐍</span>
+            </div>
+            <div class="kpi-value" id="kpi-antivenom">0 Vials</div>
+            <div class="kpi-desc">On-site emergency vials</div>
+          </div>
+        </div>
+
+        <div class="card" style="margin-bottom: 1.5rem;">
+          <h3 style="font-size: 1.15rem; font-weight: 800; margin-bottom: 0.35rem;">रुग्णालय माहिती व थेट नियंत्रण (Hospital Overview)</h3>
+          <p style="font-size: 0.82rem; color: var(--text-muted); margin-bottom: 1rem;">
+            हे पोर्टल केवळ आपल्या अधिकृत रुग्णालयासाठी विनंती केलेले रुग्ण, वॉर्ड बेड्स, रक्तपेढी साठा आणि टेलिकन्सल्टेशन व्यवस्थापनासाठी सुरक्षित आहे.
+          </p>
+          <div style="display: flex; gap: 0.65rem; flex-wrap: wrap;">
+            <button onclick="switchPage('triage')" class="btn btn-primary">👥 Open Patient Triage Queue</button>
+            <button onclick="switchPage('resources')" class="btn btn-secondary">🛏️ Adjust Beds & Resources</button>
+            <button onclick="switchPage('doctors')" class="btn btn-secondary">👨‍⚕️ Toggle Doctor Video Roster</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- PAGE: TRIAGE & PATIENT QUEUE -->
+      <section id="page-triage" style="display: none;">
+        <div class="card">
+          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.85rem; margin-bottom: 1.25rem;">
+            <div>
+              <h3 style="font-size: 1.2rem; font-weight: 800; margin: 0;">आपल्या रुग्णालयासाठी विनंती केलेली रुग्ण यादी</h3>
+              <p style="font-size: 0.78rem; color: var(--text-muted); margin-top: 0.2rem;">
+                🔒 Zero-Trust Privacy Enforced: Showing only patients assigned to this facility.
+              </p>
+            </div>
+            <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+              <input type="text" id="triage-search" class="input-field" placeholder="रुग्ण नाव / फोन शोधा..." oninput="renderTriageList()" style="width: 220px; font-size: 0.82rem;">
+              <select id="triage-filter" class="input-field" onchange="renderTriageList()" style="width: 150px; font-size: 0.82rem;">
+                <option value="ALL">All Patients</option>
+                <option value="CRITICAL">🔴 Critical Only</option>
+                <option value="MILD">🌿 Mild Only</option>
+                <option value="ADMITTED">🛏️ Admitted Only</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="table-container">
+            <table>
+              <thead>
+                <tr>
+                  <th>Token / Patient</th>
+                  <th>Emergency Type</th>
+                  <th>Vitals / Village</th>
+                  <th>Allocated Bed / Doctor</th>
+                  <th>Status</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="tbody-triage">
+                <!-- Injected via JavaScript -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- PAGE: LIVE BEDS & RESOURCES -->
+      <section id="page-resources" style="display: none;">
+        <div class="card" style="margin-bottom: 1.25rem;">
+          <h3 style="font-size: 1.15rem; font-weight: 800; margin-bottom: 0.35rem;">🛏️ वॉर्ड बेड्स थेट व्यवस्थापन (Live Ward Beds)</h3>
+          <p style="font-size: 0.78rem; color: var(--text-muted); margin-bottom: 1.25rem;">
+            येथे केलेले बदल थेट नागरिक ॲप आणि १०८ रुग्णवाहिका रूटिंग सिस्टिममध्ये तात्काळ परावर्तित होतात.
+          </p>
+
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1rem;">
+            <div class="card" style="background: var(--bg-card);">
+              <div style="font-size: 0.8rem; font-weight: 800; color: #38bdf8;">GENERAL WARD BEDS</div>
+              <div id="res-general-beds" style="font-size: 2.2rem; font-weight: 800; margin: 0.35rem 0;">0 / 0</div>
+              <div style="display: flex; gap: 0.5rem;">
+                <button onclick="adjustBed('general_available', -1)" class="btn btn-secondary" style="flex: 1;">-1</button>
+                <button onclick="adjustBed('general_available', 1)" class="btn btn-primary" style="flex: 1;">+1</button>
+                <button onclick="adjustBed('general_available', 5)" class="btn btn-primary" style="flex: 1;">+5</button>
+              </div>
+            </div>
+
+            <div class="card" style="background: var(--bg-card); border-color: rgba(239, 68, 68, 0.4);">
+              <div style="font-size: 0.8rem; font-weight: 800; color: #f87171;">ICU VENTILATOR BEDS</div>
+              <div id="res-icu-beds" style="font-size: 2.2rem; font-weight: 800; color: #f87171; margin: 0.35rem 0;">0 / 0</div>
+              <div style="display: flex; gap: 0.5rem;">
+                <button onclick="adjustBed('icu_available', -1)" class="btn btn-secondary" style="flex: 1;">-1</button>
+                <button onclick="adjustBed('icu_available', 1)" class="btn btn-danger" style="flex: 1;">+1</button>
+              </div>
+            </div>
+
+            <div class="card" style="background: var(--bg-card);">
+              <div style="font-size: 0.8rem; font-weight: 800; color: #c084fc;">OXYGEN & MATERNITY BEDS</div>
+              <div id="res-oxygen-beds" style="font-size: 2.2rem; font-weight: 800; color: #c084fc; margin: 0.35rem 0;">0</div>
+              <div style="display: flex; gap: 0.5rem;">
+                <button onclick="adjustBed('oxygen_beds_available', -1)" class="btn btn-secondary" style="flex: 1;">-1</button>
+                <button onclick="adjustBed('oxygen_beds_available', 1)" class="btn btn-primary" style="flex: 1; background: #9333ea;">+1</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Blood Units -->
+        <div class="card" style="margin-bottom: 1.25rem;">
+          <h3 style="font-size: 1.15rem; font-weight: 800; margin-bottom: 0.35rem;">🩸 रक्तपेढी थेट साठा (Live Blood Bank Units)</h3>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 0.75rem; margin-top: 1rem;">
+            <div class="card" style="background: var(--bg-card); text-align: center;">
+              <div style="font-size: 1rem; font-weight: 800; color: #f87171;">A+</div>
+              <div id="blood-A_pos" style="font-size: 1.6rem; font-weight: 800; margin: 0.2rem 0;">0</div>
+              <div style="display: flex; gap: 4px; justify-content: center;">
+                <button onclick="adjustBlood('A_pos', -1)" class="btn btn-secondary" style="padding: 0.2rem 0.5rem;">-</button>
+                <button onclick="adjustBlood('A_pos', 1)" class="btn btn-primary" style="padding: 0.2rem 0.5rem;">+</button>
+              </div>
+            </div>
+
+            <div class="card" style="background: var(--bg-card); text-align: center;">
+              <div style="font-size: 1rem; font-weight: 800; color: #f87171;">B+</div>
+              <div id="blood-B_pos" style="font-size: 1.6rem; font-weight: 800; margin: 0.2rem 0;">0</div>
+              <div style="display: flex; gap: 4px; justify-content: center;">
+                <button onclick="adjustBlood('B_pos', -1)" class="btn btn-secondary" style="padding: 0.2rem 0.5rem;">-</button>
+                <button onclick="adjustBlood('B_pos', 1)" class="btn btn-primary" style="padding: 0.2rem 0.5rem;">+</button>
+              </div>
+            </div>
+
+            <div class="card" style="background: var(--bg-card); text-align: center;">
+              <div style="font-size: 1rem; font-weight: 800; color: #f87171;">O+</div>
+              <div id="blood-O_pos" style="font-size: 1.6rem; font-weight: 800; margin: 0.2rem 0;">0</div>
+              <div style="display: flex; gap: 4px; justify-content: center;">
+                <button onclick="adjustBlood('O_pos', -1)" class="btn btn-secondary" style="padding: 0.2rem 0.5rem;">-</button>
+                <button onclick="adjustBlood('O_pos', 1)" class="btn btn-primary" style="padding: 0.2rem 0.5rem;">+</button>
+              </div>
+            </div>
+
+            <div class="card" style="background: var(--bg-card); text-align: center;">
+              <div style="font-size: 1rem; font-weight: 800; color: #f87171;">AB+</div>
+              <div id="blood-AB_pos" style="font-size: 1.6rem; font-weight: 800; margin: 0.2rem 0;">0</div>
+              <div style="display: flex; gap: 4px; justify-content: center;">
+                <button onclick="adjustBlood('AB_pos', -1)" class="btn btn-secondary" style="padding: 0.2rem 0.5rem;">-</button>
+                <button onclick="adjustBlood('AB_pos', 1)" class="btn btn-primary" style="padding: 0.2rem 0.5rem;">+</button>
+              </div>
+            </div>
+
+            <div class="card" style="background: var(--bg-card); text-align: center;">
+              <div style="font-size: 1rem; font-weight: 800; color: #f87171;">O-</div>
+              <div id="blood-O_neg" style="font-size: 1.6rem; font-weight: 800; margin: 0.2rem 0;">0</div>
+              <div style="display: flex; gap: 4px; justify-content: center;">
+                <button onclick="adjustBlood('O_neg', -1)" class="btn btn-secondary" style="padding: 0.2rem 0.5rem;">-</button>
+                <button onclick="adjustBlood('O_neg', 1)" class="btn btn-primary" style="padding: 0.2rem 0.5rem;">+</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Medicines -->
+        <div class="card">
+          <h3 style="font-size: 1.15rem; font-weight: 800; margin-bottom: 0.35rem;">💊 आपत्कालीन औषध व सर्पदंश साठा (Emergency Medicines)</h3>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 0.85rem; margin-top: 1rem;">
+            <div class="card" style="background: var(--bg-card);">
+              <div style="font-size: 0.8rem; font-weight: 800; color: #34d399;">🐍 Anti-Venom Vials</div>
+              <div id="med-antivenom" style="font-size: 1.8rem; font-weight: 800; color: #34d399; margin: 0.25rem 0;">0 Vials</div>
+              <div style="display: flex; gap: 4px;">
+                <button onclick="adjustMedicine('anti_venom_vials', -1)" class="btn btn-secondary" style="flex: 1; padding: 0.3rem;">-1</button>
+                <button onclick="adjustMedicine('anti_venom_vials', 5)" class="btn btn-success" style="flex: 1; padding: 0.3rem;">+5</button>
+              </div>
+            </div>
+
+            <div class="card" style="background: var(--bg-card);">
+              <div style="font-size: 0.8rem; font-weight: 800; color: #38bdf8;">💧 ORS Packets</div>
+              <div id="med-ors" style="font-size: 1.8rem; font-weight: 800; color: #38bdf8; margin: 0.25rem 0;">0 Pkts</div>
+              <div style="display: flex; gap: 4px;">
+                <button onclick="adjustMedicine('ors_packets', -10)" class="btn btn-secondary" style="flex: 1; padding: 0.3rem;">-10</button>
+                <button onclick="adjustMedicine('ors_packets', 50)" class="btn btn-primary" style="flex: 1; padding: 0.3rem;">+50</button>
+              </div>
+            </div>
+
+            <div class="card" style="background: var(--bg-card);">
+              <div style="font-size: 0.8rem; font-weight: 800; color: #c084fc;">🫁 Oxygen Cylinders</div>
+              <div id="med-oxygen" style="font-size: 1.8rem; font-weight: 800; color: #c084fc; margin: 0.25rem 0;">0 Units</div>
+              <div style="display: flex; gap: 4px;">
+                <button onclick="adjustMedicine('iv_fluids', -5)" class="btn btn-secondary" style="flex: 1; padding: 0.3rem;">-5</button>
+                <button onclick="adjustMedicine('iv_fluids', 10)" class="btn btn-primary" style="flex: 1; background: #9333ea; padding: 0.3rem;">+10</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- PAGE: DOCTOR ROSTER -->
+      <section id="page-doctors" style="display: none;">
+        <div class="card">
+          <div style="margin-bottom: 1.25rem;">
+            <h3 style="font-size: 1.2rem; font-weight: 800; margin: 0;">👨‍⚕️ डॉक्टर ऑन-ड्युटी व थेट टेलिकन्सल्टेशन व्हिडिओ उपलब्धता</h3>
+            <p style="font-size: 0.78rem; color: var(--text-muted); margin-top: 0.2rem;">
+              ज्या डॉक्टरांचे बटण <strong>"Video Ready"</strong> असेल, तेच डॉक्टर नागरिक ॲपमध्ये तात्काळ उपलब्ध दिसतात.
+            </p>
+          </div>
+
+          <div id="doctors-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1rem;">
+            <!-- Injected via JavaScript -->
+          </div>
+        </div>
+      </section>
+
+      <!-- PAGE: DIGITAL RECEIPTS -->
+      <section id="page-receipts" style="display: none;">
+        <div class="card">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.25rem; flex-wrap: wrap; gap: 0.85rem;">
+            <div>
+              <h3 style="font-size: 1.2rem; font-weight: 800; margin: 0;">या रुग्णालयाने जारी केलेल्या अधिकृत कन्सल्टेशन पावत्या</h3>
+              <p style="font-size: 0.78rem; color: var(--text-muted); margin-top: 0.2rem;">
+                All prescriptions are digitally signed with State Health Directorate verification hash.
+              </p>
+            </div>
+            <button onclick="openNewReceiptModal()" class="btn btn-primary">
+              <span>➕ Issue New Receipt</span>
+            </button>
+          </div>
+
+          <div class="table-container">
+            <table>
+              <thead>
+                <tr>
+                  <th>Receipt ID</th>
+                  <th>Patient Name</th>
+                  <th>Diagnosis / Speciality</th>
+                  <th>Prescribing Doctor</th>
+                  <th>Date & Time</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody id="tbody-receipts">
+                <!-- Injected via JavaScript -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- PAGE: SECURITY AUDIT -->
+      <section id="page-security" style="display: none;">
+        <div class="card" style="margin-bottom: 1.25rem;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; flex-wrap: wrap; gap: 0.75rem;">
+            <div>
+              <span class="badge badge-blue">STATE HEALTH DIRECTORATE • DEVELOPER PROVISIONED</span>
+              <h3 style="font-size: 1.25rem; font-weight: 800; margin: 0.35rem 0 0;">अधिकृत सुरक्षा प्रमाणपत्र व क्रेडेंशियल्स माहिती</h3>
+            </div>
+            <a href="/developer-portal" target="_blank" class="btn btn-secondary" style="color: #38bdf8;">
+              <span>Master Developer Console ↗</span>
+            </a>
+          </div>
+
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1rem; margin-top: 1rem;">
+            <div class="card" style="background: var(--bg-card);">
+              <div style="font-size: 0.72rem; font-weight: 700; color: var(--text-muted);">HOSPITAL AUTH CODE</div>
+              <div id="sec-auth-code" style="font-size: 1.1rem; font-weight: 800; color: #38bdf8; font-family: var(--font-mono); margin-top: 0.2rem;">hosp-01</div>
+              <div style="font-size: 0.7rem; color: #34d399; margin-top: 0.2rem;">✓ Developer Verified & Active</div>
+            </div>
+
+            <div class="card" style="background: var(--bg-card);">
+              <div style="font-size: 0.72rem; font-weight: 700; color: var(--text-muted);">SECURITY PASSKEY STATUS</div>
+              <div style="font-size: 1.1rem; font-weight: 800; margin-top: 0.2rem;">••••••••••••</div>
+              <div style="font-size: 0.7rem; color: var(--text-muted); margin-top: 0.2rem;">Rotatable by Developer Ram Sri Charan</div>
+            </div>
+
+            <div class="card" style="background: var(--bg-card);">
+              <div style="font-size: 0.72rem; font-weight: 700; color: var(--text-muted);">ACCREDITATION LICENSE</div>
+              <div id="sec-license" style="font-size: 1.1rem; font-weight: 800; color: #c084fc; font-family: var(--font-mono); margin-top: 0.2rem;">MH-DHS-2024</div>
+              <div style="font-size: 0.7rem; color: var(--text-muted); margin-top: 0.2rem;">DHS Maharashtra Verified</div>
+            </div>
+
+            <div class="card" style="background: var(--bg-card);">
+              <div style="font-size: 0.72rem; font-weight: 700; color: var(--text-muted);">ACTIVE BEARER TOKEN</div>
+              <div id="sec-token" style="font-size: 0.78rem; font-weight: 700; color: #34d399; font-family: var(--font-mono); margin-top: 0.3rem; word-break: break-all;">ACTIVE</div>
+              <div style="font-size: 0.7rem; color: #34d399; margin-top: 0.2rem;">256-Bit TLS Guarded • 24h Expiry</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3 style="font-size: 1.15rem; font-weight: 800; margin-bottom: 0.85rem;">🛡️ थेट ॲक्सेस व सुरक्षा ऑडिट लॉग्स (Live Security Audit Stream)</h3>
+          <div id="audit-logs-container" style="display: flex; flex-direction: column; gap: 0.5rem;">
+            <!-- Injected via JavaScript -->
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- ======================================================= -->
+  <!-- 3. MODALS (Admit, Walk-in, Issue Receipt, View Receipt) -->
+  <!-- ======================================================= -->
+
+  <!-- Modal: Admit Patient -->
+  <div id="modal-admit" class="modal-overlay" style="display: none;" onclick="closeModal('modal-admit')">
+    <div class="modal-content" onclick="event.stopPropagation()">
+      <h3 style="font-size: 1.25rem; font-weight: 800; margin-bottom: 0.4rem;">बेड वाटप व भरती निश्चित करा</h3>
+      <p id="admit-patient-desc" style="font-size: 0.82rem; color: var(--text-muted); margin-bottom: 1.25rem;"></p>
+
+      <form onsubmit="handleAdmitConfirm(event)">
+        <input type="hidden" id="admit-req-id">
+        <div style="margin-bottom: 1rem;">
+          <label style="display: block; font-size: 0.82rem; font-weight: 700; margin-bottom: 0.35rem;">
+            बेड प्रकार व वॉर्ड निवडा (Ward & Bed Type) *
+          </label>
+          <select id="admit-bed-type" class="input-field">
+            <option value="General Ward - Bed #01">General Ward - Bed #01</option>
+            <option value="General Ward - Bed #03">General Ward - Bed #03</option>
+            <option value="ICU Ventilator Bed #01">ICU Ventilator Bed #01 (Emergency Critical)</option>
+            <option value="Oxygen Ward Bed #05">Oxygen Ward Bed #05</option>
+            <option value="Maternity Labor Ward Bed #02">Maternity Labor Ward Bed #02</option>
+          </select>
+        </div>
+
+        <div style="margin-bottom: 1.5rem;">
+          <label style="display: block; font-size: 0.82rem; font-weight: 700; margin-bottom: 0.35rem;">
+            तपासणी डॉक्टर (Assigned Duty Doctor)
+          </label>
+          <select id="admit-doctor-select" class="input-field"></select>
+        </div>
+
+        <div style="display: flex; gap: 0.65rem;">
+          <button type="submit" class="btn btn-primary" style="flex: 1; padding: 0.8rem; font-weight: 800;">
+            Confirm Bed Admission
+          </button>
+          <button type="button" onclick="closeModal('modal-admit')" class="btn btn-secondary">
+            Cancel
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal: Walk-in Patient -->
+  <div id="modal-walkin" class="modal-overlay" style="display: none;" onclick="closeModal('modal-walkin')">
+    <div class="modal-content" onclick="event.stopPropagation()">
+      <h3 style="font-size: 1.25rem; font-weight: 800; margin-bottom: 0.35rem;">➕ थेट आपत्कालीन रुग्ण नोंदणी (Direct Walk-in Patient)</h3>
+      <p style="font-size: 0.78rem; color: var(--text-muted); margin-bottom: 1.25rem;">
+        Register direct emergency arrival into this hospital's active triage queue.
+      </p>
+
+      <form onsubmit="handleWalkinConfirm(event)">
+        <div style="margin-bottom: 1rem;">
+          <label style="display: block; font-size: 0.8rem; font-weight: 700; margin-bottom: 0.3rem;">रुग्णाचे नाव (Patient Full Name) *</label>
+          <input type="text" id="walkin-name" class="input-field" placeholder="e.g. Dnyaneshwar Ramchandra More" required>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin-bottom: 1rem;">
+          <div>
+            <label style="display: block; font-size: 0.8rem; font-weight: 700; margin-bottom: 0.3rem;">फोन नंबर (Phone)</label>
+            <input type="tel" id="walkin-phone" class="input-field" placeholder="9822012345">
+          </div>
+          <div>
+            <label style="display: block; font-size: 0.8rem; font-weight: 700; margin-bottom: 0.3rem;">वय (Age)</label>
+            <input type="number" id="walkin-age" class="input-field" value="32">
+          </div>
+        </div>
+
+        <div style="margin-bottom: 1rem;">
+          <label style="display: block; font-size: 0.8rem; font-weight: 700; margin-bottom: 0.3rem;">Emergency Chief Complaint *</label>
+          <input type="text" id="walkin-complaint" class="input-field" placeholder="e.g. Snakebite Viper bite / Acute Chest Pain" required>
+        </div>
+
+        <div style="margin-bottom: 1.5rem;">
+          <label style="display: block; font-size: 0.8rem; font-weight: 700; margin-bottom: 0.3rem;">ट्रायज प्राधान्य (Triage Tier)</label>
+          <select id="walkin-tier" class="input-field">
+            <option value="60_CRITICAL_EMERGENCY">🔴 60% Critical Emergency (Immediate Ward/OT)</option>
+            <option value="40_MILD_REMEDY">🌿 40% Mild Stabilization (General OPD)</option>
+          </select>
+        </div>
+
+        <div style="display: flex; gap: 0.65rem;">
+          <button type="submit" class="btn btn-primary" style="flex: 1; padding: 0.8rem; font-weight: 800;">
+            नोंदणी करा (Register Patient)
+          </button>
+          <button type="button" onclick="closeModal('modal-walkin')" class="btn btn-secondary">
+            Cancel
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal: Printable Receipt Viewer -->
+  <div id="modal-view-receipt" class="modal-overlay" style="display: none;" onclick="closeModal('modal-view-receipt')">
+    <div class="modal-content" style="max-width: 620px; background: #ffffff; color: #0f172a;" onclick="event.stopPropagation()">
+      <div id="receipt-print-content" style="border: 2px solid #0f172a; border-radius: 16px; padding: 1.5rem;">
+        <!-- Injected via JavaScript -->
+      </div>
+      <div class="no-print" style="display: flex; gap: 0.65rem; margin-top: 1.25rem;">
+        <button onclick="window.print()" class="btn btn-primary" style="flex: 1; justify-content: center; font-weight: 800;">
+          🖨️ Print Official Receipt
+        </button>
+        <button onclick="closeModal('modal-view-receipt')" class="btn btn-secondary" style="color: #0f172a; border-color: #cbd5e1;">
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: Issue New Receipt -->
+  <div id="modal-issue-receipt" class="modal-overlay" style="display: none;" onclick="closeModal('modal-issue-receipt')">
+    <div class="modal-content" onclick="event.stopPropagation()">
+      <h3 style="font-size: 1.25rem; font-weight: 800; margin-bottom: 0.35rem;">🧾 नवीन कन्सल्टेशन पावती जारी करा (Issue Receipt)</h3>
+      <p style="font-size: 0.78rem; color: var(--text-muted); margin-bottom: 1.25rem;">
+        Generate official digitally sealed prescription receipt under Maharashtra DHS.
+      </p>
+
+      <form onsubmit="handleGenerateReceiptSubmit(event)">
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin-bottom: 1rem;">
+          <div>
+            <label style="display: block; font-size: 0.8rem; font-weight: 700; margin-bottom: 0.3rem;">रुग्णाचे नाव (Patient Name) *</label>
+            <input type="text" id="rcp-patient-name" class="input-field" required value="Smt. Rukmini Patil">
+          </div>
+          <div>
+            <label style="display: block; font-size: 0.8rem; font-weight: 700; margin-bottom: 0.3rem;">फोन (Phone) *</label>
+            <input type="tel" id="rcp-patient-phone" class="input-field" required value="9822019485">
+          </div>
+        </div>
+
+        <div style="margin-bottom: 1rem;">
+          <label style="display: block; font-size: 0.8rem; font-weight: 700; margin-bottom: 0.3rem;">निदान / Clinical Diagnosis *</label>
+          <input type="text" id="rcp-diagnosis" class="input-field" required value="Acute Respiratory Infection & Dehydration">
+        </div>
+
+        <div style="margin-bottom: 1rem;">
+          <label style="display: block; font-size: 0.8rem; font-weight: 700; margin-bottom: 0.3rem;">औषधोपचार (Prescribed Medications) *</label>
+          <textarea id="rcp-medicines" class="input-field" rows="3">Tab. Paracetamol 650mg - 1 TDS after food (3 Days)
+ORS Sachet - 1 pkt in 1L water throughout day (3 Days)
+Tab. Cetirizine 10mg - 1 at night (5 Days)</textarea>
+        </div>
+
+        <div style="margin-bottom: 1.4rem;">
+          <label style="display: block; font-size: 0.8rem; font-weight: 700; margin-bottom: 0.3rem;">शासकीय योजना / Subsidy Scheme</label>
+          <select id="rcp-scheme" class="input-field">
+            <option value="Mahatma Jyotirao Phule Jan Arogya Yojana (100% Free)">MJPJAY (100% Free Govt Healthcare)</option>
+            <option value="Ayushman Bharat PMJAY Free Subsidy">Ayushman Bharat PMJAY (Free)</option>
+            <option value="Standard Free Primary Health Subsidy">Standard Free Primary Health Care (₹0)</option>
+          </select>
+        </div>
+
+        <div style="display: flex; gap: 0.65rem;">
+          <button type="submit" class="btn btn-primary" style="flex: 1; padding: 0.8rem; font-weight: 800;">
+            पावती जारी करा (Issue & Sign Receipt)
+          </button>
+          <button type="button" onclick="closeModal('modal-issue-receipt')" class="btn btn-secondary">
+            Cancel
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="hospital-portal.js"></script>
+</body>
+</html>

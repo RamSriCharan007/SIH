@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+  
+  <!-- Homepage & Rural Citizen Health Portal -->
+  <url>
+    <loc>https://graminaarogya.gov.in/</loc>
+    <lastmod>2026-09-01</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <!-- 108 Emergency Ambulance & Critical Escalation -->
+  <url>
+    <loc>https://graminaarogya.gov.in/#emergency</loc>
+    <lastmod>2026-09-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Bilingual Offline Remedies & Symptom Checker -->
+  <url>
+    <loc>https://graminaarogya.gov.in/#remedies</loc>
+    <lastmod>2026-09-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Rural PHC Hospital & Bed Availability Directory -->
+  <url>
+    <loc>https://graminaarogya.gov.in/#hospitals</loc>
+    <lastmod>2026-09-01</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <!-- ASHA Community Health Suite & Micro-Planning -->
+  <url>
+    <loc>https://graminaarogya.gov.in/#asha</loc>
+    <lastmod>2026-09-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+</urlset>

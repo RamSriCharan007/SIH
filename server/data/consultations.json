@@ -1,5 +1,79 @@
 [
   {
+    "id": "consult-1788064173793",
+    "patient_name": "Sunita Bai Shinde",
+    "age": 30,
+    "gender": "Female",
+    "village": "Maharashtra Rural Zone",
+    "bp": null,
+    "hb_level": null,
+    "notes": null,
+    "triage_tier": "40_MILD_REMEDY",
+    "matched_remedy_id": "rem-01",
+    "matched_complication_id": null,
+    "symptoms": [
+      "fever_mild",
+      "body_pain"
+    ],
+    "channel": "AI_VOICE_ASSISTANT",
+    "created_at": "2026-08-30T04:29:33.815Z"
+  },
+  {
+    "id": "consult-1788064005086",
+    "patient_name": "Sunita Bai Shinde",
+    "age": 30,
+    "gender": "Female",
+    "village": "Maharashtra Rural Zone",
+    "bp": null,
+    "hb_level": null,
+    "notes": null,
+    "triage_tier": "40_MILD_REMEDY",
+    "matched_remedy_id": "rem-01",
+    "matched_complication_id": null,
+    "symptoms": [
+      "general_inquiry"
+    ],
+    "channel": "AI_VOICE_ASSISTANT",
+    "created_at": "2026-08-30T04:26:45.099Z"
+  },
+  {
+    "id": "consult-1788063976242",
+    "patient_name": "Sunita Bai Shind",
+    "age": 30,
+    "gender": "Female",
+    "village": "Maharashtra Rural Zone",
+    "bp": null,
+    "hb_level": null,
+    "notes": null,
+    "triage_tier": "40_MILD_REMEDY",
+    "matched_remedy_id": "rem-01",
+    "matched_complication_id": null,
+    "symptoms": [
+      "general_inquiry"
+    ],
+    "channel": "AI_VOICE_ASSISTANT",
+    "created_at": "2026-08-30T04:26:16.255Z"
+  },
+  {
+    "id": "consult-1788063933125",
+    "patient_name": "Sunita Bai Shind",
+    "age": 30,
+    "gender": "Female",
+    "village": "Maharashtra Rural Zone",
+    "bp": null,
+    "hb_level": null,
+    "notes": null,
+    "triage_tier": "40_MILD_REMEDY",
+    "matched_remedy_id": "rem-01",
+    "matched_complication_id": null,
+    "symptoms": [
+      "fever_mild",
+      "body_pain"
+    ],
+    "channel": "AI_VOICE_ASSISTANT",
+    "created_at": "2026-08-30T04:25:33.142Z"
+  },
+  {
     "id": "consult-1788039114448",
     "patient_name": "Aarogya AI Patient",
     "age": 30,

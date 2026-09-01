@@ -1,0 +1,285 @@
+[
+  {
+    "receiptId": "MH-RCP-2026-9620",
+    "consultationId": "consult-1788237472575",
+    "hospitalId": "hosp-01",
+    "hospitalName": "Primary Health Centre",
+    "hospitalLicense": "MH-DHS-2024-PHC-011",
+    "hospitalAddress": "Maharashtra Rural Health Network",
+    "doctorName": "Dr. Anand Kulkarni",
+    "doctorRegNo": "MMC-2012-08-3948",
+    "doctorSpeciality": "Emergency Medicine & MD Physician",
+    "patientName": "Savita Jadhav",
+    "patientPhone": "9822019485",
+    "patientAge": 30,
+    "patientGender": "Female",
+    "patientVillage": "Rural Block",
+    "consultationDate": "2026-09-01",
+    "consultationTime": "10:07 am",
+    "triageCategory": "General Consultation",
+    "vitals": {
+      "bp": "120/80 mmHg",
+      "pulse": "76 bpm",
+      "spo2": "98%",
+      "temp": "98.6 F",
+      "hb": "12.0 gm/dL"
+    },
+    "diagnosis": "Gestational Hypertension (High Risk)",
+    "medicines": [
+      {
+        "name": "Tab. Labetalol 100mg",
+        "dosage": "1 TDS",
+        "duration": "14 Days"
+      }
+    ],
+    "dietAdvice": "Take warm water and light nutritious diet.",
+    "followUpDate": "As advised in 7 days",
+    "billing": {
+      "opdFee": 0,
+      "totalAmount": 0,
+      "subsidyScheme": "MJPJAY 100% Free"
+    },
+    "qrVerificationHash": "MH-GOV-HLTH-VERIFY-MH-RCP-2026-9620-F39CA888",
+    "digitalSeal": "STATE HEALTH DIRECTORATE MAHARASHTRA • VERIFIED CLINICAL RECEIPT",
+    "created_at": "2026-09-01T04:37:52.588Z"
+  },
+  {
+    "receiptId": "MH-RCP-2026-8713",
+    "consultationId": "consult-1788236625014",
+    "hospitalId": "hosp-01",
+    "hospitalName": "Primary Health Centre",
+    "hospitalLicense": "MH-DHS-2024-PHC-011",
+    "hospitalAddress": "Maharashtra Rural Health Network",
+    "doctorName": "Dr. Anand Kulkarni",
+    "doctorRegNo": "MMC-2012-08-3948",
+    "doctorSpeciality": "Emergency Medicine & MD Physician",
+    "patientName": "Savita Jadhav",
+    "patientPhone": "9822019485",
+    "patientAge": 30,
+    "patientGender": "Female",
+    "patientVillage": "Rural Block",
+    "consultationDate": "2026-09-01",
+    "consultationTime": "09:53 am",
+    "triageCategory": "General Consultation",
+    "vitals": {
+      "bp": "120/80 mmHg",
+      "pulse": "76 bpm",
+      "spo2": "98%",
+      "temp": "98.6 F",
+      "hb": "12.0 gm/dL"
+    },
+    "diagnosis": "Gestational Hypertension (High Risk)",
+    "medicines": [
+      {
+        "name": "Tab. Labetalol 100mg",
+        "dosage": "1 TDS",
+        "duration": "14 Days"
+      }
+    ],
+    "dietAdvice": "Take warm water and light nutritious diet.",
+    "followUpDate": "As advised in 7 days",
+    "billing": {
+      "opdFee": 0,
+      "totalAmount": 0,
+      "subsidyScheme": "MJPJAY 100% Free"
+    },
+    "qrVerificationHash": "MH-GOV-HLTH-VERIFY-MH-RCP-2026-8713-A325F65B",
+    "digitalSeal": "STATE HEALTH DIRECTORATE MAHARASHTRA • VERIFIED CLINICAL RECEIPT",
+    "created_at": "2026-09-01T04:23:45.027Z"
+  },
+  {
+    "receiptId": "MH-RCP-2026-5257",
+    "consultationId": "consult-1788236583976",
+    "hospitalId": "hosp-01",
+    "hospitalName": "Primary Health Centre",
+    "hospitalLicense": "MH-DHS-2024-PHC-011",
+    "hospitalAddress": "Maharashtra Rural Health Network",
+    "doctorName": "Dr. Anand Kulkarni",
+    "doctorRegNo": "MMC-2012-08-3948",
+    "doctorSpeciality": "Emergency Medicine & MD Physician",
+    "patientName": "Savita Jadhav",
+    "patientPhone": "9822019485",
+    "patientAge": 30,
+    "patientGender": "Female",
+    "patientVillage": "Rural Block",
+    "consultationDate": "2026-09-01",
+    "consultationTime": "09:53 am",
+    "triageCategory": "General Consultation",
+    "vitals": {
+      "bp": "120/80 mmHg",
+      "pulse": "76 bpm",
+      "spo2": "98%",
+      "temp": "98.6 F",
+      "hb": "12.0 gm/dL"
+    },
+    "diagnosis": "Gestational Hypertension (High Risk)",
+    "medicines": [
+      {
+        "name": "Tab. Labetalol 100mg",
+        "dosage": "1 TDS",
+        "duration": "14 Days"
+      }
+    ],
+    "dietAdvice": "Take warm water and light nutritious diet.",
+    "followUpDate": "As advised in 7 days",
+    "billing": {
+      "opdFee": 0,
+      "totalAmount": 0,
+      "subsidyScheme": "MJPJAY 100% Free"
+    },
+    "qrVerificationHash": "MH-GOV-HLTH-VERIFY-MH-RCP-2026-5257-E8A60D7A",
+    "digitalSeal": "STATE HEALTH DIRECTORATE MAHARASHTRA • VERIFIED CLINICAL RECEIPT",
+    "created_at": "2026-09-01T04:23:03.976Z"
+  },
+  {
+    "receiptId": "MH-RCP-2026-3998",
+    "consultationId": "consult-1788236561526",
+    "hospitalId": "hosp-01",
+    "hospitalName": "Primary Health Centre",
+    "hospitalLicense": "MH-DHS-2024-PHC-011",
+    "hospitalAddress": "Maharashtra Rural Health Network",
+    "doctorName": "Dr. Anand Kulkarni",
+    "doctorRegNo": "MMC-2012-08-3948",
+    "doctorSpeciality": "Emergency Medicine & MD Physician",
+    "patientName": "Savita Jadhav",
+    "patientPhone": "9822019485",
+    "patientAge": 30,
+    "patientGender": "Female",
+    "patientVillage": "Rural Block",
+    "consultationDate": "2026-09-01",
+    "consultationTime": "09:52 am",
+    "triageCategory": "General Consultation",
+    "vitals": {
+      "bp": "120/80 mmHg",
+      "pulse": "76 bpm",
+      "spo2": "98%",
+      "temp": "98.6 F",
+      "hb": "12.0 gm/dL"
+    },
+    "diagnosis": "Gestational Hypertension (High Risk)",
+    "medicines": [
+      {
+        "name": "Tab. Labetalol 100mg",
+        "dosage": "1 TDS",
+        "duration": "14 Days"
+      }
+    ],
+    "dietAdvice": "Take warm water and light nutritious diet.",
+    "followUpDate": "As advised in 7 days",
+    "billing": {
+      "opdFee": 0,
+      "totalAmount": 0,
+      "subsidyScheme": "MJPJAY 100% Free"
+    },
+    "qrVerificationHash": "MH-GOV-HLTH-VERIFY-MH-RCP-2026-3998-DA1F7848",
+    "digitalSeal": "STATE HEALTH DIRECTORATE MAHARASHTRA • VERIFIED CLINICAL RECEIPT",
+    "created_at": "2026-09-01T04:22:41.540Z"
+  },
+  {
+    "receiptId": "MH-RCP-2026-8801",
+    "consultationId": "consult-101",
+    "hospitalId": "hosp-01",
+    "hospitalName": "Trimbakeshwar Primary Health Centre (PHC)",
+    "hospitalLicense": "MH-DHS-2024-PHC-011",
+    "hospitalAddress": "Trimbakeshwar, Nashik Rural, Maharashtra - 422212",
+    "doctorName": "Dr. Anand Kulkarni",
+    "doctorRegNo": "MMC-2012-08-3948",
+    "doctorSpeciality": "Emergency Medicine & MD Physician",
+    "patientName": "Savita Dnyaneshwar Jadhav",
+    "patientPhone": "9822019485",
+    "patientAge": 26,
+    "patientGender": "Female",
+    "patientVillage": "Trimbak Pada No. 3",
+    "consultationDate": "2026-08-31",
+    "consultationTime": "11:30 AM",
+    "triageCategory": "High-Risk Pregnancy / Maternal Follow-up",
+    "vitals": {
+      "bp": "140/95 mmHg",
+      "pulse": "88 bpm",
+      "spo2": "97%",
+      "temp": "98.8 F",
+      "hb": "8.4 gm/dL"
+    },
+    "diagnosis": "Third Trimester Gestational Hypertension with Mild Anemia (High-Risk Category)",
+    "medicines": [
+      {
+        "name": "Tab. Labetalol 100 mg",
+        "dosage": "1 Tablet twice daily post meals",
+        "duration": "14 Days"
+      },
+      {
+        "name": "Tab. Ferrous Ascorbate + Folic Acid (Govt Supply)",
+        "dosage": "1 Tablet daily post lunch",
+        "duration": "30 Days"
+      },
+      {
+        "name": "Tab. Calcium Carbonate 500 mg",
+        "dosage": "1 Tablet daily after dinner",
+        "duration": "30 Days"
+      }
+    ],
+    "dietAdvice": "Low sodium diet, plenty of green leafy vegetables, daily fetal kick count monitoring.",
+    "followUpDate": "2026-09-07",
+    "billing": {
+      "opdFee": 0,
+      "medicineFee": 0,
+      "testingFee": 0,
+      "totalAmount": 0,
+      "subsidyScheme": "Mahatma Jyotirao Phule Jan Arogya Yojana (100% Free)",
+      "paymentStatus": "PAID_GOVT_SUBSIDY"
+    },
+    "qrVerificationHash": "MH-GOV-HLTH-VERIFY-RCP8801-VALID",
+    "digitalSeal": "STATE HEALTH DIRECTORATE MAHARASHTRA • VERIFIED CLINICAL RECEIPT"
+  },
+  {
+    "receiptId": "MH-RCP-2026-8802",
+    "consultationId": "consult-102",
+    "hospitalId": "hosp-01",
+    "hospitalName": "Trimbakeshwar Primary Health Centre (PHC)",
+    "hospitalLicense": "MH-DHS-2024-PHC-011",
+    "hospitalAddress": "Trimbakeshwar, Nashik Rural, Maharashtra - 422212",
+    "doctorName": "Dr. Meera Deshmukh",
+    "doctorRegNo": "MMC-2017-06-4439",
+    "doctorSpeciality": "Pediatric Child Health & Malnutrition",
+    "patientName": "Suman Bai Shinde",
+    "patientPhone": "9822019488",
+    "patientAge": 50,
+    "patientGender": "Female",
+    "patientVillage": "Trimbakeshwar City Ward 2",
+    "consultationDate": "2026-08-31",
+    "consultationTime": "01:15 PM",
+    "triageCategory": "Acute Febrile Illness (Viral Syndrome)",
+    "vitals": {
+      "bp": "124/82 mmHg",
+      "pulse": "78 bpm",
+      "spo2": "98%",
+      "temp": "101.2 F",
+      "hb": "11.0 gm/dL"
+    },
+    "diagnosis": "Acute Viral Fever with Myalgia (Mild Triage 40% Tier)",
+    "medicines": [
+      {
+        "name": "Tab. Paracetamol 650 mg",
+        "dosage": "1 Tablet 3 times daily after food",
+        "duration": "3 Days"
+      },
+      {
+        "name": "ORS (Oral Rehydration Solution)",
+        "dosage": "1 sachet in 1 Litre water, sip throughout day",
+        "duration": "3 Days"
+      }
+    ],
+    "dietAdvice": "Drink lukewarm tulsi-ginger herbal kadha twice daily. Hydrate well.",
+    "followUpDate": "2026-09-03",
+    "billing": {
+      "opdFee": 0,
+      "medicineFee": 0,
+      "testingFee": 0,
+      "totalAmount": 0,
+      "subsidyScheme": "National Rural Health Mission (100% Free)",
+      "paymentStatus": "PAID_GOVT_SUBSIDY"
+    },
+    "qrVerificationHash": "MH-GOV-HLTH-VERIFY-RCP8802-VALID",
+    "digitalSeal": "STATE HEALTH DIRECTORATE MAHARASHTRA • VERIFIED CLINICAL RECEIPT"
+  }
+]

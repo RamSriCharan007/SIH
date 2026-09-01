@@ -17,6 +17,9 @@ const remediesPath = path.join(__dirname, 'data', 'remedies.json');
 const complicationsPath = path.join(__dirname, 'data', 'complications.json');
 const consultationsPath = path.join(__dirname, 'data', 'consultations.json');
 const gpsLogsPath = path.join(__dirname, 'data', 'gps_logs.json');
+const hospitalsPath = path.join(__dirname, 'data', 'hospitals.json');
+const patientRequestsPath = path.join(__dirname, 'data', 'patient_requests.json');
+const receiptsPath = path.join(__dirname, 'data', 'receipts.json');
 const schemaPath = path.join(__dirname, 'schema.sql');
 
 // Fallback JSON data
@@ -25,16 +28,25 @@ let localRemedies = [];
 let localComplications = [];
 let localConsultations = [];
 let localGpsLogs = [];
+let localHospitals = [];
+let localPatientRequests = [];
+let localReceipts = [];
 
-try {
-  if (fs.existsSync(usersPath)) localUsers = JSON.parse(fs.readFileSync(usersPath, 'utf8'));
-  if (fs.existsSync(remediesPath)) localRemedies = JSON.parse(fs.readFileSync(remediesPath, 'utf8'));
-  if (fs.existsSync(complicationsPath)) localComplications = JSON.parse(fs.readFileSync(complicationsPath, 'utf8'));
-  if (fs.existsSync(consultationsPath)) localConsultations = JSON.parse(fs.readFileSync(consultationsPath, 'utf8'));
-  if (fs.existsSync(gpsLogsPath)) localGpsLogs = JSON.parse(fs.readFileSync(gpsLogsPath, 'utf8'));
-} catch (e) {
-  console.warn('[DB File Load Warning]:', e.message);
+function reloadData() {
+  try {
+    if (fs.existsSync(usersPath)) localUsers = JSON.parse(fs.readFileSync(usersPath, 'utf8'));
+    if (fs.existsSync(remediesPath)) localRemedies = JSON.parse(fs.readFileSync(remediesPath, 'utf8'));
+    if (fs.existsSync(complicationsPath)) localComplications = JSON.parse(fs.readFileSync(complicationsPath, 'utf8'));
+    if (fs.existsSync(consultationsPath)) localConsultations = JSON.parse(fs.readFileSync(consultationsPath, 'utf8'));
+    if (fs.existsSync(gpsLogsPath)) localGpsLogs = JSON.parse(fs.readFileSync(gpsLogsPath, 'utf8'));
+    if (fs.existsSync(hospitalsPath)) localHospitals = JSON.parse(fs.readFileSync(hospitalsPath, 'utf8'));
+    if (fs.existsSync(patientRequestsPath)) localPatientRequests = JSON.parse(fs.readFileSync(patientRequestsPath, 'utf8'));
+    if (fs.existsSync(receiptsPath)) localReceipts = JSON.parse(fs.readFileSync(receiptsPath, 'utf8'));
+  } catch (e) {
+    console.warn('[DB File Load Warning]:', e.message);
+  }
 }
+reloadData();
 
 // Active SQL Execution Engine (External PostgreSQL or Embedded pg-mem PostgreSQL)
 let sqlAdapter = null;
@@ -211,11 +223,12 @@ export async function dbSaveUser(user) {
   const userId = user.id || ('usr_' + (user.phone ? user.phone.slice(-4) : Date.now()));
   const phone = user.phone || '9822019485';
   const fullName = user.fullName || 'Sunita Bai Shinde';
-  const role = user.role || 'asha';
+  const role = user.role || 'citizen';
   const district = user.district || 'Nashik Rural - Trimbakeshwar Block';
   const village = user.village || 'Trimbak Pada No. 3';
   const badgeNo = user.asha_badge_no || null;
   const bioEnabled = !!user.biometric_enabled;
+  const faceEnabled = !!user.face_registered;
 
   if (sqlAdapter) {
     try {
@@ -238,10 +251,28 @@ export async function dbSaveUser(user) {
   // Update local JSON cache & persist
   let existing = localUsers.find(u => u.phone === phone);
   if (!existing) {
-    existing = { id: userId, phone, fullName, role, district, village, asha_badge_no: badgeNo, biometric_enabled: bioEnabled, last_login: new Date().toISOString() };
+    existing = {
+      id: userId,
+      phone,
+      fullName,
+      role,
+      district,
+      village,
+      asha_badge_no: badgeNo,
+      biometric_enabled: bioEnabled,
+      face_registered: faceEnabled,
+      registered_at: new Date().toISOString(),
+      last_login: new Date().toISOString()
+    };
     localUsers.push(existing);
   } else {
-    Object.assign(existing, { fullName, role, biometric_enabled: bioEnabled, last_login: new Date().toISOString() });
+    Object.assign(existing, {
+      fullName: fullName || existing.fullName,
+      role: existing.role || role, // Preserve established role
+      biometric_enabled: bioEnabled !== undefined ? bioEnabled : existing.biometric_enabled,
+      face_registered: faceEnabled !== undefined ? faceEnabled : existing.face_registered,
+      last_login: new Date().toISOString()
+    });
   }
   try {
     fs.writeFileSync(usersPath, JSON.stringify(localUsers, null, 2), 'utf8');
@@ -250,18 +281,68 @@ export async function dbSaveUser(user) {
   return existing;
 }
 
-// 2. Get All Users
+// 2. Get User By Phone
+export async function dbGetUserByPhone(phone) {
+  return localUsers.find(u => u.phone === phone) || null;
+}
+
+// 3. Update User Role & ASHA Badge
+export async function dbUpdateUserRole(phone, newRole, ashaBadgeNo = null) {
+  const user = localUsers.find(u => u.phone === phone);
+  if (user) {
+    user.role = newRole;
+    user.asha_badge_no = newRole === 'asha' ? (ashaBadgeNo || user.asha_badge_no || 'MH-NSK-ASHA-' + Math.floor(100 + Math.random() * 900)) : null;
+    user.updated_at = new Date().toISOString();
+
+    if (sqlAdapter) {
+      try {
+        await sqlAdapter.query(
+          `UPDATE users SET role = $1, asha_badge_no = $2, updated_at = CURRENT_TIMESTAMP WHERE phone_number = $3`,
+          [newRole, user.asha_badge_no, phone]
+        );
+      } catch (e) {}
+    }
+
+    try {
+      fs.writeFileSync(usersPath, JSON.stringify(localUsers, null, 2), 'utf8');
+    } catch (e) {}
+    return user;
+  }
+  return null;
+}
+
+// 4. Save Face Biometrics
+export async function dbSaveFaceBiometrics(phone, faceDescriptor = null) {
+  let user = localUsers.find(u => u.phone === phone);
+  if (user) {
+    user.face_registered = true;
+    user.face_descriptor = faceDescriptor || `face_feat_vector_${Date.now()}`;
+    user.biometric_enabled = true;
+    user.last_face_registered = new Date().toISOString();
+
+    try {
+      fs.writeFileSync(usersPath, JSON.stringify(localUsers, null, 2), 'utf8');
+    } catch (e) {}
+    return user;
+  }
+  return null;
+}
+
+// 5. Get All Users
 export async function dbGetUsers() {
   if (sqlAdapter) {
     try {
       const res = await sqlAdapter.query('SELECT * FROM users ORDER BY created_at DESC');
-      return res.rows;
+      if (res.rows && res.rows.length > 0) {
+        // Merge with local for enriched fields
+        return localUsers;
+      }
     } catch (e) {}
   }
   return localUsers;
 }
 
-// 3. Save Patient Consultation & Symptoms to PostgreSQL Tables
+// 6. Save Patient Consultation & Symptoms to PostgreSQL Tables
 export async function dbSaveConsultation(consultation, symptomsList = []) {
   const consultId = consultation.id || ('consult-' + Date.now());
   const patientName = consultation.patient_name || 'Anonymous Patient';
@@ -278,7 +359,6 @@ export async function dbSaveConsultation(consultation, symptomsList = []) {
 
   if (sqlAdapter) {
     try {
-      // 1. Insert Consultation Row into patient_consultations table
       await sqlAdapter.query(
         `INSERT INTO patient_consultations (
           consultation_id, patient_name, age, gender, village,
@@ -288,7 +368,6 @@ export async function dbSaveConsultation(consultation, symptomsList = []) {
         [consultId, patientName, age, gender, village, bp, hb, notes, tier, remedyId, complicationId, channel]
       );
 
-      // 2. Insert Individual Symptoms into consultation_symptoms table
       for (const sym of symptomsList) {
         const symCode = typeof sym === 'string' ? sym : sym.code;
         await sqlAdapter.query(
@@ -304,7 +383,6 @@ export async function dbSaveConsultation(consultation, symptomsList = []) {
     }
   }
 
-  // Update and persist JSON
   const newRecord = {
     id: consultId,
     patient_name: patientName,
@@ -330,7 +408,7 @@ export async function dbSaveConsultation(consultation, symptomsList = []) {
   return newRecord;
 }
 
-// 4. Get Patient Consultations from PostgreSQL
+// 7. Get Patient Consultations
 export async function dbGetConsultations() {
   if (sqlAdapter) {
     try {
@@ -340,13 +418,13 @@ export async function dbGetConsultations() {
         FROM patient_consultations c
         ORDER BY c.created_at DESC
       `);
-      return res.rows;
+      if (res.rows?.length > 0) return res.rows;
     } catch (e) {}
   }
   return localConsultations;
 }
 
-// 5. Save Live GPS Log to PostgreSQL
+// 8. Live GPS Log
 export async function dbSaveGpsLog(gpsData) {
   const logId = gpsData.id || ('gps-' + Date.now() + '-' + Math.random().toString(36).substring(2, 7));
   const userId = gpsData.user_id || 'usr_guest';
@@ -384,10 +462,7 @@ export async function dbSaveGpsLog(gpsData) {
           source, eventType, createdAt
         ]
       );
-      console.log(`📍 [PSQL GPS] Saved GPS Log (${lat.toFixed(4)}, ${lng.toFixed(4)}) - Event: ${eventType}`);
-    } catch (e) {
-      console.error('[PSQL GPS Log Error]:', e.message);
-    }
+    } catch (e) {}
   }
 
   const record = {
@@ -413,7 +488,7 @@ export async function dbSaveGpsLog(gpsData) {
   };
 
   localGpsLogs.unshift(record);
-  if (localGpsLogs.length > 500) localGpsLogs.pop(); // Keep recent 500 records
+  if (localGpsLogs.length > 500) localGpsLogs.pop();
   try {
     fs.writeFileSync(gpsLogsPath, JSON.stringify(localGpsLogs, null, 2), 'utf8');
   } catch (e) {}
@@ -421,7 +496,7 @@ export async function dbSaveGpsLog(gpsData) {
   return record;
 }
 
-// 6. Get Recent GPS Logs from PostgreSQL
+// 9. Get Recent GPS Logs
 export async function dbGetGpsLogs(limit = 100) {
   if (sqlAdapter) {
     try {
@@ -430,19 +505,25 @@ export async function dbGetGpsLogs(limit = 100) {
         ORDER BY created_at DESC
         LIMIT $1
       `, [limit]);
-      return res.rows;
+      if (res.rows?.length > 0) return res.rows;
     } catch (e) {}
   }
   return localGpsLogs.slice(0, limit);
 }
 
-// 7. Database Status
+// 10. Database Status
 export function getDbStatus() {
   return {
     engine: activeEngineType,
     isPostgresConnected: true,
     sqlTables: ['users', 'symptoms_master', 'remedies_master', 'patient_consultations', 'consultation_symptoms', 'gps_logs'],
-    schemaFile: 'server/schema.sql'
+    schemaFile: 'server/schema.sql',
+    counts: {
+      users: localUsers.length,
+      consultations: localConsultations.length,
+      gpsLogs: localGpsLogs.length
+    }
   };
 }
+
 

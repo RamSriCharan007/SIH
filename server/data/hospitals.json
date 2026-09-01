@@ -13,7 +13,19 @@
     "contact": "+91 2594 233100",
     "emergency_sos": "108",
     "is_24x7": true,
-    "schemes": ["MJPJAY", "Ayushman Bharat PM-JAY", "100% Free Govt Care"],
+    "auth_code": "hosp-01",
+    "license_no": "MH-DHS-2024-PHC-011",
+    "access_key": "Trimbak@PHC2026",
+    "is_verified": true,
+    "verification_status": "VERIFIED_AUTHENTICATED",
+    "verification_badge": "DHS Maharashtra & NABH Accredited",
+    "nodal_officer": "Dr. Vikas Shinde (Chief Medical Officer)",
+    "nodal_phone": "+91 98220 11901",
+    "schemes": [
+      "MJPJAY",
+      "Ayushman Bharat PM-JAY",
+      "100% Free Govt Care"
+    ],
     "cost_range": {
       "opd": 0,
       "general_bed_day": 0,
@@ -22,6 +34,47 @@
       "delivery_csection": 0,
       "tier_label": "100% मोफत (Govt Free)"
     },
+    "doctors": [
+      {
+        "id": "doc-01",
+        "name": "Dr. Anand Kulkarni",
+        "name_mr": "डॉ. आनंद कुलकर्णी",
+        "reg_no": "MMC-2012-08-3948",
+        "speciality": "Emergency Medicine & MD Physician",
+        "speciality_mr": "आपत्कालीन औषधोपचार व MD फिजिशियन",
+        "experience": "14 Yrs Experience",
+        "phone": "+91 98220 44321",
+        "is_available_for_video": true,
+        "opd_timing": "08:00 AM - 02:00 PM",
+        "status": "Available Now"
+      },
+      {
+        "id": "doc-04",
+        "name": "Dr. Meera Deshmukh",
+        "name_mr": "डॉ. मीरा देशमुख",
+        "reg_no": "MMC-2017-06-4439",
+        "speciality": "Pediatric Child Health & Malnutrition",
+        "speciality_mr": "बालरोग व पोषण तज्ज्ञ",
+        "experience": "9 Yrs Experience",
+        "phone": "+91 98220 55432",
+        "is_available_for_video": true,
+        "opd_timing": "10:00 AM - 04:00 PM",
+        "status": "Available"
+      },
+      {
+        "id": "doc-07",
+        "name": "Dr. Vikas Shinde",
+        "name_mr": "डॉ. विकास शिंदे",
+        "reg_no": "MMC-2010-03-2198",
+        "speciality": "General Physician / MO",
+        "speciality_mr": "सामान्य फिजिशियन / वैद्यकीय अधिकारी",
+        "experience": "16 Yrs Experience",
+        "phone": "+91 98220 11901",
+        "is_available_for_video": false,
+        "opd_timing": "24x7 Emergency",
+        "status": "In Emergency Ward"
+      }
+    ],
     "live_status": {
       "doctor_on_duty": {
         "name": "Dr. Vikas Shinde",
@@ -53,8 +106,17 @@
         "iv_fluids": 120
       }
     },
-    "facilities": ["24x7 Delivery", "Snakebite Anti-Venom Unit", "Free Pharmacy", "Ambulance Base", "Child Immunization"],
-    "coordinates": { "lat": 19.9381, "lng": 73.5312 }
+    "facilities": [
+      "24x7 Delivery",
+      "Snakebite Anti-Venom Unit",
+      "Free Pharmacy",
+      "Ambulance Base",
+      "Child Immunization"
+    ],
+    "coordinates": {
+      "lat": 19.9381,
+      "lng": 73.5312
+    }
   },
   {
     "id": "hosp-02",
@@ -70,7 +132,19 @@
     "contact": "+91 2132 222045",
     "emergency_sos": "108",
     "is_24x7": true,
-    "schemes": ["MJPJAY", "Ayushman Bharat", "Janani Shishu Suraksha"],
+    "auth_code": "hosp-02",
+    "license_no": "MH-DHS-2024-RH-042",
+    "access_key": "Junnar@Gov2026",
+    "is_verified": true,
+    "verification_status": "VERIFIED_AUTHENTICATED",
+    "verification_badge": "Directorate of Health Services Certified",
+    "nodal_officer": "Dr. Snehal Deshmukh (Medical Superintendent)",
+    "nodal_phone": "+91 94220 88201",
+    "schemes": [
+      "MJPJAY",
+      "Ayushman Bharat",
+      "Janani Shishu Suraksha"
+    ],
     "cost_range": {
       "opd": 0,
       "general_bed_day": 0,
@@ -79,6 +153,34 @@
       "delivery_csection": 0,
       "tier_label": "100% मोफत (Govt Free)"
     },
+    "doctors": [
+      {
+        "id": "doc-02",
+        "name": "Dr. Rohini Gaikwad",
+        "name_mr": "डॉ. रोहिणी गायकवाड",
+        "reg_no": "MMC-2015-04-1102",
+        "speciality": "High-Risk Pregnancy & Maternal Care (OBGYN)",
+        "speciality_mr": "स्त्रीरोग व प्रसूती तज्ज्ञ (OBGYN)",
+        "experience": "11 Yrs Experience",
+        "phone": "+91 98221 33221",
+        "is_available_for_video": true,
+        "opd_timing": "09:00 AM - 01:00 PM",
+        "status": "Available Now"
+      },
+      {
+        "id": "doc-08",
+        "name": "Dr. Snehal Deshmukh",
+        "name_mr": "डॉ. स्नेहल देशमुख",
+        "reg_no": "MMC-2011-09-5432",
+        "speciality": "Obstetrician & Trauma Specialist",
+        "speciality_mr": "प्रसूती व ट्रॉमा तज्ज्ञ",
+        "experience": "15 Yrs Experience",
+        "phone": "+91 94220 88201",
+        "is_available_for_video": false,
+        "opd_timing": "24x7 On Call",
+        "status": "In Emergency OT"
+      }
+    ],
     "live_status": {
       "doctor_on_duty": {
         "name": "Dr. Snehal Deshmukh",
@@ -110,8 +212,17 @@
         "iv_fluids": 250
       }
     },
-    "facilities": ["24x7 Emergency OT", "ICU", "Blood Storage Centre", "NICU Baby Care", "Digital X-Ray"],
-    "coordinates": { "lat": 19.2064, "lng": 73.8765 }
+    "facilities": [
+      "24x7 Emergency OT",
+      "ICU",
+      "Blood Storage Centre",
+      "NICU Baby Care",
+      "Digital X-Ray"
+    ],
+    "coordinates": {
+      "lat": 19.2064,
+      "lng": 73.8765
+    }
   },
   {
     "id": "hosp-03",
@@ -122,12 +233,24 @@
     "tier": "Budget (कमी खर्च)",
     "district": "Satara",
     "taluka": "Karad Rural",
-    "distance_km": 11.0,
+    "distance_km": 11,
     "travel_time_mins": 25,
     "contact": "+91 2164 241289",
     "emergency_sos": "+91 98220 11223",
     "is_24x7": true,
-    "schemes": ["MJPJAY Empanelled", "Trust Subsidized Care", "Kisan Health Card"],
+    "auth_code": "hosp-03",
+    "license_no": "MH-CHARITY-2023-9081",
+    "access_key": "Sanjeevani@Care2026",
+    "is_verified": true,
+    "verification_status": "VERIFIED_AUTHENTICATED",
+    "verification_badge": "Maharashtra Charitable Trust Board & DHS",
+    "nodal_officer": "Dr. Anand Gaikwad (Chief Surgeon)",
+    "nodal_phone": "+91 98220 11223",
+    "schemes": [
+      "MJPJAY Empanelled",
+      "Trust Subsidized Care",
+      "Kisan Health Card"
+    ],
     "cost_range": {
       "opd": 150,
       "general_bed_day": 400,
@@ -136,12 +259,27 @@
       "delivery_csection": 16000,
       "tier_label": "कमी खर्च / Subsidized (₹150 - ₹2,500)"
     },
+    "doctors": [
+      {
+        "id": "doc-09",
+        "name": "Dr. Anand Gaikwad",
+        "name_mr": "डॉ. आनंद गायकवाड",
+        "reg_no": "MMC-2008-05-1994",
+        "speciality": "General & Laparoscopic Surgeon",
+        "speciality_mr": "जनरल व दुर्बिणीद्वारे शस्त्रक्रिया तज्ज्ञ",
+        "experience": "18 Yrs Experience",
+        "phone": "+91 98220 11223",
+        "is_available_for_video": false,
+        "opd_timing": "04:00 PM - 08:00 PM",
+        "status": "In Emergency OT"
+      }
+    ],
     "live_status": {
       "doctor_on_duty": {
         "name": "Dr. Anand Gaikwad",
         "name_mr": "डॉ. आनंद गायकवाड",
         "speciality": "General Surgeon",
-        "status": "In Emergency OT (Free at 11:30 PM)",
+        "status": "In Emergency OT",
         "next_shift": "Evening Shift"
       },
       "beds": {
@@ -167,8 +305,17 @@
         "iv_fluids": 90
       }
     },
-    "facilities": ["Low Cost Pharmacy", "Maternity Wing", "Sonography", "Dialysis Unit", "Ambulance"],
-    "coordinates": { "lat": 17.2885, "lng": 74.1843 }
+    "facilities": [
+      "Low Cost Pharmacy",
+      "Maternity Wing",
+      "Sonography",
+      "Dialysis Unit",
+      "Ambulance"
+    ],
+    "coordinates": {
+      "lat": 17.2885,
+      "lng": 74.1843
+    }
   },
   {
     "id": "hosp-04",
@@ -184,7 +331,19 @@
     "contact": "+91 253 2598811",
     "emergency_sos": "+91 94239 88990",
     "is_24x7": true,
-    "schemes": ["MJPJAY Selected Surgeries", "All Major Health Insurance", "Cashless TPA"],
+    "auth_code": "hosp-04",
+    "license_no": "MH-PVT-2023-NSK-4401",
+    "access_key": "Sahyadri@Nashik2026",
+    "is_verified": true,
+    "verification_status": "VERIFIED_AUTHENTICATED",
+    "verification_badge": "NABH Accredited Tertiary Center",
+    "nodal_officer": "Dr. Pradeep Kulkarni (Medical Director)",
+    "nodal_phone": "+91 94239 88990",
+    "schemes": [
+      "MJPJAY Selected Surgeries",
+      "All Major Health Insurance",
+      "Cashless TPA"
+    ],
     "cost_range": {
       "opd": 450,
       "general_bed_day": 1200,
@@ -193,6 +352,21 @@
       "delivery_csection": 38000,
       "tier_label": "मध्यम खर्च / Moderate (₹450 - ₹6,500)"
     },
+    "doctors": [
+      {
+        "id": "doc-10",
+        "name": "Dr. Pradeep Kulkarni",
+        "name_mr": "डॉ. प्रदीप कुलकर्णी",
+        "reg_no": "MMC-2005-01-0876",
+        "speciality": "Cardiologist & Critical Care Specialist",
+        "speciality_mr": "हृदयरोग व अतिदक्षता तज्ज्ञ",
+        "experience": "20 Yrs Experience",
+        "phone": "+91 94239 88990",
+        "is_available_for_video": true,
+        "opd_timing": "10:00 AM - 05:00 PM",
+        "status": "Available Now"
+      }
+    ],
     "live_status": {
       "doctor_on_duty": {
         "name": "Dr. Pradeep Kulkarni",
@@ -224,8 +398,17 @@
         "iv_fluids": 300
       }
     },
-    "facilities": ["Cath Lab & Cardiac Care", "Advanced ICU", "CT Scan 24x7", "Dialysis", "Neonatal ICU"],
-    "coordinates": { "lat": 20.0063, "lng": 73.8347 }
+    "facilities": [
+      "Cath Lab & Cardiac Care",
+      "Advanced ICU",
+      "CT Scan 24x7",
+      "Dialysis",
+      "Neonatal ICU"
+    ],
+    "coordinates": {
+      "lat": 20.0063,
+      "lng": 73.8347
+    }
   },
   {
     "id": "hosp-05",
@@ -236,12 +419,24 @@
     "tier": "Advanced (उच्च/सुपर स्पेशालिटी)",
     "district": "Chhatrapati Sambhaji Nagar",
     "taluka": "Rural Highway Junction",
-    "distance_km": 26.0,
+    "distance_km": 26,
     "travel_time_mins": 45,
     "contact": "+91 240 2489000",
     "emergency_sos": "+91 98900 99999",
     "is_24x7": true,
-    "schemes": ["Ayushman Bharat PMJAY", "MJPJAY Super-Speciality", "Corporate TPA"],
+    "auth_code": "hosp-05",
+    "license_no": "MH-PVT-2022-CSN-8819",
+    "access_key": "Apex@Trauma2026",
+    "is_verified": true,
+    "verification_status": "VERIFIED_AUTHENTICATED",
+    "verification_badge": "NABH Super-Speciality Center",
+    "nodal_officer": "Dr. Rajeshwar Rao (Neuro & Trauma Head)",
+    "nodal_phone": "+91 98900 99999",
+    "schemes": [
+      "Ayushman Bharat PMJAY",
+      "MJPJAY Super-Speciality",
+      "Corporate TPA"
+    ],
     "cost_range": {
       "opd": 800,
       "general_bed_day": 2800,
@@ -250,6 +445,21 @@
       "delivery_csection": 75000,
       "tier_label": "उच्च स्पेशालिटी / Advanced (₹800 - ₹14,000)"
     },
+    "doctors": [
+      {
+        "id": "doc-11",
+        "name": "Dr. Rajeshwar Rao",
+        "name_mr": "डॉ. राजेश्वर राव",
+        "reg_no": "MMC-2002-12-0045",
+        "speciality": "Neurosurgeon & Critical Trauma Lead",
+        "speciality_mr": "न्यूरोसर्जन व गंभीर ट्रॉमा प्रमुख",
+        "experience": "22 Yrs Experience",
+        "phone": "+91 98900 99999",
+        "is_available_for_video": true,
+        "opd_timing": "09:00 AM - 03:00 PM",
+        "status": "Available Now"
+      }
+    ],
     "live_status": {
       "doctor_on_duty": {
         "name": "Dr. Rajeshwar Rao",
@@ -281,8 +491,17 @@
         "iv_fluids": 600
       }
     },
-    "facilities": ["Level-1 Trauma", "MRI & 128-Slice CT", "Emergency Neuro OT", "Ventilator Support", "Air/Advanced Ambulance"],
-    "coordinates": { "lat": 19.8762, "lng": 75.3433 }
+    "facilities": [
+      "Level-1 Trauma",
+      "MRI & 128-Slice CT",
+      "Emergency Neuro OT",
+      "Ventilator Support",
+      "Air/Advanced Ambulance"
+    ],
+    "coordinates": {
+      "lat": 19.8762,
+      "lng": 75.3433
+    }
   },
   {
     "id": "hosp-06",
@@ -291,27 +510,54 @@
     "name_hi": "जिला नागरिक अस्पताल एवं मातृ केंद्र",
     "type": "Government",
     "tier": "Free / Govt",
-    "district": "Gadchiroli Tribal Hub",
-    "taluka": "Gadchiroli Rural",
-    "distance_km": 18.0,
+    "district": "Nashik",
+    "taluka": "Nashik City Rural Hub",
+    "distance_km": 18,
     "travel_time_mins": 35,
-    "contact": "+91 7132 222123",
+    "contact": "+91 253 2573123",
     "emergency_sos": "108",
     "is_24x7": true,
-    "schemes": ["100% Free All Services", "MJPJAY", "Tribal Health Mission"],
+    "auth_code": "hosp-06",
+    "license_no": "MH-DHS-2024-DH-009",
+    "access_key": "Nashik@Civil2026",
+    "is_verified": true,
+    "verification_status": "VERIFIED_AUTHENTICATED",
+    "verification_badge": "Govt District Civil Center",
+    "nodal_officer": "Dr. Santosh Bhoye (Civil Surgeon)",
+    "nodal_phone": "+91 94220 77123",
+    "schemes": [
+      "100% Free All Services",
+      "MJPJAY",
+      "Tribal & Rural Health Mission"
+    ],
     "cost_range": {
       "opd": 0,
       "general_bed_day": 0,
       "icu_bed_day": 0,
       "delivery_normal": 0,
       "delivery_csection": 0,
-      "tier_label": "100% मोफत आदिवासी व ग्रामीण योजना"
+      "tier_label": "100% मोफत शासकीय आरोग्य सेवा"
     },
+    "doctors": [
+      {
+        "id": "doc-03",
+        "name": "Dr. Santosh Bhoye",
+        "name_mr": "डॉ. संतोष भोये",
+        "reg_no": "MMC-2009-11-7721",
+        "speciality": "Snakebite & Trauma Emergency Specialist",
+        "speciality_mr": "सर्पदंश व अपघात आपत्कालीन तज्ज्ञ",
+        "experience": "16 Yrs Experience",
+        "phone": "+91 94220 77123",
+        "is_available_for_video": true,
+        "opd_timing": "08:00 AM - 04:00 PM",
+        "status": "Available Now"
+      }
+    ],
     "live_status": {
       "doctor_on_duty": {
-        "name": "Dr. Anita Madavi",
-        "name_mr": "डॉ. अनिता मडावी",
-        "speciality": "Pediatrician & Tribal Health Officer",
+        "name": "Dr. Santosh Bhoye",
+        "name_mr": "डॉ. संतोष भोये",
+        "speciality": "Snakebite & Trauma Emergency Specialist",
         "status": "Available",
         "next_shift": "24x7 Duty"
       },
@@ -338,7 +584,207 @@
         "iv_fluids": 400
       }
     },
-    "facilities": ["Free Blood Bank", "24x7 Snakebite Special Unit", "Nutritional Rehab Center (NRC)", "Free Ambulance Call 108"],
-    "coordinates": { "lat": 20.1809, "lng": 80.0039 }
+    "facilities": [
+      "Free Blood Bank",
+      "24x7 Snakebite Special Unit",
+      "Nutritional Rehab Center (NRC)",
+      "Free Ambulance Call 108"
+    ],
+    "coordinates": {
+      "lat": 19.9975,
+      "lng": 73.7898
+    }
+  },
+  {
+    "id": "hosp-07",
+    "name": "Automated Test Health Center",
+    "name_mr": "स्वयंचलित चाचणी आरोग्य केंद्र",
+    "type": "Primary Health Centre (PHC)",
+    "tier": "Free / Govt",
+    "district": "Nashik Rural",
+    "taluka": "Igatpuri",
+    "contact": "0253-2591234",
+    "emergency_sos": "108",
+    "is_24x7": true,
+    "auth_code": "hosp-test-99",
+    "access_key": "TestSecure#2026!",
+    "license_no": "MH-DHS-2026-HOSP-359",
+    "is_verified": true,
+    "verification_status": "VERIFIED_AUTHENTICATED",
+    "verification_badge": "State Health Directorate Accredited",
+    "nodal_officer": "Chief Medical Officer",
+    "nodal_phone": "9822011901",
+    "doctors": [
+      {
+        "id": "doc-1788236583983",
+        "name": "Dr. On-Duty MO",
+        "reg_no": "MMC-7325",
+        "speciality": "Emergency Medicine & General Surgery",
+        "experience": "10 Yrs Experience",
+        "phone": "9822011901",
+        "is_available_for_video": true,
+        "opd_timing": "08:00 AM - 04:00 PM",
+        "status": "Available"
+      }
+    ],
+    "live_status": {
+      "doctor_on_duty": {
+        "name": "Dr. Duty Officer",
+        "status": "Available"
+      },
+      "beds": {
+        "general_total": 30,
+        "general_available": 15,
+        "icu_total": 5,
+        "icu_available": 2,
+        "oxygen_beds_available": 10
+      },
+      "blood_stock": {
+        "A_pos": 10,
+        "B_pos": 8,
+        "O_pos": 15,
+        "AB_pos": 4,
+        "O_neg": 2
+      },
+      "medicines_stock": {
+        "anti_venom_vials": 25,
+        "rabies_vaccine": 20,
+        "ors_packets": 300,
+        "insulin_vials": 15,
+        "iv_fluids": 100
+      }
+    },
+    "coordinates": {
+      "lat": 19.9381,
+      "lng": 73.5312
+    }
+  },
+  {
+    "id": "hosp-08",
+    "name": "Automated Test Health Center",
+    "name_mr": "स्वयंचलित चाचणी आरोग्य केंद्र",
+    "type": "Primary Health Centre (PHC)",
+    "tier": "Free / Govt",
+    "district": "Nashik Rural",
+    "taluka": "Igatpuri",
+    "contact": "0253-2591234",
+    "emergency_sos": "108",
+    "is_24x7": true,
+    "auth_code": "hosp-test-99",
+    "access_key": "TestSecure#2026!",
+    "license_no": "MH-DHS-2026-HOSP-484",
+    "is_verified": true,
+    "verification_status": "VERIFIED_AUTHENTICATED",
+    "verification_badge": "State Health Directorate Accredited",
+    "nodal_officer": "Chief Medical Officer",
+    "nodal_phone": "9822011901",
+    "doctors": [
+      {
+        "id": "doc-1788236625035",
+        "name": "Dr. On-Duty MO",
+        "reg_no": "MMC-7032",
+        "speciality": "Emergency Medicine & General Surgery",
+        "experience": "10 Yrs Experience",
+        "phone": "9822011901",
+        "is_available_for_video": true,
+        "opd_timing": "08:00 AM - 04:00 PM",
+        "status": "Available"
+      }
+    ],
+    "live_status": {
+      "doctor_on_duty": {
+        "name": "Dr. Duty Officer",
+        "status": "Available"
+      },
+      "beds": {
+        "general_total": 30,
+        "general_available": 15,
+        "icu_total": 5,
+        "icu_available": 2,
+        "oxygen_beds_available": 10
+      },
+      "blood_stock": {
+        "A_pos": 10,
+        "B_pos": 8,
+        "O_pos": 15,
+        "AB_pos": 4,
+        "O_neg": 2
+      },
+      "medicines_stock": {
+        "anti_venom_vials": 25,
+        "rabies_vaccine": 20,
+        "ors_packets": 300,
+        "insulin_vials": 15,
+        "iv_fluids": 100
+      }
+    },
+    "coordinates": {
+      "lat": 19.9381,
+      "lng": 73.5312
+    }
+  },
+  {
+    "id": "hosp-09",
+    "name": "Automated Test Health Center",
+    "name_mr": "स्वयंचलित चाचणी आरोग्य केंद्र",
+    "type": "Primary Health Centre (PHC)",
+    "tier": "Free / Govt",
+    "district": "Nashik Rural",
+    "taluka": "Igatpuri",
+    "contact": "0253-2591234",
+    "emergency_sos": "108",
+    "is_24x7": true,
+    "auth_code": "hosp-test-99",
+    "access_key": "TestSecure#2026!",
+    "license_no": "MH-DHS-2026-HOSP-686",
+    "is_verified": true,
+    "verification_status": "VERIFIED_AUTHENTICATED",
+    "verification_badge": "State Health Directorate Accredited",
+    "nodal_officer": "Chief Medical Officer",
+    "nodal_phone": "9822011901",
+    "doctors": [
+      {
+        "id": "doc-1788237472597",
+        "name": "Dr. On-Duty MO",
+        "reg_no": "MMC-5648",
+        "speciality": "Emergency Medicine & General Surgery",
+        "experience": "10 Yrs Experience",
+        "phone": "9822011901",
+        "is_available_for_video": true,
+        "opd_timing": "08:00 AM - 04:00 PM",
+        "status": "Available"
+      }
+    ],
+    "live_status": {
+      "doctor_on_duty": {
+        "name": "Dr. Duty Officer",
+        "status": "Available"
+      },
+      "beds": {
+        "general_total": 30,
+        "general_available": 15,
+        "icu_total": 5,
+        "icu_available": 2,
+        "oxygen_beds_available": 10
+      },
+      "blood_stock": {
+        "A_pos": 10,
+        "B_pos": 8,
+        "O_pos": 15,
+        "AB_pos": 4,
+        "O_neg": 2
+      },
+      "medicines_stock": {
+        "anti_venom_vials": 25,
+        "rabies_vaccine": 20,
+        "ors_packets": 300,
+        "insulin_vials": 15,
+        "iv_fluids": 100
+      }
+    },
+    "coordinates": {
+      "lat": 19.9381,
+      "lng": 73.5312
+    }
   }
 ]

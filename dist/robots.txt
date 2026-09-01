@@ -1,0 +1,26 @@
+# Robots.txt for Gramin Aarogya Sathi (Rural Digital Health Mission)
+# Allows Googlebot and search engines to index public citizen health tools
+# Restricts administrative and hospital command centers under healthcare security compliance
+
+User-agent: *
+Allow: /
+Allow: /remedies
+Allow: /emergency
+Allow: /triage
+Allow: /teleconsult
+
+# Protect administrative, medical command, and internal API surfaces
+Disallow: /developer-portal/
+Disallow: /hospital-portal/
+Disallow: /hosp-portal/
+Disallow: /api/
+
+# Googlebot specific directives
+User-agent: Googlebot
+Allow: /
+Disallow: /developer-portal/
+Disallow: /hospital-portal/
+Disallow: /api/
+
+# Sitemap location for Google Search Console indexing
+Sitemap: https://graminaarogya.gov.in/sitemap.xml

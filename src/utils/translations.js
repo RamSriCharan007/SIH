@@ -50,6 +50,7 @@ export const translations = {
     tab_remedies_40: "४०% घरगुती काढे व उपचार",
     tab_complications_60: "६०% गंभीर धोके व SOS",
     tab_asha_suite: "आशा सेविका डिजिटल नोंदवही",
+    tab_hospital_portal: "रुग्णालय व MO पोर्टल",
     tab_sms_fallback: "शून्य इंटरनेट SMS सेवा",
     tab_ai_copilot: "🤖 आरोग्य AI साथी (Voice AI)",
 
@@ -316,6 +317,7 @@ export const translations = {
     tab_remedies_40: "४०% घरेलू काढ़ा व नुस्खे",
     tab_complications_60: "६०% गंभीर आपातकाल व SOS",
     tab_asha_suite: "आशा कार्यकर्ता डिजिटल रजिस्टर",
+    tab_hospital_portal: "अस्पताल व MO पोर्टल",
     tab_sms_fallback: "शून्य इंटरनेट SMS सेवा",
     tab_ai_copilot: "🤖 आरोग्य AI साथी (Voice AI)",
 
@@ -582,6 +584,7 @@ export const translations = {
     tab_remedies_40: "40% Offline Remedies",
     tab_complications_60: "60% Emergency SOS",
     tab_asha_suite: "ASHA Digital Register",
+    tab_hospital_portal: "Hospital & MO Portal",
     tab_sms_fallback: "Zero-Data SMS Service",
     tab_ai_copilot: "🤖 Aarogya Voice AI",
 

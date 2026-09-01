@@ -19,7 +19,8 @@ import {
   CheckCircle,
   HelpCircle,
   AlertTriangle,
-  Database
+  Database,
+  ExternalLink
 } from 'lucide-react';
 
 export default function AarogyaAiModal({ onClose, onTriggerAction, onOpenDbViewer }) {

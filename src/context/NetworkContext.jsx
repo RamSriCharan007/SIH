@@ -78,7 +78,10 @@ export function NetworkProvider({ children }) {
       // Send to server
       const response = await fetch('/api/sync/asha-batch', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+          'Content-Type': 'application/json',
+          'x-user-role': 'asha'
+        },
         body: JSON.stringify({ newRecords: queue })
       });
 

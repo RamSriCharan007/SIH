@@ -1,0 +1,11 @@
+{
+  "name": "gramin-hospital-portal",
+  "version": "2.0.0",
+  "description": "Standalone Government Hospital & Medical Officer Clinical Command Portal",
+  "private": true,
+  "scripts": {
+    "start": "node ../server/server.js"
+  },
+  "author": "Ram Sri Charan",
+  "license": "MIT"
+}
